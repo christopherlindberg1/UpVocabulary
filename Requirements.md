@@ -27,8 +27,3 @@ Requirements are defined below and given a priority of must, should or could (th
 
 ### Could
 * Restore vocabularies to a state they had at a specific point in time.
-
-
-
-
- To achieve this, each word has a weight attached to it, on a scale 1 - 5 (1 = easy, 5 = hard). 
