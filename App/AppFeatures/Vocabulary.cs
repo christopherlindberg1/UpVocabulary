@@ -79,8 +79,6 @@ namespace AppFeatures
             }
         }
 
-        
-
         public int NrOfWords => _words.Count;
 
 
@@ -93,9 +91,9 @@ namespace AppFeatures
          * 
          */
 
-        public Vocabulary()
-        {
-        }
+        //public Vocabulary()
+        //{
+        //}
 
         public Vocabulary(
             string name,
@@ -108,14 +106,6 @@ namespace AppFeatures
             OriginalLanguage = originalLanguage;
             TranslationLanguage = translationLanguage;
         }
-
-        //public Vocabulary(params Word[] words)
-        //{
-        //    for (int i = 0; i < words.Length; i++)
-        //    {
-        //        Words.Add(words[i]);
-        //    }
-        //}
 
 
 
@@ -147,52 +137,6 @@ namespace AppFeatures
 
                 return Words[index];
             }
-        }
-
-        public void AddSampleWords()
-        {
-            Word w1 = new Word
-            {
-                OriginalWord = "also",
-                Translation = "också",
-                Sentence = "I am also happy",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w2 = new Word
-            {
-                OriginalWord = "happy",
-                Translation = "glad",
-                Sentence = "I am happy",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w3 = new Word
-            {
-                OriginalWord = "hello",
-                Translation = "hej",
-                Sentence = "Hello there my little cat",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w4 = new Word
-            {
-                OriginalWord = "yes",
-                Translation = "yes",
-                Sentence = "yes, my name is Chris",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w5 = new Word
-            {
-                OriginalWord = "zoo",
-                Translation = "zoo",
-                Sentence = null,
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-
-            Words.AddRange(new List<Word> { w1, w2, w3, w4, w5 });
         }
 
         public Word GetWord(string word)
@@ -287,6 +231,11 @@ namespace AppFeatures
             info.Add("languages", $"{ OriginalLanguage } - { TranslationLanguage }");
 
             return info;
+        }
+
+        public override string ToString()
+        {
+            return $"Name: { Name }";
         }
     }
 }
