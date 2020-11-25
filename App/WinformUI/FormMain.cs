@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -156,6 +157,19 @@ namespace WinformUI
             ConfigureListViewVocabularies();
         }
 
+        private void InitializeApp()
+        {
+            FillStoreWithSampleData();
+            AddDataToGUI();
+        }
+
+        private void TestingMethod()
+        {
+            
+
+            this.Close();
+        }
+
         private void ConfigureListViewVocabularies()
         {
             // Setting width for columns
@@ -185,6 +199,38 @@ namespace WinformUI
          * 
          */
 
+        private void AddDataToGUI()
+        {
+            
+        }
+
+        private void FillStoreWithSampleData()
+        {
+            Vocabulary vocabulary = new Vocabulary();
+            vocabulary.AddSampleWords();
+
+            Word word1 = new Word
+            {
+                OriginalWord = "ö",
+                Translation = "ö",
+                Sentence = null,
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+
+            Word word2 = new Word
+            {
+                OriginalWord = "ööö",
+                Translation = "ocksååå",
+                Sentence = null,
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+
+            //vocabulary.InsertWord(word1);
+
+            //bool didUpdate = vocabulary.UpdateWord("ö", word2);
+        }
 
 
 
@@ -220,6 +266,11 @@ namespace WinformUI
                 // Get practice settings from the form.
                 
             }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            InitializeApp();
         }
     }
 }
