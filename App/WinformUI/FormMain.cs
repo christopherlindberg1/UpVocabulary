@@ -14,6 +14,8 @@ namespace WinformUI
 {
     public partial class FormMain : Form
     {
+        private readonly VocabularyManager _vocabularyManager;
+
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
@@ -26,12 +28,28 @@ namespace WinformUI
 
 
 
-
         /**
          * 
          * ===================  Properties  ===================
          * 
          */
+
+        private VocabularyManager VocabularyManager
+        {
+            get
+            {
+                return _vocabularyManager;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(
+                        "VocabularyManager",
+                        "VocabularyManager Cannot be null");
+                }
+            }
+        }
 
         private FormCreateAndEdit CreateAndEditForm
         {
@@ -43,7 +61,9 @@ namespace WinformUI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("CreateAndEditForm", "Cannot be null");
+                    throw new ArgumentNullException(
+                        "CreateAndEditForm",
+                        "CreateAndEditForm Cannot be null");
                 }
                 else
                 {
@@ -62,7 +82,9 @@ namespace WinformUI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("PracticeSettingsForm", "Cannot be null");
+                    throw new ArgumentNullException(
+                        "PracticeSettingsForm",
+                        "PracticeSettingsForm Cannot be null");
                 }
                 else
                 {
@@ -81,7 +103,9 @@ namespace WinformUI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("PracticeForm", "Cannot be null");
+                    throw new ArgumentNullException(
+                        "PracticeForm",
+                        "PracticeForm Cannot be null");
                 }
                 else
                 {
@@ -100,7 +124,9 @@ namespace WinformUI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("InputValidator", "Cannot be null");
+                    throw new ArgumentNullException(
+                        "InputValidator",
+                        "InputValidator Cannot be null");
                 }
                 else
                 {
@@ -119,7 +145,9 @@ namespace WinformUI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("LanguagesToPracticeWith", "Cannot be null");
+                    throw new ArgumentNullException(
+                        "LanguagesToPracticeWith",
+                        "LanguagesToPracticeWith Cannot be null");
                 }
                 else
                 {
@@ -140,7 +168,7 @@ namespace WinformUI
                 {
                     throw new ArgumentOutOfRangeException(
                         "NrOfWordsToPracticeWith",
-                        "Must be at least zero");
+                        "NrOfWordsToPracticeWith Must be at least zero");
                 }
                 else
                 {
@@ -148,8 +176,6 @@ namespace WinformUI
                 }
             }
         }
-
-        
 
 
 
@@ -184,9 +210,7 @@ namespace WinformUI
             // Display grid lines.
             listViewVocabularies.GridLines = true;
 
-            // Filling the app with sample data
-            //AnimalManager.FillManagerWithSampleData();
-            //AddAnimalsToGUIList();
+            // Fill the app with sample data
         }
 
 
@@ -211,8 +235,6 @@ namespace WinformUI
 
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
         {
-            
-
             CreateAndEditForm = new FormCreateAndEdit();
 
             CreateAndEditForm.Show();
@@ -233,8 +255,8 @@ namespace WinformUI
 
             if (result == DialogResult.Yes)
             {
-                // Hämta practice settings från formuläret
-                //NrOfWordsToPracticeWith = ;
+                // Get practice settings from the form.
+                
             }
         }
     }
