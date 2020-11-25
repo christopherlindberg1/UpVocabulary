@@ -14,12 +14,12 @@ namespace WinformUI
 {
     public partial class FormMain : Form
     {
-        private readonly VocabularyManager _vocabularyManager;
+        private readonly VocabularyManager _vocabularyManager = new VocabularyManager();
 
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
-        private InputValidator _inputValidator;
+        private readonly InputValidator _inputValidator = new InputValidator();
 
         private int _nrOfWordsToPracticeWith;
         private string[] _languagesToPracticeWith;
@@ -39,15 +39,6 @@ namespace WinformUI
             get
             {
                 return _vocabularyManager;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "VocabularyManager",
-                        "VocabularyManager Cannot be null");
-                }
             }
         }
 
@@ -120,19 +111,6 @@ namespace WinformUI
             {
                 return _inputValidator;
             }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "InputValidator",
-                        "InputValidator Cannot be null");
-                }
-                else
-                {
-                    _inputValidator = value;
-                }
-            }
         }
 
         private string[] LanguagesToPracticeWith
@@ -191,10 +169,10 @@ namespace WinformUI
         {
             InitializeComponent();
 
-            InitializeListViewVocabularies();
+            ConfigureListViewVocabularies();
         }
 
-        private void InitializeListViewVocabularies()
+        private void ConfigureListViewVocabularies()
         {
             // Setting width for columns
             listViewVocabularies.Columns[0].Width = 225;     // Name
