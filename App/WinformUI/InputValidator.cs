@@ -22,13 +22,14 @@ namespace WinformUI
          */
         private List<string> Messages
         {
-            get { return this._messages; }
+            get => _messages;
         }
 
         private bool HasSentMessage
         {
-            get { return this._hasSentMessage; }
-            set { this._hasSentMessage = value; }
+            get => _hasSentMessage;
+
+            set => _hasSentMessage = value;
         }
 
 

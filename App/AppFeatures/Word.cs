@@ -25,6 +25,7 @@ namespace AppFeatures
         public string OriginalWord
         {
             get => _originalWord;
+
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
@@ -41,6 +42,7 @@ namespace AppFeatures
         public string Translation
         {
             get => _translation;
+
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
@@ -57,6 +59,7 @@ namespace AppFeatures
         public string Sentence
         {
             get => _sentence;
+
             set
             {
                 if (String.IsNullOrWhiteSpace(value))
@@ -73,6 +76,7 @@ namespace AppFeatures
         public int  Weight
         {
             get => _weight;
+
             set
             {
                 if (value < 1)
@@ -96,6 +100,7 @@ namespace AppFeatures
         public int TimesAnsweredCorrectly
         {
             get => _weight;
+
             set
             {
                 if (value < 0)

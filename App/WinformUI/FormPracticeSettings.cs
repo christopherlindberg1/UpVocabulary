@@ -27,10 +27,8 @@ namespace WinformUI
 
         public DialogResult StartPractice
         {
-            get
-            {
-                return _startPractice;
-            }
+            get => _startPractice;
+
             set
             {
                 if (value != DialogResult.Yes && value != DialogResult.Cancel)
@@ -46,10 +44,8 @@ namespace WinformUI
 
         private string[] LanguagesToPracticeWith
         {
-            get
-            {
-                return _languagesToPracticeWith;
-            }
+            get => _languagesToPracticeWith;
+
             set
             {
                 if (value == null)
@@ -65,10 +61,8 @@ namespace WinformUI
 
         private int NrOfWordsToPracticeWith
         {
-            get
-            {
-                return _nrOfWordsToPracticeWith;
-            }
+            get => _nrOfWordsToPracticeWith;
+
             set
             {
                 if (value < 0)
@@ -132,8 +126,7 @@ namespace WinformUI
 
         private void FormPracticeSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //_startPractice = DialogResult.Cancel;
-            //MessageBox.Show(_startPractice.ToString());
+            
         }
     }
 }

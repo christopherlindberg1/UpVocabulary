@@ -36,18 +36,13 @@ namespace WinformUI
 
         private VocabularyManager VocabularyManager
         {
-            get
-            {
-                return _vocabularyManager;
-            }
+            get => _vocabularyManager;
         }
 
         private FormCreateAndEdit CreateAndEditForm
         {
-            get
-            {
-                return _createAndEditForm;
-            }
+            get => _createAndEditForm;
+
             set
             {
                 if (value == null)
@@ -65,10 +60,8 @@ namespace WinformUI
 
         private FormPracticeSettings PracticeSettingsForm
         {
-            get
-            {
-                return _practiceSettingsForm;
-            }
+            get => _practiceSettingsForm;
+
             set
             {
                 if (value == null)
@@ -86,10 +79,8 @@ namespace WinformUI
 
         private FormPractice PracticeForm
         {
-            get
-            {
-                return _practiceForm;
-            }
+            get => _practiceForm;
+
             set
             {
                 if (value == null)
@@ -107,18 +98,13 @@ namespace WinformUI
 
         private InputValidator InputValidator
         {
-            get
-            {
-                return _inputValidator;
-            }
+            get => _inputValidator;
         }
 
         private string[] LanguagesToPracticeWith
         {
-            get
-            {
-                return _languagesToPracticeWith;
-            }
+            get => _languagesToPracticeWith;
+
             set
             {
                 if (value == null)
@@ -136,10 +122,8 @@ namespace WinformUI
 
         private int NrOfWordsToPracticeWith
         {
-            get
-            {
-                return _nrOfWordsToPracticeWith;
-            }
+            get => _nrOfWordsToPracticeWith;
+
             set
             {
                 if (value < 0)

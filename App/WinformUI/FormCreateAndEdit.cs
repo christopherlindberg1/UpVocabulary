@@ -28,10 +28,7 @@ namespace WinformUI
 
         private InputValidator InputValidator
         {
-            get
-            {
-                return _inputValidator;
-            }
+            get => _inputValidator;
         }
 
 
