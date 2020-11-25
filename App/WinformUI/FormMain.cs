@@ -199,17 +199,53 @@ namespace WinformUI
          * 
          */
 
-        private void AddDataToGUI()
-        {
-            
-        }
-
         private void FillStoreWithSampleData()
         {
-            Vocabulary vocabulary = new Vocabulary();
-            vocabulary.AddSampleWords();
+            Word w1 = new Word
+            {
+                OriginalWord = "also",
+                Translation = "också",
+                Sentence = "I am also happy",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+            Word w2 = new Word
+            {
+                OriginalWord = "happy",
+                Translation = "glad",
+                Sentence = "I am happy",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+            Word w3 = new Word
+            {
+                OriginalWord = "hello",
+                Translation = "hej",
+                Sentence = "Hello there my little cat",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+            Word w4 = new Word
+            {
+                OriginalWord = "yes",
+                Translation = "yes",
+                Sentence = "yes, my name is Chris",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
+            Word w5 = new Word
+            {
+                OriginalWord = "zoo",
+                Translation = "zoo",
+                Sentence = null,
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            };
 
-            Word word1 = new Word
+            List<Word> words1 = new List<Word> { w1, w2, w3, w4, w5 };
+            Vocabulary vocabulary = new Vocabulary("D is for Digital", words1, "English", "Swedish");
+
+            Word w6 = new Word
             {
                 OriginalWord = "ö",
                 Translation = "ö",
@@ -218,7 +254,7 @@ namespace WinformUI
                 TimesAnsweredCorrectly = 0
             };
 
-            Word word2 = new Word
+            Word w7 = new Word
             {
                 OriginalWord = "ööö",
                 Translation = "ocksååå",
@@ -230,7 +266,32 @@ namespace WinformUI
             //vocabulary.InsertWord(word1);
 
             //bool didUpdate = vocabulary.UpdateWord("ö", word2);
+
+            VocabularyManager.AddVocabulary(vocabulary);
+
+            MessageBox.Show((VocabularyManager.GetAtIndex(0)).ToString());
         }
+
+        private void AddDataToGUI()
+        {
+            listViewVocabularies.Items.Clear();
+
+            Vocabulary vocabulary;
+
+            for (int i = 0; i < VocabularyManager.NrOfVocabularies; i++)
+            {
+                vocabulary = VocabularyManager.GetAtIndex(0);
+
+                ListViewItem item = new ListViewItem(vocabulary.Name);
+
+                item.SubItems.Add(vocabulary.NrOfWords.ToString());
+                item.SubItems.Add($"{ vocabulary.OriginalLanguage } - { vocabulary.TranslationLanguage }");
+
+                listViewVocabularies.Items.Add(item);
+            }
+        }
+
+        
 
 
 
