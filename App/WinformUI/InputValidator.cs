@@ -25,6 +25,11 @@ namespace WinformUI
             get { return this._messages; }
         }
 
+        private bool HasSentMessage
+        {
+            get { return this._hasSentMessage; }
+            set { this._hasSentMessage = value; }
+        }
 
 
 
@@ -33,16 +38,6 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
-
-        /// <summary>
-        ///   Internal method used to keep track of whether messages has been presented.
-        /// </summary>
-        private bool HasSentMessage
-        {
-            get { return this._hasSentMessage; }
-            set { this._hasSentMessage = value; }
-        }
-
 
         /// <summary>
         ///   Adds message to a List with messages.
@@ -63,7 +58,7 @@ namespace WinformUI
         ///   Returns a string representation of all messages.
         /// </summary>
         /// <returns>String with message.</returns>
-        internal string GetMessages()
+        public string GetMessages()
         {
             StringBuilder messageBuilder = new StringBuilder();
 
@@ -76,7 +71,7 @@ namespace WinformUI
             return messageBuilder.ToString();
         }
 
-        internal bool ValidateTextBoxString(TextBox element, string errorMessageForNullOrEmpty)
+        public bool ValidateTextBoxString(TextBox element, string errorMessageForNullOrEmpty)
         {
             if (String.IsNullOrWhiteSpace(element.Text))
             {
@@ -87,7 +82,7 @@ namespace WinformUI
             return true;
         }
 
-        internal bool ValidateComboBoxItemIsSelected(ComboBox element, string errorMessageIfNotSelected)
+        public bool ValidateComboBoxItemIsSelected(ComboBox element, string errorMessageIfNotSelected)
         {
             if (element.SelectedIndex == -1)
             {
