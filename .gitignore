@@ -1,3 +1,4 @@
 App/*/bin
 App/*/obj
 App/.vs
+.vs/
