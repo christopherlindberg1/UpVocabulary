@@ -60,20 +60,10 @@ namespace AppFeatures
         {
             get => _sentence;
 
-            set
-            {
-                if (String.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentNullException(
-                        "Sentence",
-                        "Sentence cannot be null");
-                }
-
-                _sentence = value;
-            }
+            set => _sentence = value;
         }
 
-        public int  Weight
+        public int Weight
         {
             get => _weight;
 
@@ -99,7 +89,7 @@ namespace AppFeatures
 
         public int TimesAnsweredCorrectly
         {
-            get => _weight;
+            get => _timesAnsweredCorrectly;
 
             set
             {
@@ -117,8 +107,31 @@ namespace AppFeatures
                         "TimesAnsweredCorrectly cannot be greater than 1");
                 }
 
-                _weight = value;
+                _timesAnsweredCorrectly = value;
             }
+        }
+
+
+
+
+
+        /**
+         * 
+         * ===================  Init  ===================
+         * 
+         */
+
+        public Word()
+        {
+        }
+
+        public Word(Word wordToCopy)
+        {
+            OriginalWord = wordToCopy.OriginalWord;
+            Translation = wordToCopy.Translation;
+            Sentence = wordToCopy.Sentence;
+            Weight = wordToCopy.Weight;
+            TimesAnsweredCorrectly = wordToCopy.TimesAnsweredCorrectly;
         }
 
 
@@ -131,6 +144,11 @@ namespace AppFeatures
          * ===================  Methods  ===================
          * 
          */
+
+        public override string ToString()
+        {
+            return $"{ OriginalWord }";
+        }
 
     }
 }
