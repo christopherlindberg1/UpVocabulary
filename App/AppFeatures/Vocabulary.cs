@@ -195,6 +195,19 @@ namespace AppFeatures
             Words.AddRange(new List<Word> { w1, w2, w3, w4, w5 });
         }
 
+        public Word GetWord(string word)
+        {
+            for (int i = 0; i < Words.Count; i++)
+            {
+                if (String.Compare(Words[i].OriginalWord, word, true) == 0)
+                {
+                    return Words[i];
+                }
+            }
+
+            return null;
+        }
+
         public bool InsertWord(Word word)
         {
             bool hasInserted = false;
@@ -223,19 +236,6 @@ namespace AppFeatures
             }
 
             return hasInserted;
-        }
-
-        public Word GetWord(string word)
-        {
-            for (int i = 0; i < Words.Count; i++)
-            {
-                if (String.Compare(Words[i].OriginalWord, word, true) == 0)
-                {
-                    return Words[i];
-                }
-            }
-
-            return null;
         }
 
         public bool UpdateWord(string word, Word updatedWord)
