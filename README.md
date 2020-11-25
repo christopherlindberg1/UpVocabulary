@@ -1,5 +1,5 @@
 # UpVocabulary
-Desktop application that one can use to practice new words in different langiuages. Users create their own vocabularies and add words to them.
+Desktop application that one can use to practice new words in foreign languages. Users create their own vocabularies and add words to them.
 
 **Development in progress.**
 
