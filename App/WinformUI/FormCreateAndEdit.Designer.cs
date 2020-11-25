@@ -278,7 +278,7 @@ namespace WinformUI
             this.Controls.Add(this.lblNameOfVocabulary);
             this.Controls.Add(this.lblHeading);
             this.Name = "FormCreateAndEdit";
-            this.Text = "FormCreateAndEdit";
+            this.Text = "UpVocabulary - [Set on init]";
             this.ResumeLayout(false);
             this.PerformLayout();
 
