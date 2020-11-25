@@ -20,7 +20,6 @@ namespace WinformUI
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
-        private readonly InputValidator _inputValidator = new InputValidator();
 
         private int _nrOfWordsToPracticeWith;
         private string[] _languagesToPracticeWith;
@@ -44,81 +43,40 @@ namespace WinformUI
         {
             get => _createAndEditForm;
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "CreateAndEditForm",
-                        "CreateAndEditForm Cannot be null");
-                }
-                else
-                {
-                    _createAndEditForm = value;
-                }
-            }
+            set => _createAndEditForm = value ??
+                throw new ArgumentNullException(
+                    "CreateAndEditForm",
+                    "CreateAndEditForm Cannot be null");
         }
 
         private FormPracticeSettings PracticeSettingsForm
         {
             get => _practiceSettingsForm;
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "PracticeSettingsForm",
-                        "PracticeSettingsForm Cannot be null");
-                }
-                else
-                {
-                    _practiceSettingsForm = value;
-                }
-            }
+            set => _practiceSettingsForm = value ??
+                throw new ArgumentNullException(
+                    "PracticeSettingsForm",
+                    "PracticeSettingsForm Cannot be null");
         }
 
         private FormPractice PracticeForm
         {
             get => _practiceForm;
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "PracticeForm",
-                        "PracticeForm Cannot be null");
-                }
-                else
-                {
-                    _practiceForm = value;
-                }
-            }
-        }
-
-        private InputValidator InputValidator
-        {
-            get => _inputValidator;
+            set => _practiceForm = value ??
+                throw new ArgumentNullException(
+                    "PracticeForm",
+                    "PracticeForm Cannot be null");
         }
 
         private string[] LanguagesToPracticeWith
         {
             get => _languagesToPracticeWith;
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "LanguagesToPracticeWith",
-                        "LanguagesToPracticeWith Cannot be null");
-                }
-                else
-                {
-                    _languagesToPracticeWith = value;
-                }
-            }
+            set => _languagesToPracticeWith = value ??
+                throw new ArgumentNullException(
+                    "LanguagesToPracticeWith",
+                    "LanguagesToPracticeWith Cannot be null");
         }
 
         private int NrOfWordsToPracticeWith
