@@ -9,5 +9,5 @@ The purpose of this app is to allow users to easily store words in different lan
 Since users probably will learn some words faster than others, the app will be more likely to generate a word that the user have been struggling with during practice, and less likely to generate a word that the user has already learned.
 
 ## Requirements
-[Click here to read the requirements](https://github.com/christopherlindberg1/UpVocabulary/blob/main/Requirements.md)
+[Click here to read the requirements](https://github.com/christopherlindberg1/UpVocabulary/blob/main/Documentation/Requirements.md)
 
