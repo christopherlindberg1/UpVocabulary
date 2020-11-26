@@ -195,16 +195,15 @@ namespace AppFeatures
             if (String.Compare(wordToUpdate.OriginalWord, updatedWord.OriginalWord, true) == 0)
             {
                 wordToUpdate = new Word(updatedWord);
+                return true;
             }
             // Have to insert word in alphabetical order if OriginalWord is changed.
             else
             {
                 Words.Remove(wordToUpdate);
                 InsertWord(updatedWord);
+                return true;
             }
-
-            wordToUpdate = new Word(updatedWord);
-            return true;
         }
 
         public bool RemoveWord(string wordToRemove)
