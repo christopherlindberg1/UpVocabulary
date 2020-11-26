@@ -113,18 +113,5 @@ namespace AppFeatures.Tests
             // Assert
             Assert.Null(actual);
         }
-
-        [Fact]
-        public void Test()
-        {
-            // Arrange
-            bool expected = true;
-
-            // Act
-            bool actual = true;
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
     }
 }
