@@ -62,7 +62,7 @@ namespace AppFeatures.Tests
 
 
         [Fact]
-        public void GetWord_ShouldReturnWork1()
+        public void GetWord_ShouldReturnWord1()
         {
             // Arrange
             Word expected = SampleWords[0];
@@ -75,7 +75,7 @@ namespace AppFeatures.Tests
         }
 
         [Fact]
-        public void GetWord_ShouldReturnWork2()
+        public void GetWord_ShouldReturnWord2()
         {
             // Arrange
             Word expected = SampleWords[1];
@@ -88,7 +88,7 @@ namespace AppFeatures.Tests
         }
 
         [Fact]
-        public void GetWord_ShouldReturnWork3()
+        public void GetWord_ShouldReturnWord3()
         {
             // Arrange
             Word expected = SampleWords[2];
