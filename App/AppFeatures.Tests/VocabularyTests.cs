@@ -9,49 +9,110 @@ namespace AppFeatures.Tests
     public class VocabularyTests
     {
         /// <summary>
-        ///   Vocabulary field initialized with sample data for all fields. 3 words in total.
+        ///   List of three sample words that will be used for testing.
         /// </summary>
-        private readonly Vocabulary _sampleVocabulary =
-            new Vocabulary(
-                "D is for Digital",
-                new List<Word>
-                {
-                    new Word
-                    {
-                        OriginalWord = "b",
-                        Translation = "b",
-                        Sentence = "b b b",
-                        Weight = 5,
-                        TimesAnsweredCorrectly = 0
-                    },
-                    new Word
-                    {
-                        OriginalWord = "c",
-                        Translation = "c",
-                        Sentence = "Ccc!",
-                        Weight = 5,
-                        TimesAnsweredCorrectly = 0
-                    },
-                    new Word
-                    {
-                        OriginalWord = "e",
-                        Translation = "eeeeeee",
-                        Sentence = "Eeee ee ee eee",
-                        Weight = 5,
-                        TimesAnsweredCorrectly = 0
-                    }
+        private static readonly List<Word> _sampleWords = new List<Word>
+        {
+            new Word
+            {
+                OriginalWord = "b",
+                Translation = "b",
+                Sentence = "b b b",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            },
+            new Word
+            {
+                OriginalWord = "c",
+                Translation = "c",
+                Sentence = "Ccc!",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            },
+            new Word
+            {
+                OriginalWord = "e",
+                Translation = "eeeeeee",
+                Sentence = "Eeee ee ee eee",
+                Weight = 5,
+                TimesAnsweredCorrectly = 0
+            }
+        };
 
-                },
+        /// <summary>
+        ///   Vocabulary initialized with sample data for all its fields. 3 words in total.
+        /// </summary>
+        private static readonly Vocabulary _sampleVocabulary = new Vocabulary
+            (
+                "D is for Digital",
+                SampleWords,
                 "English",
-                "Swedish");
+                "Swedish"
+            );
         
-        private Vocabulary SampleVocabulary
+        private static Vocabulary SampleVocabulary
         {
             get => _sampleVocabulary;
         }
 
+        private static List<Word> SampleWords
+        {
+            get => _sampleWords;
+        }
 
-        
+
+        [Fact]
+        public void GetWord_ShouldReturnWork1()
+        {
+            // Arrange
+            Word expected = SampleWords[0];
+
+            // Act
+            Word actual = SampleVocabulary.GetWord("b");
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void GetWord_ShouldReturnWork2()
+        {
+            // Arrange
+            Word expected = SampleWords[1];
+
+            // Act
+            Word actual = SampleVocabulary.GetWord("c");
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void GetWord_ShouldReturnWork3()
+        {
+            // Arrange
+            Word expected = SampleWords[2];
+
+            // Act
+            Word actual = SampleVocabulary.GetWord("e");
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("bb")]
+        [InlineData("")]
+        [InlineData("   ")]
+        [InlineData(null)]
+        public void GetWord_ShouldReturnNull(string word)
+        {
+            // Act
+            Word actual = SampleVocabulary.GetWord(word);
+
+            // Assert
+            Assert.Null(actual);
+        }
 
         [Fact]
         public void Test()
