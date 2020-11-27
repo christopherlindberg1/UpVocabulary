@@ -121,8 +121,18 @@ namespace AppFeatures
          * 
          */
 
-        public Word()
+        public Word(
+            string originalWord,
+            string translation,
+            string sentence,
+            int weight,
+            int timesAnsweredCorrectly)
         {
+            OriginalWord = originalWord;
+            Translation = translation;
+            Sentence = sentence;
+            Weight = weight;
+            TimesAnsweredCorrectly = timesAnsweredCorrectly;
         }
 
         public Word(Word wordToCopy)
