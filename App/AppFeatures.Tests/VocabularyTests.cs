@@ -39,6 +39,15 @@ namespace AppFeatures.Tests
             )
         };
 
+        private static Word _sampleWordNotInList = new Word
+            (
+                "hello",
+                "hej",
+                null,
+                5,
+                0
+            );
+
         /// <summary>
         ///   Vocabulary initialized with sample data for all its fields. 3 words in total.
         /// </summary>
@@ -67,7 +76,7 @@ namespace AppFeatures.Tests
          * 
          */
 
-        private static Vocabulary SampleVocabulary
+        public static Vocabulary SampleVocabulary
         {
             get => _sampleVocabulary;
 
@@ -88,6 +97,11 @@ namespace AppFeatures.Tests
         private static List<Word> SampleWords
         {
             get => _sampleWords;
+        }
+
+        private static Word SampleWordNotInList
+        {
+            get => _sampleWordNotInList;
         }
 
 
@@ -139,6 +153,19 @@ namespace AppFeatures.Tests
             Assert.Null(actual);
         }
 
+        
+        public void GetWordAt_ShouldWork() 
+        {
+            throw new NotImplementedException();
+        }
+
+        [Fact]
+        public void InsertWord_ShouldWork()
+        {
+            // Arrange
+            Word word = SampleWordNotInList;
+        }
+
         [Theory]
         [InlineData("b")]
         [InlineData("")]
@@ -166,7 +193,7 @@ namespace AppFeatures.Tests
         public void RemoveWord_ShouldWorkWhenNotEmpty()
         {
             // Arrange
-            Word word = new Word("hello", "hej", null, 5, 0);
+            Word word = SampleWordNotInList;
             bool expectedReturnValue = true;
             Word expectedWordToGetAfterDelete = null;
             int expectedNrOfWords = SampleVocabulary.NrOfWords;
@@ -187,7 +214,7 @@ namespace AppFeatures.Tests
         public void RemoveWord_ShouldReturnFalseWhenWordDoesNotExist()
         {
             // Arrange
-            Word word = new Word("hello", "hej", null, 5, 0);
+            Word word = SampleWordNotInList;
             bool expectedReturnValue = false;
             Word expectedWordToGetAfterDelete = null;
             int expectedNrOfWords = SampleVocabulary.NrOfWords;
