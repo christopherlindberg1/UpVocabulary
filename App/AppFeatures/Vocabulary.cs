@@ -216,14 +216,36 @@ namespace AppFeatures
 
         private int GetTotalWeightOfAllWords()
         {
-            int weight = 0;
+            int totalWeight = 0;
 
             for (int i = 0; i < Words.Count; i++)
             {
-                weight += GetWordAt(i).Weight;
+                totalWeight += GetWordAt(i).Weight;
             }
 
-            return weight;
+            return totalWeight;
+        }
+
+        public Word GenerateWeightedRandomWord()
+        {
+            int totalWeight = GetTotalWeightOfAllWords();
+
+            Random random = new Random();
+            int randomNumber = random.Next(1, totalWeight + 1);
+            int counter = 0;
+
+            for (int i = 0; i < Words.Count; i++)
+            {
+                counter += Words[i].Weight;
+
+                if (counter >= randomNumber)
+                {
+                    return Words[i];
+                }
+            }
+
+            // Should never get down here, no matter what randomNumber is.
+            throw new InvalidOperationException("Method is incorrectly implemented");
         }
 
         public Dictionary<string, string> GetVocabularyInfo()
