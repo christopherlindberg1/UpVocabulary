@@ -62,7 +62,7 @@ namespace AppFeatures.Tests
 
 
         [Fact]
-        public void GetWord_ShouldReturnWord1()
+        public void GetWord_ShouldReturnFirstWord()
         {
             // Arrange
             Word expected = SampleWords[0];
@@ -75,20 +75,7 @@ namespace AppFeatures.Tests
         }
 
         [Fact]
-        public void GetWord_ShouldReturnWord2()
-        {
-            // Arrange
-            Word expected = SampleWords[1];
-
-            // Act
-            Word actual = SampleVocabulary.GetWord("c");
-
-            // Assert
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void GetWord_ShouldReturnWord3()
+        public void GetWord_ShouldReturnLastWord()
         {
             // Arrange
             Word expected = SampleWords[2];
