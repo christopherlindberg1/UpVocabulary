@@ -117,28 +117,6 @@ namespace AppFeatures
          * 
          */
 
-        public Word this[int index]
-        {
-            get
-            {
-                if (index < 0)
-                {
-                    throw new ArgumentOutOfRangeException(
-                        "Index",
-                        "Index cannot be less than 0");
-                }
-
-                if (index > Words.Count - 1)
-                {
-                    throw new ArgumentOutOfRangeException(
-                        "Index",
-                        "Index was out of range");
-                }
-
-                return Words[index];
-            }
-        }
-
         public Word GetWord(string word)
         {
             for (int i = 0; i < Words.Count; i++)
@@ -150,6 +128,21 @@ namespace AppFeatures
             }
 
             return null;
+        }
+
+        /// <summary>
+        ///   Returns word at a given index. Returns null if index is out of range.
+        /// </summary>
+        /// <param name="index">Index of the word</param>
+        /// <returns>Word object</returns>
+        public Word GetWordAt(int index)
+        {
+            if (index < 0 || index > Words.Count - 1)
+            {
+                return null;
+            }
+
+            return Words[index];
         }
 
         public bool InsertWord(Word word)
@@ -195,15 +188,15 @@ namespace AppFeatures
             if (String.Compare(wordToUpdate.OriginalWord, updatedWord.OriginalWord, true) == 0)
             {
                 wordToUpdate = new Word(updatedWord);
-                return true;
             }
             // Have to insert word in alphabetical order if OriginalWord is changed.
             else
             {
                 Words.Remove(wordToUpdate);
                 InsertWord(updatedWord);
-                return true;
             }
+
+            return true;
         }
 
         public bool RemoveWord(string wordToRemove)
@@ -219,6 +212,18 @@ namespace AppFeatures
                 Words.Remove(word);
                 return true;
             }
+        }
+
+        private int GetTotalWeightOfAllWords()
+        {
+            int weight = 0;
+
+            for (int i = 0; i < Words.Count; i++)
+            {
+                weight += GetWordAt(i).Weight;
+            }
+
+            return weight;
         }
 
         public Dictionary<string, string> GetVocabularyInfo()
