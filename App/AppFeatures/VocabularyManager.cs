@@ -63,7 +63,7 @@ namespace AppFeatures
          * 
          */
 
-        public Vocabulary GetAtIndex(int index)
+        public Vocabulary GetVocabularyAt(int index)
         {
             if (index < 0)
             {
@@ -104,6 +104,14 @@ namespace AppFeatures
             return true;
         }
 
-        
+        public bool UpdateVocabulary(Vocabulary vocabulary, Vocabulary updatedVocabulary)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveVocabulary(string vocabularyToRemove)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
