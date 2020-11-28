@@ -112,20 +112,20 @@ namespace WinformUI
         {
             InitializeComponent();
 
-            ConfigureListViewVocabularies();
+            InitializeApp();
         }
 
         private void InitializeApp()
         {
-            FillStoreWithSampleData();
+            ConfigureGUIOnInit();
+            LoadSampleData();
             AddDataToGUI();
         }
 
-        private void TestingMethod()
+        private void ConfigureGUIOnInit()
         {
-            
-
-            this.Close();
+            ConfigureListViewVocabularies();
+            SetGUIToViewState();
         }
 
         private void ConfigureListViewVocabularies()
@@ -143,8 +143,21 @@ namespace WinformUI
             listViewVocabularies.FullRowSelect = true;
             // Display grid lines.
             listViewVocabularies.GridLines = true;
+        }
 
-            // Fill the app with sample data
+
+        private void SetGUIToViewState()
+        {
+            btnStartPractice.Enabled = false;
+            btnEditVocabulary.Enabled = false;
+            btnDeleteVocabulary.Enabled = false;
+        }
+
+        private void SetGUIToEditState()
+        {
+            btnStartPractice.Enabled = true;
+            btnEditVocabulary.Enabled = true;
+            btnDeleteVocabulary.Enabled = true;
         }
 
 
@@ -157,80 +170,45 @@ namespace WinformUI
          * 
          */
 
-        private void FillStoreWithSampleData()
+        private void LoadSampleData()
         {
             Word w1 = new Word
-            {
-                OriginalWord = "also",
-                Translation = "också",
-                Sentence = "I am also happy",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
+            (
+                "aaaa",
+                "aaaa",
+                "Aaa aa aaaa",
+                5,
+                0
+            );
             Word w2 = new Word
-            {
-                OriginalWord = "happy",
-                Translation = "glad",
-                Sentence = "I am happy",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
+            (
+                "c",
+                "c",
+                "Ccc!",
+                5,
+                0
+            );
             Word w3 = new Word
-            {
-                OriginalWord = "hello",
-                Translation = "hej",
-                Sentence = "Hello there my little cat",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w4 = new Word
-            {
-                OriginalWord = "yes",
-                Translation = "yes",
-                Sentence = "yes, my name is Chris",
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-            Word w5 = new Word
-            {
-                OriginalWord = "zoo",
-                Translation = "zoo",
-                Sentence = null,
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
+            (
+                "e",
+                "eeeeeee",
+                "Eeee ee ee eee",
+                5,
+                0
+            );
 
-            List<Word> words1 = new List<Word> { w1, w2, w3, w4, w5 };
+            List<Word> words1 = new List<Word> { w1, w2, w3 };
             Vocabulary vocabulary = new Vocabulary("D is for Digital", words1, "English", "Swedish");
 
-            Word w6 = new Word
-            {
-                OriginalWord = "ö",
-                Translation = "ö",
-                Sentence = null,
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-
-            Word w7 = new Word
-            {
-                OriginalWord = "ööö",
-                Translation = "ocksååå",
-                Sentence = null,
-                Weight = 5,
-                TimesAnsweredCorrectly = 0
-            };
-
-            //vocabulary.InsertWord(word1);
-
-            //bool didUpdate = vocabulary.UpdateWord("ö", word2);
-
             VocabularyManager.AddVocabulary(vocabulary);
-
-            MessageBox.Show((VocabularyManager.GetAtIndex(0)).ToString());
         }
 
         private void AddDataToGUI()
+        {
+            AddVocabularysDataToGUI();   
+        }
+
+        private void AddVocabularysDataToGUI()
         {
             listViewVocabularies.Items.Clear();
 
@@ -238,7 +216,7 @@ namespace WinformUI
 
             for (int i = 0; i < VocabularyManager.NrOfVocabularies; i++)
             {
-                vocabulary = VocabularyManager.GetAtIndex(0);
+                vocabulary = VocabularyManager.GetVocabularyAt(0);
 
                 ListViewItem item = new ListViewItem(vocabulary.Name);
 
@@ -249,7 +227,7 @@ namespace WinformUI
             }
         }
 
-        
+
 
 
 
@@ -259,6 +237,11 @@ namespace WinformUI
          * ===================  Events  ===================
          * 
          */
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            InitializeApp();
+        }
 
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
         {
@@ -287,9 +270,16 @@ namespace WinformUI
             }
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            InitializeApp();
+            if (listViewVocabularies.SelectedIndices.Count == 0)
+            {
+                SetGUIToViewState();
+            }
+            else
+            {
+                SetGUIToEditState();
+            }
         }
     }
 }

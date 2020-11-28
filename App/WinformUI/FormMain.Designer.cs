@@ -65,6 +65,7 @@ namespace WinformUI
             this.listViewVocabularies.TabIndex = 1;
             this.listViewVocabularies.UseCompatibleStateImageBehavior = false;
             this.listViewVocabularies.View = System.Windows.Forms.View.Details;
+            this.listViewVocabularies.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewVocabularies_ItemSelectionChanged);
             // 
             // listViewVocabularies_Name
             // 
