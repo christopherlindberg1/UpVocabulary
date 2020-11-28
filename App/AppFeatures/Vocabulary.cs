@@ -10,6 +10,7 @@ namespace AppFeatures
         private string _originalLanguage;
         private string _translationLanguage;
         private List<Word> _words = new List<Word>();
+        private Random _random;
 
 
 
@@ -203,15 +204,7 @@ namespace AppFeatures
         {
             Word word = GetWord(wordToRemove);
 
-            if (word == null)
-            {
-                return false;
-            }
-            else
-            {
-                Words.Remove(word);
-                return true;
-            }
+            return Words.Remove(word);
         }
 
         private int GetTotalWeightOfAllWords()
@@ -228,10 +221,10 @@ namespace AppFeatures
 
         public Word GenerateWeightedRandomWord()
         {
-            int totalWeight = GetTotalWeightOfAllWords();
-
             Random random = new Random();
-            int randomNumber = random.Next(1, totalWeight + 1);
+            
+            int totalWeight = GetTotalWeightOfAllWords();
+            int randomNumber = _random.Next(1, totalWeight + 1);
             int counter = 0;
 
             for (int i = 0; i < Words.Count; i++)
@@ -244,7 +237,7 @@ namespace AppFeatures
                 }
             }
 
-            // Should never get down here, no matter what randomNumber is.
+            // Should never get here, no matter what randomNumber is.
             throw new InvalidOperationException("Method is incorrectly implemented");
         }
 
