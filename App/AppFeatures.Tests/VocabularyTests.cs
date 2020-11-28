@@ -15,25 +15,25 @@ namespace AppFeatures.Tests
         {
             new Word
             (
-                "b",
-                "b",
-                "b b b",
+                "also",
+                "också",
+                "also also",
                 5,
                 0
             ),
             new Word
             (
-                "c",
-                "c",
-                "Ccc!",
+                "can",
+                "kan",
+                "I can do it",
                 5,
                 0
             ),
             new Word
             (
-                "e",
-                "eeeeeee",
-                "Eeee ee ee eee",
+                "paper",
+                "papper",
+                null,
                 5,
                 0
             )
@@ -43,6 +43,15 @@ namespace AppFeatures.Tests
             (
                 "hello",
                 "hej",
+                null,
+                5,
+                0
+            );
+
+        private static Word _sampleWordAlreadyInList = new Word
+            (
+                "also",
+                "också",
                 null,
                 5,
                 0
@@ -104,6 +113,11 @@ namespace AppFeatures.Tests
             get => _sampleWordNotInList;
         }
 
+        private static Word SampleWordAlreadyInList
+        {
+            get => _sampleWordAlreadyInList;
+        }
+
 
 
 
@@ -120,7 +134,7 @@ namespace AppFeatures.Tests
             Word expected = SampleWords[0];
 
             // Act
-            Word actual = SampleVocabulary.GetWord("b");
+            Word actual = SampleVocabulary.GetWord("also");
 
             // Assert
             Assert.Equal(expected, actual);
@@ -133,7 +147,7 @@ namespace AppFeatures.Tests
             Word expected = SampleWords[2];
 
             // Act
-            Word actual = SampleVocabulary.GetWord("e");
+            Word actual = SampleVocabulary.GetWord("paper");
 
             // Assert
             Assert.Equal(expected, actual);
@@ -164,6 +178,39 @@ namespace AppFeatures.Tests
         {
             // Arrange
             Word word = SampleWordNotInList;
+            bool expectedReturnValue = true;
+            int expectedNrOfWords = SampleVocabulary.NrOfWords + 1;
+            int expectedIndexToBeAt = 2;
+
+            // Act
+            bool actualReturnValue = SampleVocabulary.InsertWord(word);
+            int actualNrOfWords = SampleVocabulary.NrOfWords;
+            Word fetchedWordByIndex = SampleVocabulary.GetWordAt(expectedIndexToBeAt);
+            Word fetchedWordByOriginalWord = word;
+            SampleVocabulary.RemoveWord(word.OriginalWord);
+
+            // Assert
+            Assert.Equal(expectedReturnValue, actualReturnValue);
+            Assert.Equal(expectedNrOfWords, actualNrOfWords);
+            Assert.Equal(word, fetchedWordByIndex);
+            Assert.Equal(word, fetchedWordByOriginalWord);
+        }
+
+        [Fact]
+        public void InsertWord_ShouldFail()
+        {
+            // Arrange
+            Word word = _sampleWordAlreadyInList;
+            bool expectedReturnValue = false;
+            int expectedNrOfWords = SampleVocabulary.NrOfWords;
+
+            // Act
+            bool actualReturnValue = SampleVocabulary.InsertWord(word);
+            int actualNrOfWords = SampleVocabulary.NrOfWords;
+
+            // Assert
+            Assert.Equal(expectedReturnValue, actualReturnValue);
+            Assert.Equal(expectedNrOfWords, actualNrOfWords);
         }
 
         [Theory]
