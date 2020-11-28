@@ -18,7 +18,7 @@ namespace AppFeatures.Tests
                 "also",
                 "också",
                 "also also",
-                5,
+                2,
                 0
             ),
             new Word
@@ -34,7 +34,7 @@ namespace AppFeatures.Tests
                 "paper",
                 "papper",
                 null,
-                5,
+                3,
                 0
             )
         };
@@ -275,6 +275,30 @@ namespace AppFeatures.Tests
             Assert.Equal(expectedReturnValue, actualReturnValue);
             Assert.Equal(expectedWordToGetAfterDelete, ActualWordAfterDelete);
             Assert.Equal(expectedNrOfWords, actualNrOfWords);
+        }
+
+        /*
+         * Test weighted random word generator.
+         */
+
+        [Fact]
+        public void GetVocabularyInfo_ShouldWork()
+        {
+            // Arrange
+            string expectedName = "D is for Digital";
+            string expectedNrOfWords = "3";
+            string expectedLanguages = "English - Swedish";
+
+            // Act
+            Dictionary<string, string> actualValue = SampleVocabulary.GetVocabularyInfo();
+            string actualName = actualValue["name"];
+            string actualNrOfWords = actualValue["nrOfWords"];
+            string actualLanguages = actualValue["languages"];
+
+            // Assert
+            Assert.Equal(expectedName, actualName);
+            Assert.Equal(expectedNrOfWords, actualNrOfWords);
+            Assert.Equal(expectedLanguages, actualLanguages);
         }
     }
 }
