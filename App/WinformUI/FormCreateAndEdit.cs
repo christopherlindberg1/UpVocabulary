@@ -13,7 +13,7 @@ namespace WinformUI
 {
     public partial class FormCreateAndEdit : Form
     {
-        private VocabularyModel _vocabulary;
+        private Vocabulary _vocabulary;
 
         private readonly InputValidator _inputValidator = new InputValidator();
 
@@ -47,7 +47,7 @@ namespace WinformUI
         {
         }
 
-        public FormCreateAndEdit(VocabularyModel vocabulary)
+        public FormCreateAndEdit(Vocabulary vocabulary)
         {
             InitializeComponent();
 
@@ -55,8 +55,10 @@ namespace WinformUI
         }
 
 
-        private void InitializeGUI(VocabularyModel vocabulary)
+        private void InitializeGUI(Vocabulary vocabulary)
         {
+            FillLanguageMenusWithData();
+
             if (vocabulary == null)
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
@@ -68,7 +70,37 @@ namespace WinformUI
                 this.Text = "UpVocabulary - Edit Vocabulary";
                 lblWordTitle.Text = "Edit word";
                 lblHeading.Text = "Edit vocabulary";
+
+                InitializeGUIWithVocabularyData(vocabulary);
             }
+        }
+
+        private void FillLanguageMenusWithData()
+        {
+            string[] languages = Enum.GetNames(typeof(Languages));
+
+            comboBoxLanguage1.Items.AddRange(languages);
+            comboBoxLanguage2.Items.AddRange(languages);
+        }
+
+        private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
+        {
+            textBoxNameOfVocabulary.Text = vocabulary.Name;
+            AddWordsToGUIList(vocabulary);
+            SetLanguagesInGUI(vocabulary);
+        }
+
+        private void AddWordsToGUIList(Vocabulary vocabulary)
+        {
+            listBoxWords.Items.Clear();
+            
+            listBoxWords.Items.AddRange(vocabulary.GetWordsWithTranslation());
+        }
+
+        private void SetLanguagesInGUI(Vocabulary vocabulary)
+        {
+            comboBoxLanguage1.SelectedItem = vocabulary.OriginalLanguage;
+            comboBoxLanguage2.SelectedItem = vocabulary.TranslationLanguage;
         }
 
 

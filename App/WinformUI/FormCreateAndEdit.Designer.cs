@@ -90,9 +90,6 @@ namespace WinformUI
             // comboBoxLanguage1
             // 
             this.comboBoxLanguage1.FormattingEnabled = true;
-            this.comboBoxLanguage1.Items.AddRange(new object[] {
-            "English",
-            "Swedish"});
             this.comboBoxLanguage1.Location = new System.Drawing.Point(35, 148);
             this.comboBoxLanguage1.Name = "comboBoxLanguage1";
             this.comboBoxLanguage1.Size = new System.Drawing.Size(135, 24);
@@ -101,9 +98,6 @@ namespace WinformUI
             // comboBoxLanguage2
             // 
             this.comboBoxLanguage2.FormattingEnabled = true;
-            this.comboBoxLanguage2.Items.AddRange(new object[] {
-            "English",
-            "Swedish"});
             this.comboBoxLanguage2.Location = new System.Drawing.Point(224, 148);
             this.comboBoxLanguage2.Name = "comboBoxLanguage2";
             this.comboBoxLanguage2.Size = new System.Drawing.Size(135, 24);
