@@ -172,35 +172,101 @@ namespace WinformUI
 
         private void LoadSampleData()
         {
-            Word w1 = new Word
+            Word v1w1 = new Word
             (
-                "aaaa",
-                "aaaa",
+                "also",
+                "också",
                 "Aaa aa aaaa",
                 5,
                 0
             );
-            Word w2 = new Word
+            Word v1w2 = new Word
             (
-                "c",
-                "c",
+                "paper",
+                "papper",
                 "Ccc!",
                 5,
                 0
             );
-            Word w3 = new Word
+            Word v1w3 = new Word
             (
-                "e",
-                "eeeeeee",
+                "zoo",
+                "zoo",
                 "Eeee ee ee eee",
                 5,
                 0
             );
 
-            List<Word> words1 = new List<Word> { w1, w2, w3 };
-            Vocabulary vocabulary = new Vocabulary("D is for Digital", words1, "English", "Swedish");
+            List<Word> v1words = new List<Word> { v1w1, v1w2, v1w3 };
+            Vocabulary vocabulary1 = new Vocabulary("D is for Digital", v1words, "English", "Swedish");
 
-            VocabularyManager.AddVocabulary(vocabulary);
+
+
+
+            Word v2w1 = new Word
+            (
+                "also",
+                "också",
+                "Aaa aa aaaa",
+                5,
+                0
+            );
+            Word v2w2 = new Word
+            (
+                "paper",
+                "papper",
+                "Ccc!",
+                5,
+                0
+            );
+            Word v2w3 = new Word
+            (
+                "zoo",
+                "zoo",
+                "Eeee ee ee eee",
+                5,
+                0
+            );
+
+            List<Word> v2words = new List<Word> { v2w1, v2w2, v2w3 };
+            Vocabulary vocabulary2 = new Vocabulary("Learn C#", v2words, "English", "Swedish");
+
+
+
+
+            Word v3w1 = new Word
+            (
+                "also",
+                "också",
+                "Aaa aa aaaa",
+                5,
+                0
+            );
+            Word v3w2 = new Word
+            (
+                "paper",
+                "papper",
+                "Ccc!",
+                5,
+                0
+            );
+            Word v3w3 = new Word
+            (
+                "zoo",
+                "zoo",
+                "Eeee ee ee eee",
+                5,
+                0
+            );
+
+            List<Word> v3words = new List<Word> { v3w1, v3w2, v3w3 };
+            Vocabulary vocabulary3 = new Vocabulary("Software engineering", v3words, "English", "Swedish");
+
+
+
+            VocabularyManager.AddVocabulary(vocabulary1);
+            VocabularyManager.AddVocabulary(vocabulary2);
+            VocabularyManager.AddVocabulary(vocabulary3);
         }
 
         private void AddDataToGUI()
@@ -216,7 +282,7 @@ namespace WinformUI
 
             for (int i = 0; i < VocabularyManager.NrOfVocabularies; i++)
             {
-                vocabulary = VocabularyManager.GetVocabularyAt(0);
+                vocabulary = VocabularyManager.GetVocabularyAt(i);
 
                 ListViewItem item = new ListViewItem(vocabulary.Name);
 
@@ -225,6 +291,11 @@ namespace WinformUI
 
                 listViewVocabularies.Items.Add(item);
             }
+        }
+
+        private void DeleteVocabulary()
+        {
+
         }
 
 
@@ -252,7 +323,27 @@ namespace WinformUI
 
         private void btnEditVocabulary_Click(object sender, EventArgs e)
         {
-            CreateAndEditForm = new FormCreateAndEdit(new VocabularyModel());
+            if (listViewVocabularies.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            if (listViewVocabularies.SelectedItems.Count > 1)
+            {
+                MessageBox.Show(
+                    "Select only one vocabulary if you want to edit it.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            ListViewItem item = listViewVocabularies.SelectedItems[0];
+
+            Vocabulary vocabularyToEdit = VocabularyManager.GetVocabulary(item.Text);
+
+            CreateAndEditForm = new FormCreateAndEdit(vocabularyToEdit);
 
             CreateAndEditForm.Show();
         }
@@ -280,6 +371,11 @@ namespace WinformUI
             {
                 SetGUIToEditState();
             }
+        }
+
+        private void btnDeleteVocabulary_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
