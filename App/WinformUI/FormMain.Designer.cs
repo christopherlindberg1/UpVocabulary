@@ -37,7 +37,7 @@ namespace WinformUI
             this.btnCreateNewVocabulary = new System.Windows.Forms.Button();
             this.btnStartPractice = new System.Windows.Forms.Button();
             this.btnEditVocabulary = new System.Windows.Forms.Button();
-            this.btnDeleteVocabulary = new System.Windows.Forms.Button();
+            this.btnRemoveVocabulary = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -116,15 +116,16 @@ namespace WinformUI
             this.btnEditVocabulary.UseVisualStyleBackColor = true;
             this.btnEditVocabulary.Click += new System.EventHandler(this.btnEditVocabulary_Click);
             // 
-            // btnDeleteVocabulary
+            // btnRemoveVocabulary
             // 
-            this.btnDeleteVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteVocabulary.Location = new System.Drawing.Point(703, 258);
-            this.btnDeleteVocabulary.Name = "btnDeleteVocabulary";
-            this.btnDeleteVocabulary.Size = new System.Drawing.Size(185, 45);
-            this.btnDeleteVocabulary.TabIndex = 5;
-            this.btnDeleteVocabulary.Text = "Delete";
-            this.btnDeleteVocabulary.UseVisualStyleBackColor = true;
+            this.btnRemoveVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveVocabulary.Location = new System.Drawing.Point(703, 258);
+            this.btnRemoveVocabulary.Name = "btnRemoveVocabulary";
+            this.btnRemoveVocabulary.Size = new System.Drawing.Size(185, 45);
+            this.btnRemoveVocabulary.TabIndex = 5;
+            this.btnRemoveVocabulary.Text = "Remove";
+            this.btnRemoveVocabulary.UseVisualStyleBackColor = true;
+            this.btnRemoveVocabulary.Click += new System.EventHandler(this.btnRemoveVocabulary_Click);
             // 
             // FormMain
             // 
@@ -132,7 +133,7 @@ namespace WinformUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(923, 450);
-            this.Controls.Add(this.btnDeleteVocabulary);
+            this.Controls.Add(this.btnRemoveVocabulary);
             this.Controls.Add(this.btnEditVocabulary);
             this.Controls.Add(this.btnStartPractice);
             this.Controls.Add(this.btnCreateNewVocabulary);
@@ -156,7 +157,7 @@ namespace WinformUI
         private System.Windows.Forms.Button btnCreateNewVocabulary;
         private System.Windows.Forms.Button btnStartPractice;
         private System.Windows.Forms.Button btnEditVocabulary;
-        private System.Windows.Forms.Button btnDeleteVocabulary;
+        private System.Windows.Forms.Button btnRemoveVocabulary;
     }
 }
 
