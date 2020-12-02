@@ -150,14 +150,14 @@ namespace WinformUI
         {
             btnStartPractice.Enabled = false;
             btnEditVocabulary.Enabled = false;
-            btnDeleteVocabulary.Enabled = false;
+            btnRemoveVocabulary.Enabled = false;
         }
 
         private void SetGUIToEditState()
         {
             btnStartPractice.Enabled = true;
             btnEditVocabulary.Enabled = true;
-            btnDeleteVocabulary.Enabled = true;
+            btnRemoveVocabulary.Enabled = true;
         }
 
 
@@ -373,8 +373,38 @@ namespace WinformUI
             }
         }
 
-        private void btnDeleteVocabulary_Click(object sender, EventArgs e)
+        private void btnRemoveVocabulary_Click(object sender, EventArgs e)
         {
+            if (listViewVocabularies.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            StringBuilder message = new StringBuilder();
+            message.Append("Are you sure you want to delete the following vocabularies?\n\n");
+
+            for (int i = 0; i < listViewVocabularies.SelectedItems.Count; i++)
+            {
+                message.Append(
+                    $"* { listViewVocabularies.SelectedItems[i].Text }\n");
+            }
+
+            DialogResult result = MessageBox.Show(
+                message.ToString(),
+                "Warning",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+            else if (result == DialogResult.OK)
+            {
+                // Delete selected
+            }
+            
+
 
         }
     }
