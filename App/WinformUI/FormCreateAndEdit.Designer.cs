@@ -226,9 +226,6 @@ namespace WinformUI
             // 
             this.listBoxWords.FormattingEnabled = true;
             this.listBoxWords.ItemHeight = 16;
-            this.listBoxWords.Items.AddRange(new object[] {
-            "Hello - Hej",
-            "Yes - Ja"});
             this.listBoxWords.Location = new System.Drawing.Point(518, 90);
             this.listBoxWords.Name = "listBoxWords";
             this.listBoxWords.Size = new System.Drawing.Size(248, 324);
