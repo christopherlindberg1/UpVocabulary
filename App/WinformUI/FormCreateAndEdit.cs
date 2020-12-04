@@ -26,6 +26,18 @@ namespace WinformUI
          * 
          */
 
+        private Vocabulary Vocabulary
+        {
+            get => _vocabulary;
+
+            set
+            {
+                _vocabulary = value ?? throw new ArgumentNullException(
+                    "Vocabulary",
+                    "Vocabulary cannot be null.");
+            }
+        }
+
         private InputValidator InputValidator
         {
             get => _inputValidator;
@@ -43,23 +55,38 @@ namespace WinformUI
          */
 
         public FormCreateAndEdit()
-            : this(null)
         {
+            InitializeComponent();
+
+            InitializeForm();
         }
 
         public FormCreateAndEdit(Vocabulary vocabulary)
         {
             InitializeComponent();
 
-            InitializeGUI(vocabulary);
+            Vocabulary = vocabulary;
+
+            InitializeForm();
+        }
+
+        private void InitializeForm()
+        {
+            InitializeGUI();
+
+            // True when user wants to create new vocabulary
+            if (Vocabulary == null)
+            {
+                Vocabulary = new Vocabulary();
+            }
         }
 
 
-        private void InitializeGUI(Vocabulary vocabulary)
+        private void InitializeGUI()
         {
             FillLanguageMenusWithData();
 
-            if (vocabulary == null)
+            if (Vocabulary == null)
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
                 lblHeading.Text = "Create new vocabulary";
@@ -71,7 +98,7 @@ namespace WinformUI
                 lblWordTitle.Text = "Edit word";
                 lblHeading.Text = "Edit vocabulary";
 
-                InitializeGUIWithVocabularyData(vocabulary);
+                InitializeGUIWithVocabularyData(Vocabulary);
             }
         }
 
@@ -224,7 +251,7 @@ namespace WinformUI
             }
             else
             {
-                MessageBox.Show("yaaas");
+                // Save word to vocabulary
             }
         }
 
@@ -242,7 +269,7 @@ namespace WinformUI
             }
             else
             {
-                MessageBox.Show("yaaas");
+                // Save vocabulary
             }
         }
     }
