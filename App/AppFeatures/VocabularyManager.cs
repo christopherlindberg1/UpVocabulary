@@ -65,12 +65,7 @@ namespace AppFeatures
 
         public Vocabulary GetVocabularyAt(int index)
         {
-            if (index < 0)
-            {
-                return null;
-            }
-
-            if (index > Vocabularies.Count - 1)
+            if (index < 0 || index > Vocabularies.Count - 1)
             {
                 return null;
             }
@@ -109,9 +104,17 @@ namespace AppFeatures
             throw new NotImplementedException();
         }
 
-        public bool RemoveVocabulary(string vocabularyToRemove)
+        public bool RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            Vocabulary vocabulary = GetVocabularyAt(index);
+
+            if (vocabulary == null)
+            {
+                return false;
+            }
+
+            Vocabularies.RemoveAt(index);
+            return true;
         }
     }
 }
