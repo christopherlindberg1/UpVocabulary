@@ -10,7 +10,7 @@ namespace AppFeatures
         private string _originalLanguage;
         private string _translationLanguage;
         private List<Word> _words = new List<Word>();
-        private Random _random;
+        private Random _random = new Random();
 
 
 
@@ -80,6 +80,11 @@ namespace AppFeatures
             }
         }
 
+        private Random RandomObject
+        {
+            get => _random;
+        }
+
         public int NrOfWords => _words.Count;
 
 
@@ -118,19 +123,6 @@ namespace AppFeatures
          * 
          */
 
-        public Word GetWord(string word)
-        {
-            for (int i = 0; i < Words.Count; i++)
-            {
-                if (String.Compare(Words[i].OriginalWord, word, true) == 0)
-                {
-                    return Words[i];
-                }
-            }
-
-            return null;
-        }
-
         /// <summary>
         ///   Returns word at a given index. Returns null if index is out of range.
         /// </summary>
@@ -144,6 +136,19 @@ namespace AppFeatures
             }
 
             return Words[index];
+        }
+
+        public Word GetWord(string word)
+        {
+            for (int i = 0; i < Words.Count; i++)
+            {
+                if (String.Compare(Words[i].OriginalWord, word, true) == 0)
+                {
+                    return Words[i];
+                }
+            }
+
+            return null;
         }
 
         public bool InsertWord(Word word)
@@ -207,6 +212,18 @@ namespace AppFeatures
             return Words.Remove(word);
         }
 
+        public string[] GetWordsWithTranslation()
+        {
+            string[] words = new string[Words.Count];
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = Words[i].GetWordWithTranslation();
+            }
+
+            return words;
+        }
+
         private int GetTotalWeightOfAllWords()
         {
             int totalWeight = 0;
@@ -221,10 +238,8 @@ namespace AppFeatures
 
         public Word GenerateWeightedRandomWord()
         {
-            Random random = new Random();
-            
             int totalWeight = GetTotalWeightOfAllWords();
-            int randomNumber = _random.Next(1, totalWeight + 1);
+            int randomNumber = RandomObject.Next(1, totalWeight + 1);
             int counter = 0;
 
             for (int i = 0; i < Words.Count; i++)
