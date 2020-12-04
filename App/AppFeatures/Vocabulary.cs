@@ -10,6 +10,7 @@ namespace AppFeatures
         private string _originalLanguage;
         private string _translationLanguage;
         private List<Word> _words = new List<Word>();
+        private DateTime _dateLastUsed;
         private Random _random = new Random();
 
 
@@ -77,6 +78,23 @@ namespace AppFeatures
             set
             {
                 _words = value ?? throw new ArgumentNullException("Words", "Words cannot be null.");
+            }
+        }
+
+        public DateTime DateLastUsed
+        {
+            get => _dateLastUsed;
+
+            set
+            {
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "DateLastUsed",
+                        "DateLastUsed cannot be in the future.");
+                }
+
+                _dateLastUsed = value;
             }
         }
 
