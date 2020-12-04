@@ -293,9 +293,23 @@ namespace WinformUI
             }
         }
 
-        private void DeleteVocabulary()
+        private void RemoveSelectedVocabularies(IEnumerator<int> indices)
         {
+            // Removes corresponding vocabularies in GUI and storage.
+            int itemsRemoved = 0;
+            do
+            {
+                int indexToRemoveAt = indices.Current - itemsRemoved;
+                RemoveVocabularyFromGUI(indexToRemoveAt);
+                VocabularyManager.RemoveAt(indexToRemoveAt);
 
+                itemsRemoved++;
+            } while (indices.MoveNext());
+        }
+
+        private void RemoveVocabularyFromGUI(int index)
+        {
+            listViewVocabularies.Items.RemoveAt(index);
         }
 
 
@@ -381,7 +395,7 @@ namespace WinformUI
             }
 
             StringBuilder message = new StringBuilder();
-            message.Append("Are you sure you want to delete the following vocabularies?\n\n");
+            message.Append("Are you sure you want to remove the following vocabularies?\n\n");
 
             for (int i = 0; i < listViewVocabularies.SelectedItems.Count; i++)
             {
@@ -401,11 +415,19 @@ namespace WinformUI
             }
             else if (result == DialogResult.OK)
             {
-                // Delete selected
+                int itemsRemoved = 0;
+                foreach (int index in listViewVocabularies.SelectedIndices)
+                {
+                    RemoveVocabularyFromGUI(index - itemsRemoved);
+                    VocabularyManager.RemoveAt(index - itemsRemoved);
+
+                    itemsRemoved++;
+                }
             }
-            
-
-
+            else
+            {
+                throw new InvalidOperationException("Dialog result is invalid.");
+            }
         }
     }
 }
