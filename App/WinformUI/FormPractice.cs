@@ -192,5 +192,33 @@ namespace WinformUI
 
             LastUsedWords.Enqueue(word);
         }
+
+        private void lblToggleShowSentence_Click(object sender, EventArgs e)
+        {
+            if (lblWordUsedInSentence.Visible)
+            {
+                // text - show
+            }
+            else
+            {
+                // text - hide
+            }
+
+            lblWordUsedInSentence.Visible = !lblWordUsedInSentence.Visible;
+        }
+
+        private void lblToggleScore_Click(object sender, EventArgs e)
+        {
+            if (groupBoxScore.Visible)
+            {
+                lblToggleScore.Text = "Show score";
+            }
+            else
+            {
+                lblToggleScore.Text = "Hide score";
+            }
+
+            groupBoxScore.Visible = !groupBoxScore.Visible;
+        }
     }
 }
