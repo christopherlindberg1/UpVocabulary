@@ -95,8 +95,8 @@ namespace WinformUI
             else
             {
                 this.Text = "UpVocabulary - Edit Vocabulary";
-                lblWordTitle.Text = "Edit word";
                 lblHeading.Text = "Edit vocabulary";
+                lblWordTitle.Text = "Edit word";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
             }
@@ -202,16 +202,16 @@ namespace WinformUI
 
         private bool ValidateWordData()
         {
-            bool wordOriginalLanguageOk = ValidateWordOriginalLanguage();
+            bool wordInOriginalLanguageOk = ValidateWordOriginalLanguage();
             bool wordTranslationOk = ValidateWordTranslation();
 
-            return wordOriginalLanguageOk && wordTranslationOk;
+            return wordInOriginalLanguageOk && wordTranslationOk;
         }
 
         private bool ValidateWordOriginalLanguage()
         {
             bool wordOk = InputValidator.ValidateTextBoxString(
-                this.textBoxWordInLanguage1, "Word cannot be empty");
+                this.textBoxWordInOriginalLanguage, "Word cannot be empty");
 
             return wordOk;
         }
@@ -219,12 +219,82 @@ namespace WinformUI
         private bool ValidateWordTranslation()
         {
             bool translationOk = InputValidator.ValidateTextBoxString(
-                this.textBoxTranslationToLanguage2, "Translation cannot be empty");
+                this.textBoxWordTranslationToOtherLanguage, "Translation cannot be empty");
 
             return translationOk;
         }
 
-        
+        private void ClearWordInputFields()
+        {
+            textBoxWordInOriginalLanguage.Text = "";
+            textBoxWordTranslationToOtherLanguage.Text = "";
+            textBoxWordUsedInSentence.Text = "";
+        }
+
+        private void FillWordInputFields(Word word)
+        {
+            textBoxWordInOriginalLanguage.Text = word.OriginalWord;
+            textBoxWordTranslationToOtherLanguage.Text = word.Translation;
+            textBoxWordUsedInSentence.Text = word.Sentence;
+        }
+
+        private void SaveWord()
+        {
+            string originalWord = textBoxWordInOriginalLanguage.Text.ToLower();
+            string translation = textBoxWordTranslationToOtherLanguage.Text.ToLower();
+            string sentence = textBoxWordUsedInSentence.Text;
+
+            Word newWord = new Word(originalWord, translation, sentence);
+
+            int selectedWordIndex = listBoxWords.SelectedIndex;
+
+            // True when user is adding a new word
+            if (selectedWordIndex == -1)
+            {
+                // Check if word already exists
+                if (Vocabulary.WordExists(originalWord))
+                {
+                    MessageBox.Show(
+                        $"The word '{ originalWord }' already exists in this vocabulary.",
+                        "Info",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                { 
+                    Vocabulary.InsertWord(newWord);
+                }
+            }
+            // True when user is editing a existing word
+            else
+            {
+                // Overwrite existing word
+                Vocabulary.UpdateWord(Vocabulary.GetWordAt(selectedWordIndex).OriginalWord, newWord);
+            }
+
+            //MessageBox.Show(Vocabulary.GetWordAt(0).ToString());
+
+            UpdateWordsInGUI();
+            ClearWordInputFields();
+
+            listBoxWords.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        ///   Updates the listbox with words to match the list of words
+        ///   in the vocabulary.
+        /// </summary>
+        private void UpdateWordsInGUI()
+        {
+            listBoxWords.Items.Clear();
+            listBoxWords.Items.AddRange(Vocabulary.GetWordsWithTranslation());
+        }
+
+        private void SaveWordToVocabulary(Word word)
+        {
+            Vocabulary.InsertWord(word);
+            throw new NotImplementedException();
+        }
 
 
 
@@ -236,6 +306,20 @@ namespace WinformUI
          * ===================  Events  ===================
          * 
          */
+
+        private void listBoxWords_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedWordIndex = listBoxWords.SelectedIndex;
+            
+            if (selectedWordIndex == -1)
+            {
+                return;
+            }
+            
+            Word selectedWord = Vocabulary.GetWordAt(selectedWordIndex);
+            FillWordInputFields(selectedWord);
+
+        }
 
         private void btnSaveWord_Click(object sender, EventArgs e)
         {
@@ -251,7 +335,7 @@ namespace WinformUI
             }
             else
             {
-                // Save word to vocabulary
+                SaveWord();
             }
         }
 
@@ -272,5 +356,7 @@ namespace WinformUI
                 // Save vocabulary
             }
         }
+
+        
     }
 }
