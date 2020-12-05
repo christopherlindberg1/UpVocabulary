@@ -57,6 +57,7 @@ namespace WinformUI
             this.listViewVocabularies_NrOfWords,
             this.listViewVocabularies_Languages});
             this.listViewVocabularies.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listViewVocabularies.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewVocabularies.HideSelection = false;
             this.listViewVocabularies.Location = new System.Drawing.Point(33, 77);
             this.listViewVocabularies.MaximumSize = new System.Drawing.Size(1000, 1000);
