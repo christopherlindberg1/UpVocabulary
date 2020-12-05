@@ -134,19 +134,18 @@ namespace WinformUI
         private void InitializeGUI()
         {
             FillLanguageMenusWithData();
+            SetLanguageLabelsForOriginalWordAndTranslation();
             SetGUIToCreateState();
 
             if (Vocabulary == null)
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
                 lblHeading.Text = "Create new vocabulary";
-                //lblWordTitle.Text = "Add word";
             }
             else
             {
                 this.Text = "UpVocabulary - Edit Vocabulary";
                 lblHeading.Text = "Edit vocabulary";
-                //lblWordTitle.Text = "Add word";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
             }
@@ -322,11 +321,28 @@ namespace WinformUI
             textBoxWordUsedInSentence.Text = word.Sentence;
         }
 
+        private void SetLanguageLabelsForOriginalWordAndTranslation()
+        {
+            if (comboBoxOriginalLanguage.SelectedIndex != -1)
+            {
+                lblWordInOriginalLanguage.Text =
+                    $"Word in { comboBoxOriginalLanguage.SelectedItem.ToString() }";
+            }
+
+            if (comboBoxTranslationLanguage.SelectedIndex != -1)
+            {
+                lblTranslationOfWord.Text =
+                    $"Translation to { comboBoxTranslationLanguage.SelectedItem.ToString() }";
+            }
+        }
+
         private void SaveVocabularyData()
         {
             Vocabulary.Name = textBoxNameOfVocabulary.Text;
             Vocabulary.OriginalLanguage = comboBoxOriginalLanguage.SelectedItem.ToString();
             Vocabulary.TranslationLanguage = comboBoxTranslationLanguage.SelectedItem.ToString();
+
+            VocabularyHasBeenChanged = true;
         }
 
         private void SaveWord()
@@ -363,13 +379,14 @@ namespace WinformUI
             }
 
             UpdateWordsInGUI();
-
+            VocabularyHasBeenChanged = true;
             listBoxWords.SelectedIndex = -1;
         }
 
         private void RemoveWordFromGUI(int index)
         {
             listBoxWords.Items.RemoveAt(index);
+            VocabularyHasBeenChanged = true;
         }
 
         /// <summary>
@@ -475,21 +492,48 @@ namespace WinformUI
                     "Information",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
+                return;
             }
-            else
-            {
-                SaveVocabularyData();
-                this.DialogResult = DialogResult.Yes;
-                this.Close();
-            }
+
+            SaveVocabularyData();
+            this.DialogResult = DialogResult.Yes;
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Check if anything has been changed
+            if (VocabularyHasBeenChanged)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to exit without saving your changes?",
+                    "Warning",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning);
 
-            this.DialogResult = DialogResult.Cancel;
+                if (result == DialogResult.OK)
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                }
+                else
+                {
+                    SaveVocabularyData();
+                    this.DialogResult = DialogResult.Yes;
+                }
+            }
+
             this.Close();
+        }
+
+        private void comboBoxOriginalLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
+        }
+
+        private void comboBoxTranslationLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
         }
     }
 }
