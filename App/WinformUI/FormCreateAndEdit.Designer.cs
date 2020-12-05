@@ -49,7 +49,7 @@ namespace WinformUI
             this.btnSaveVocabulary = new System.Windows.Forms.Button();
             this.lblWordList = new System.Windows.Forms.Label();
             this.listBoxWords = new System.Windows.Forms.ListBox();
-            this.btnDeleteWord = new System.Windows.Forms.Button();
+            this.btnRemoveWords = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblHeading
@@ -228,19 +228,21 @@ namespace WinformUI
             this.listBoxWords.ItemHeight = 16;
             this.listBoxWords.Location = new System.Drawing.Point(518, 90);
             this.listBoxWords.Name = "listBoxWords";
+            this.listBoxWords.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxWords.Size = new System.Drawing.Size(248, 324);
             this.listBoxWords.TabIndex = 19;
             this.listBoxWords.SelectedIndexChanged += new System.EventHandler(this.listBoxWords_SelectedIndexChanged);
             // 
-            // btnDeleteWord
+            // btnRemoveWords
             // 
-            this.btnDeleteWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteWord.Location = new System.Drawing.Point(567, 433);
-            this.btnDeleteWord.Name = "btnDeleteWord";
-            this.btnDeleteWord.Size = new System.Drawing.Size(150, 35);
-            this.btnDeleteWord.TabIndex = 20;
-            this.btnDeleteWord.Text = "Delete word";
-            this.btnDeleteWord.UseVisualStyleBackColor = true;
+            this.btnRemoveWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveWords.Location = new System.Drawing.Point(567, 433);
+            this.btnRemoveWords.Name = "btnRemoveWords";
+            this.btnRemoveWords.Size = new System.Drawing.Size(150, 35);
+            this.btnRemoveWords.TabIndex = 20;
+            this.btnRemoveWords.Text = "Remove";
+            this.btnRemoveWords.UseVisualStyleBackColor = true;
+            this.btnRemoveWords.Click += new System.EventHandler(this.btnRemoveWords_Click);
             // 
             // FormCreateAndEdit
             // 
@@ -248,7 +250,7 @@ namespace WinformUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 681);
-            this.Controls.Add(this.btnDeleteWord);
+            this.Controls.Add(this.btnRemoveWords);
             this.Controls.Add(this.listBoxWords);
             this.Controls.Add(this.lblWordList);
             this.Controls.Add(this.btnSaveVocabulary);
@@ -298,6 +300,6 @@ namespace WinformUI
         private System.Windows.Forms.Button btnSaveVocabulary;
         private System.Windows.Forms.Label lblWordList;
         private System.Windows.Forms.ListBox listBoxWords;
-        private System.Windows.Forms.Button btnDeleteWord;
+        private System.Windows.Forms.Button btnRemoveWords;
     }
 }
