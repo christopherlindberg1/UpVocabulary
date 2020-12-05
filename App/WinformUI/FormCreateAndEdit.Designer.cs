@@ -39,8 +39,8 @@ namespace WinformUI
             this.label3 = new System.Windows.Forms.Label();
             this.lblWordTitle = new System.Windows.Forms.Label();
             this.lblWordInLang1 = new System.Windows.Forms.Label();
-            this.textBoxWordInLanguage1 = new System.Windows.Forms.TextBox();
-            this.textBoxTranslationToLanguage2 = new System.Windows.Forms.TextBox();
+            this.textBoxWordInOriginalLanguage = new System.Windows.Forms.TextBox();
+            this.textBoxWordTranslationToOtherLanguage = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxWordUsedInSentence = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -141,19 +141,19 @@ namespace WinformUI
             this.lblWordInLang1.TabIndex = 9;
             this.lblWordInLang1.Text = "Word in lang - set on init";
             // 
-            // textBoxWordInLanguage1
+            // textBoxWordInOriginalLanguage
             // 
-            this.textBoxWordInLanguage1.Location = new System.Drawing.Point(37, 269);
-            this.textBoxWordInLanguage1.Name = "textBoxWordInLanguage1";
-            this.textBoxWordInLanguage1.Size = new System.Drawing.Size(133, 22);
-            this.textBoxWordInLanguage1.TabIndex = 10;
+            this.textBoxWordInOriginalLanguage.Location = new System.Drawing.Point(37, 269);
+            this.textBoxWordInOriginalLanguage.Name = "textBoxWordInOriginalLanguage";
+            this.textBoxWordInOriginalLanguage.Size = new System.Drawing.Size(133, 22);
+            this.textBoxWordInOriginalLanguage.TabIndex = 10;
             // 
-            // textBoxTranslationToLanguage2
+            // textBoxWordTranslationToOtherLanguage
             // 
-            this.textBoxTranslationToLanguage2.Location = new System.Drawing.Point(37, 328);
-            this.textBoxTranslationToLanguage2.Name = "textBoxTranslationToLanguage2";
-            this.textBoxTranslationToLanguage2.Size = new System.Drawing.Size(133, 22);
-            this.textBoxTranslationToLanguage2.TabIndex = 12;
+            this.textBoxWordTranslationToOtherLanguage.Location = new System.Drawing.Point(37, 328);
+            this.textBoxWordTranslationToOtherLanguage.Name = "textBoxWordTranslationToOtherLanguage";
+            this.textBoxWordTranslationToOtherLanguage.Size = new System.Drawing.Size(133, 22);
+            this.textBoxWordTranslationToOtherLanguage.TabIndex = 12;
             // 
             // label4
             // 
@@ -230,6 +230,7 @@ namespace WinformUI
             this.listBoxWords.Name = "listBoxWords";
             this.listBoxWords.Size = new System.Drawing.Size(248, 324);
             this.listBoxWords.TabIndex = 19;
+            this.listBoxWords.SelectedIndexChanged += new System.EventHandler(this.listBoxWords_SelectedIndexChanged);
             // 
             // btnDeleteWord
             // 
@@ -255,9 +256,9 @@ namespace WinformUI
             this.Controls.Add(this.btnSaveWord);
             this.Controls.Add(this.textBoxWordUsedInSentence);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxTranslationToLanguage2);
+            this.Controls.Add(this.textBoxWordTranslationToOtherLanguage);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxWordInLanguage1);
+            this.Controls.Add(this.textBoxWordInOriginalLanguage);
             this.Controls.Add(this.lblWordInLang1);
             this.Controls.Add(this.lblWordTitle);
             this.Controls.Add(this.label3);
@@ -287,8 +288,8 @@ namespace WinformUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblWordTitle;
         private System.Windows.Forms.Label lblWordInLang1;
-        private System.Windows.Forms.TextBox textBoxWordInLanguage1;
-        private System.Windows.Forms.TextBox textBoxTranslationToLanguage2;
+        private System.Windows.Forms.TextBox textBoxWordInOriginalLanguage;
+        private System.Windows.Forms.TextBox textBoxWordTranslationToOtherLanguage;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxWordUsedInSentence;
         private System.Windows.Forms.Label label5;
