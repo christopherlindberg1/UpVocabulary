@@ -63,27 +63,43 @@ namespace AppFeatures
          * 
          */
 
-        public Vocabulary GetVocabularyAt(int index)
-        {
-            if (index < 0 || index > Vocabularies.Count - 1)
-            {
-                return null;
-            }
-                
-            return Vocabularies[index];
-        }
-
         public Vocabulary GetVocabulary(string name)
         {
             for (int i = 0; i < Vocabularies.Count; i++)
             {
-                if (String.Compare(Vocabularies[i].Name, name, true) == 0)
+                if (String.Compare(Vocabularies[i].Name, name, false) == 0)
                 {
                     return Vocabularies[i];
                 }
             }
 
             return null;
+        }
+
+        public Vocabulary GetVocabularyAt(int index)
+        {
+            if (index < 0 || index > Vocabularies.Count - 1)
+            {
+                return null;
+            }
+
+            return Vocabularies[index];
+        }
+
+        public Vocabulary GetCopyOfVocabulary(int index)
+        {
+            Vocabulary originalVocabulary = GetVocabularyAt(index);
+
+            if (originalVocabulary == null)
+            {
+                return null;
+            }
+
+            Vocabulary copy = new Vocabulary();
+
+            Vocabulary.CopyVocabulary(originalVocabulary, copy);
+
+            return copy;
         }
 
         public bool AddVocabulary(Vocabulary vocabulary)
@@ -99,9 +115,9 @@ namespace AppFeatures
             return true;
         }
 
-        public bool UpdateVocabulary(Vocabulary vocabulary, Vocabulary updatedVocabulary)
+        public void UpdateVocabulary(Vocabulary originalVocabulary, Vocabulary updatedVocabulary)
         {
-            throw new NotImplementedException();
+            Vocabulary.CopyVocabulary(updatedVocabulary, originalVocabulary);
         }
 
         public bool RemoveAt(int index)
@@ -117,7 +133,7 @@ namespace AppFeatures
             return true;
         }
 
-        public string[] GetNameForAllVocabularies()
+        public string[] GetNamesForAllVocabularies()
         {
             string[] vocabularyNames = new string[Vocabularies.Count];
 
