@@ -115,9 +115,9 @@ namespace AppFeatures
          * 
          */
 
-        //public Vocabulary()
-        //{
-        //}
+        public Vocabulary()
+        {
+        }
 
         public Vocabulary(
             string name,
@@ -167,6 +167,18 @@ namespace AppFeatures
             }
 
             return null;
+        }
+
+        public bool WordExists(string word)
+        {
+            if (GetWord(word) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool InsertWord(Word word)
@@ -236,7 +248,7 @@ namespace AppFeatures
 
             for (int i = 0; i < words.Length; i++)
             {
-                words[i] = Words[i].GetWordWithTranslation();
+                words[i] = Words[i].ToString();
             }
 
             return words;
