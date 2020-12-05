@@ -80,40 +80,6 @@ namespace WinformUI
             set => _useLimitedAmountOfWords = value;
         }
 
-        //public string OriginalLanguage
-        //{
-        //    get => _originalLanguage;
-
-        //    set
-        //    {
-        //        if (String.IsNullOrWhiteSpace(value))
-        //        {
-        //            throw new ArgumentNullException(
-        //                "OriginalLanguage",
-        //                "OriginalLanguage cannot be null");
-        //        }
-
-        //        _originalLanguage = value;
-        //    }
-        //}
-
-        //public string TranslationLanguage
-        //{
-        //    get => _translationLanguage;
-
-        //    set
-        //    {
-        //        if (String.IsNullOrWhiteSpace(value))
-        //        {
-        //            throw new ArgumentNullException(
-        //                "TranslationLanguage",
-        //                "TranslationLanguage cannot be null");
-        //        }
-
-        //        _translationLanguage = value;
-        //    }
-        //}
-
 
 
 
