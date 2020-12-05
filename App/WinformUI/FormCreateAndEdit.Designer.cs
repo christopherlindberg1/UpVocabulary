@@ -50,6 +50,7 @@ namespace WinformUI
             this.lblWordList = new System.Windows.Forms.Label();
             this.listBoxWords = new System.Windows.Forms.ListBox();
             this.btnRemoveWords = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblHeading
@@ -205,9 +206,9 @@ namespace WinformUI
             // btnSaveVocabulary
             // 
             this.btnSaveVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveVocabulary.Location = new System.Drawing.Point(188, 575);
+            this.btnSaveVocabulary.Location = new System.Drawing.Point(97, 575);
             this.btnSaveVocabulary.Name = "btnSaveVocabulary";
-            this.btnSaveVocabulary.Size = new System.Drawing.Size(399, 73);
+            this.btnSaveVocabulary.Size = new System.Drawing.Size(262, 73);
             this.btnSaveVocabulary.TabIndex = 17;
             this.btnSaveVocabulary.Text = "Save vocabulary";
             this.btnSaveVocabulary.UseVisualStyleBackColor = true;
@@ -244,12 +245,24 @@ namespace WinformUI
             this.btnRemoveWords.UseVisualStyleBackColor = true;
             this.btnRemoveWords.Click += new System.EventHandler(this.btnRemoveWords_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(431, 575);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(262, 73);
+            this.btnCancel.TabIndex = 21;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FormCreateAndEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 681);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRemoveWords);
             this.Controls.Add(this.listBoxWords);
             this.Controls.Add(this.lblWordList);
@@ -301,5 +314,6 @@ namespace WinformUI
         private System.Windows.Forms.Label lblWordList;
         private System.Windows.Forms.ListBox listBoxWords;
         private System.Windows.Forms.Button btnRemoveWords;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
