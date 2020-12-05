@@ -129,9 +129,9 @@ namespace WinformUI
             this.lblWordTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWordTitle.Location = new System.Drawing.Point(32, 208);
             this.lblWordTitle.Name = "lblWordTitle";
-            this.lblWordTitle.Size = new System.Drawing.Size(193, 29);
+            this.lblWordTitle.Size = new System.Drawing.Size(116, 29);
             this.lblWordTitle.TabIndex = 8;
-            this.lblWordTitle.Text = "Word - set on init";
+            this.lblWordTitle.Text = "Add word";
             // 
             // lblWordInLang1
             // 
