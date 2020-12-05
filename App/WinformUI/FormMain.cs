@@ -502,6 +502,14 @@ namespace WinformUI
             if (result == DialogResult.Yes)
             {
                 GetPracticeSettings();
+
+                PracticeForm = new FormPractice(
+                    vocabularyToPracticeWith,
+                    NrOfWordsToPracticeWith,
+                    PromptWithOriginalLanguageInPractice,
+                    UseLimitedAmountOfWordsInPractice);
+
+                PracticeForm.ShowDialog();
             }
         }
     }
