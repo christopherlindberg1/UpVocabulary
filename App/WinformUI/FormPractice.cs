@@ -134,8 +134,6 @@ namespace WinformUI
 
         public FormPractice(
             Vocabulary vocabulary,
-            string originalLanguage,
-            string translationLanguage,
             int nrOfWordsToPracticeWith,
             bool promptWithOriginalLanguage,
             bool useLimitedAmountOfWords)
@@ -143,8 +141,6 @@ namespace WinformUI
             InitializeComponent();
 
             Vocabulary = vocabulary;
-            OriginalLanguage = originalLanguage;
-            TranslationLanguage = translationLanguage;
             NrOfWordsToPracticeWith = nrOfWordsToPracticeWith;
             PromptWithOriginalLanguage = promptWithOriginalLanguage;
             UseLimitedAmountOfWords = useLimitedAmountOfWords;
@@ -159,12 +155,12 @@ namespace WinformUI
 
         private void InitializeGUI()
         {
-
+            InitializeDescription();
         }
 
         private void InitializeDescription()
         {
-
+            lblDescription.Text = $"Words from { Vocabulary.Name }";
         }
 
 
