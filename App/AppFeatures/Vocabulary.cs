@@ -242,6 +242,27 @@ namespace AppFeatures
             return Words.Remove(word);
         }
 
+        public bool RemoveWordAt(int index)
+        {
+            Word word = GetWordAt(index);
+
+            if (word == null)
+            {
+                return false;
+            }
+
+            Words.RemoveAt(index);
+            return true;
+        }
+
+        public static void CopyVocabulary(Vocabulary vocabularyToCopyFrom, Vocabulary vocabularyToChange)
+        {
+            vocabularyToChange.Name = vocabularyToCopyFrom.Name;
+            vocabularyToChange.OriginalLanguage = vocabularyToCopyFrom.OriginalLanguage;
+            vocabularyToChange.TranslationLanguage = vocabularyToCopyFrom.TranslationLanguage;
+            vocabularyToChange.Words = vocabularyToCopyFrom.Words;
+        }
+
         public string[] GetWordsWithTranslation()
         {
             string[] words = new string[Words.Count];
