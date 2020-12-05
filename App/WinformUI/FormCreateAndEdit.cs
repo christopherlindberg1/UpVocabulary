@@ -268,8 +268,7 @@ namespace WinformUI
             // True when user is editing a existing word
             else
             {
-                // Overwrite existing word
-                Vocabulary.UpdateWord(Vocabulary.GetWordAt(selectedWordIndex).OriginalWord, newWord);
+                Vocabulary.UpdateWord(Vocabulary.GetWordAt(selectedWordIndex), newWord);
             }
 
             //MessageBox.Show(Vocabulary.GetWordAt(0).ToString());
