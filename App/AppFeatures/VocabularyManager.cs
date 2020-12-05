@@ -116,5 +116,17 @@ namespace AppFeatures
             Vocabularies.RemoveAt(index);
             return true;
         }
+
+        public string[] GetNameForAllVocabularies()
+        {
+            string[] vocabularyNames = new string[Vocabularies.Count];
+
+            for (int i = 0; i < Vocabularies.Count; i++)
+            {
+                vocabularyNames[i] = GetVocabularyAt(i).Name;
+            }
+
+            return vocabularyNames;
+        }
     }
 }
