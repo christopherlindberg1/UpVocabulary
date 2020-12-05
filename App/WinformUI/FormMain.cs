@@ -25,7 +25,7 @@ namespace WinformUI
         private string _translationLanguageToPracticeWith;
         private int _nrOfWordsToPracticeWith;
         private bool _promptWithOriginalLanguageInPractice;
-        private bool _useLimitedAmountOfWords;
+        private bool _useLimitedAmountOfWordsInPractice;
 
 
 
@@ -132,11 +132,11 @@ namespace WinformUI
             set => _promptWithOriginalLanguageInPractice = value;
         }
 
-        public bool UseLimitedAmountOfWords
+        public bool UseLimitedAmountOfWordsInPractice
         {
-            get => _useLimitedAmountOfWords;
+            get => _useLimitedAmountOfWordsInPractice;
 
-            set => _useLimitedAmountOfWords = value;
+            set => _useLimitedAmountOfWordsInPractice = value;
         }
 
 
@@ -339,6 +339,13 @@ namespace WinformUI
             listViewVocabularies.Items.RemoveAt(index);
         }
 
+        private void GetPracticeSettings()
+        {
+            NrOfWordsToPracticeWith = PracticeSettingsForm.NrOfWordsToPracticeWith;
+            PromptWithOriginalLanguageInPractice = PracticeSettingsForm.PromptWithOriginalLanguage;
+            UseLimitedAmountOfWordsInPractice = PracticeSettingsForm.UseLimitedAmountOfWords;
+        }
+
 
 
 
@@ -488,15 +495,16 @@ namespace WinformUI
             Vocabulary vocabularyToPracticeWith =
                 VocabularyManager.GetVocabularyAt(listViewVocabularies.SelectedIndices[0]);
 
-            FormPracticeSettings practiceSettings = new FormPracticeSettings(vocabularyToPracticeWith);
+            PracticeSettingsForm = new FormPracticeSettings(vocabularyToPracticeWith);
 
-            DialogResult result = practiceSettings.ShowDialog();
+            DialogResult result = PracticeSettingsForm.ShowDialog();
 
             if (result == DialogResult.Yes)
             {
-                // Get practice settings from the form.
-
+                GetPracticeSettings();
             }
+
+            MessageBox.Show(PracticeSettingsForm.DialogResult.ToString());
         }
     }
 }
