@@ -13,8 +13,10 @@ namespace WinformUI
 {
     public partial class FormCreateAndEdit : Form
     {
-        private Vocabulary _vocabulary;
         private readonly InputValidator _inputValidator = new InputValidator();
+        private Vocabulary _vocabulary;
+        private string[] _namesOfAllVocabulaies;
+        private bool _editingExistingVocabulary;
 
 
 
@@ -24,6 +26,11 @@ namespace WinformUI
          * ===================  Properties  ===================
          * 
          */
+
+        private InputValidator InputValidator
+        {
+            get => _inputValidator;
+        }
 
         public Vocabulary Vocabulary
         {
@@ -37,9 +44,23 @@ namespace WinformUI
             }
         }
 
-        private InputValidator InputValidator
+        public string[] NamesOfAllVocabularies
         {
-            get => _inputValidator;
+            get => _namesOfAllVocabulaies;
+
+            set
+            {
+                _namesOfAllVocabulaies = value ?? throw new ArgumentNullException(
+                    "NameOfAllVocabularies",
+                    "NameOfAllVocabularies cannot be null.");
+            }
+        }
+
+        private bool EditingExistingVocabulary
+        {
+            get => _editingExistingVocabulary;
+
+            set => _editingExistingVocabulary = value;
         }
 
 
@@ -53,18 +74,23 @@ namespace WinformUI
          * 
          */
 
-        public FormCreateAndEdit()
+        public FormCreateAndEdit(string[] namesOfAllVocabularies)
         {
             InitializeComponent();
+
+            NamesOfAllVocabularies = namesOfAllVocabularies;
+            EditingExistingVocabulary = false;
 
             InitializeForm();
         }
 
-        public FormCreateAndEdit(Vocabulary vocabulary)
+        public FormCreateAndEdit(string[] namesOfAllVocabularies, Vocabulary vocabulary)
         {
             InitializeComponent();
 
+            NamesOfAllVocabularies = namesOfAllVocabularies;
             Vocabulary = vocabulary;
+            EditingExistingVocabulary = true;
 
             InitializeForm();
         }
@@ -150,10 +176,28 @@ namespace WinformUI
 
         private bool ValidateVocabularyName()
         {
+            bool nameNotUsed = ValidateVocabularyNameIsNotUsed();
             bool nameOk = InputValidator.ValidateTextBoxString(
                 this.textBoxNameOfVocabulary, "The vocabulary must have a name.");
 
-            return nameOk;
+            return nameNotUsed && nameOk;
+        }
+
+        private bool ValidateVocabularyNameIsNotUsed()
+        {
+            string name = textBoxNameOfVocabulary.Text;
+
+            for (int i = 0; i < NamesOfAllVocabularies.Length; i++)
+            {
+                if (NamesOfAllVocabularies[i].Equals(name))
+                {
+                    InputValidator.AddMessage(
+                        $"The name '{ name }' has already been used for another vocaulary");
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool ValidateLanguages()
