@@ -33,8 +33,8 @@ namespace WinformUI
             this.lblNameOfVocabulary = new System.Windows.Forms.Label();
             this.textBoxNameOfVocabulary = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxLanguage1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxLanguage2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxOriginalLanguage = new System.Windows.Forms.ComboBox();
+            this.comboBoxTranslationLanguage = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblWordTitle = new System.Windows.Forms.Label();
@@ -87,21 +87,21 @@ namespace WinformUI
             this.label1.TabIndex = 3;
             this.label1.Text = "Languages";
             // 
-            // comboBoxLanguage1
+            // comboBoxOriginalLanguage
             // 
-            this.comboBoxLanguage1.FormattingEnabled = true;
-            this.comboBoxLanguage1.Location = new System.Drawing.Point(35, 148);
-            this.comboBoxLanguage1.Name = "comboBoxLanguage1";
-            this.comboBoxLanguage1.Size = new System.Drawing.Size(135, 24);
-            this.comboBoxLanguage1.TabIndex = 4;
+            this.comboBoxOriginalLanguage.FormattingEnabled = true;
+            this.comboBoxOriginalLanguage.Location = new System.Drawing.Point(35, 148);
+            this.comboBoxOriginalLanguage.Name = "comboBoxOriginalLanguage";
+            this.comboBoxOriginalLanguage.Size = new System.Drawing.Size(135, 24);
+            this.comboBoxOriginalLanguage.TabIndex = 4;
             // 
-            // comboBoxLanguage2
+            // comboBoxTranslationLanguage
             // 
-            this.comboBoxLanguage2.FormattingEnabled = true;
-            this.comboBoxLanguage2.Location = new System.Drawing.Point(224, 148);
-            this.comboBoxLanguage2.Name = "comboBoxLanguage2";
-            this.comboBoxLanguage2.Size = new System.Drawing.Size(135, 24);
-            this.comboBoxLanguage2.TabIndex = 5;
+            this.comboBoxTranslationLanguage.FormattingEnabled = true;
+            this.comboBoxTranslationLanguage.Location = new System.Drawing.Point(224, 148);
+            this.comboBoxTranslationLanguage.Name = "comboBoxTranslationLanguage";
+            this.comboBoxTranslationLanguage.Size = new System.Drawing.Size(135, 24);
+            this.comboBoxTranslationLanguage.TabIndex = 5;
             // 
             // label2
             // 
@@ -263,8 +263,8 @@ namespace WinformUI
             this.Controls.Add(this.lblWordTitle);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBoxLanguage2);
-            this.Controls.Add(this.comboBoxLanguage1);
+            this.Controls.Add(this.comboBoxTranslationLanguage);
+            this.Controls.Add(this.comboBoxOriginalLanguage);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxNameOfVocabulary);
             this.Controls.Add(this.lblNameOfVocabulary);
@@ -282,8 +282,8 @@ namespace WinformUI
         private System.Windows.Forms.Label lblNameOfVocabulary;
         private System.Windows.Forms.TextBox textBoxNameOfVocabulary;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxLanguage1;
-        private System.Windows.Forms.ComboBox comboBoxLanguage2;
+        private System.Windows.Forms.ComboBox comboBoxOriginalLanguage;
+        private System.Windows.Forms.ComboBox comboBoxTranslationLanguage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblWordTitle;
