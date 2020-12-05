@@ -211,9 +211,9 @@ namespace AppFeatures
             return hasInserted;
         }
 
-        public bool UpdateWord(string word, Word updatedWord)
+        public bool UpdateWord(Word wordToUpdate, Word updatedWord)
         {
-            Word wordToUpdate = GetWord(word);
+            //Word wordToUpdate = GetWord(word);
 
             if (wordToUpdate == null)
             {
@@ -223,7 +223,7 @@ namespace AppFeatures
             // Don't have to bother with the order if OriginalWord is not changed.
             if (String.Compare(wordToUpdate.OriginalWord, updatedWord.OriginalWord, true) == 0)
             {
-                wordToUpdate = new Word(updatedWord);
+                Word.CopyWord(wordToUpdate, updatedWord);
             }
             // Have to insert word in alphabetical order if OriginalWord is changed.
             else
