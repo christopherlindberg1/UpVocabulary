@@ -11,7 +11,7 @@ namespace AppFeatures
         private string _translationLanguage;
         private List<Word> _words = new List<Word>();
         private DateTime _dateLastUsed;
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
 
 
 
@@ -260,6 +260,7 @@ namespace AppFeatures
             vocabularyToChange.Name = vocabularyToCopyFrom.Name;
             vocabularyToChange.OriginalLanguage = vocabularyToCopyFrom.OriginalLanguage;
             vocabularyToChange.TranslationLanguage = vocabularyToCopyFrom.TranslationLanguage;
+            vocabularyToChange.DateLastUsed = vocabularyToCopyFrom.DateLastUsed;
 
             Word[] copyOfWords = new Word[vocabularyToCopyFrom.Words.Count];
             vocabularyToCopyFrom.Words.CopyTo(copyOfWords);
