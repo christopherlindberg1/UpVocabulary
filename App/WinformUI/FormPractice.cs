@@ -20,6 +20,7 @@ namespace WinformUI
         private int _nrOfWordsToPracticeWith;
         private bool _promptWithOriginalLanguage;
         private bool _useLimitedAmountOfWords;
+        private Word _currentWord;
         private readonly Queue<string> _lastUsedWords = new Queue<string>();
 
 
@@ -50,7 +51,7 @@ namespace WinformUI
             }
         }
 
-        public string OriginalLanguage
+        private string OriginalLanguage
         {
             get => _originalLanguage;
 
@@ -67,7 +68,7 @@ namespace WinformUI
             }
         }
 
-        public string TranslationLanguage
+        private string TranslationLanguage
         {
             get => _translationLanguage;
 
@@ -84,7 +85,7 @@ namespace WinformUI
             }
         }
 
-        public int NrOfWordsToPracticeWith
+        private int NrOfWordsToPracticeWith
         {
             get => _nrOfWordsToPracticeWith;
 
@@ -103,18 +104,28 @@ namespace WinformUI
             }
         }
 
-        public bool PromptWithOriginalLanguage
+        private bool PromptWithOriginalLanguage
         {
             get => _promptWithOriginalLanguage;
 
             set => _promptWithOriginalLanguage = value;
         }
 
-        public bool UseLimitedAmountOfWords
+        private bool UseLimitedAmountOfWords
         {
             get => _useLimitedAmountOfWords;
 
             set => _useLimitedAmountOfWords = value;
+        }
+
+        private Word CurrentWord
+        {
+            get => _currentWord;
+
+            set => _currentWord = value ??
+                throw new ArgumentNullException(
+                    "Current word",
+                    "Current word cannot be null");
         }
 
         private Queue<string> LastUsedWords
@@ -192,6 +203,16 @@ namespace WinformUI
 
             LastUsedWords.Enqueue(word);
         }
+
+
+
+
+
+        /**
+         * 
+         * ===================  Events  ===================
+         * 
+         */
 
         private void lblToggleShowSentence_Click(object sender, EventArgs e)
         {
