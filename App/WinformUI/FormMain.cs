@@ -503,8 +503,6 @@ namespace WinformUI
             {
                 GetPracticeSettings();
             }
-
-            MessageBox.Show(PracticeSettingsForm.DialogResult.ToString());
         }
     }
 }
