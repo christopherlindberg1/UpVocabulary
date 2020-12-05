@@ -260,7 +260,10 @@ namespace AppFeatures
             vocabularyToChange.Name = vocabularyToCopyFrom.Name;
             vocabularyToChange.OriginalLanguage = vocabularyToCopyFrom.OriginalLanguage;
             vocabularyToChange.TranslationLanguage = vocabularyToCopyFrom.TranslationLanguage;
-            vocabularyToChange.Words = vocabularyToCopyFrom.Words;
+
+            Word[] copyOfWords = new Word[vocabularyToCopyFrom.Words.Count];
+            vocabularyToCopyFrom.Words.CopyTo(copyOfWords);
+            vocabularyToChange.Words = new List<Word>(copyOfWords);
         }
 
         public string[] GetWordsWithTranslation()
