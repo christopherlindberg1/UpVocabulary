@@ -193,7 +193,6 @@ namespace WinformUI
         {
             bool vocabularyNameOk = ValidateVocabularyName();
             bool vocabularyLanguagesOk = ValidateLanguages();
-            //bool validateWordsExist = ValidateWordsExist();
 
             return vocabularyNameOk && vocabularyLanguagesOk;
         }
@@ -326,13 +325,13 @@ namespace WinformUI
             if (comboBoxOriginalLanguage.SelectedIndex != -1)
             {
                 lblWordInOriginalLanguage.Text =
-                    $"Word in { comboBoxOriginalLanguage.SelectedItem.ToString() }";
+                    $"Word in { comboBoxOriginalLanguage.SelectedItem }";
             }
 
             if (comboBoxTranslationLanguage.SelectedIndex != -1)
             {
                 lblTranslationOfWord.Text =
-                    $"Translation to { comboBoxTranslationLanguage.SelectedItem.ToString() }";
+                    $"Translation to { comboBoxTranslationLanguage.SelectedItem }";
             }
         }
 
@@ -383,12 +382,6 @@ namespace WinformUI
             listBoxWords.SelectedIndex = -1;
         }
 
-        private void RemoveWordFromGUI(int index)
-        {
-            listBoxWords.Items.RemoveAt(index);
-            VocabularyHasBeenChanged = true;
-        }
-
         /// <summary>
         ///   Updates the listbox with words to match the list of words
         ///   in the vocabulary.
@@ -398,7 +391,6 @@ namespace WinformUI
             listBoxWords.Items.Clear();
             listBoxWords.Items.AddRange(Vocabulary.GetWordsWithTranslation());
         }
-
 
 
 
@@ -503,7 +495,6 @@ namespace WinformUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Check if anything has been changed
             if (VocabularyHasBeenChanged)
             {
                 DialogResult result = MessageBox.Show(
