@@ -47,7 +47,7 @@ namespace WinformUI
             }
         }
 
-        private int NrOfWordsToPracticeWith
+        public int NrOfWordsToPracticeWith
         {
             get => _nrOfWordsToPracticeWith;
 
@@ -230,7 +230,7 @@ namespace WinformUI
 
         private void SaveNrOfWordsToPracticeWith()
         {
-            string selectedValue = comboBoxNrOfWords.SelectedValue.ToString();
+            string selectedValue = comboBoxNrOfWords.SelectedItem.ToString();
             if (selectedValue.Equals("No limit"))
             {
                 UseLimitedAmountOfWords = false;
@@ -272,9 +272,9 @@ namespace WinformUI
             }
         }
 
-        private void FormPracticeSettings_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
         }
     }
 }
