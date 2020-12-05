@@ -38,7 +38,7 @@ namespace WinformUI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblWordTitle = new System.Windows.Forms.Label();
-            this.lblWordInLang1 = new System.Windows.Forms.Label();
+            this.lblWordInOriginalLanguage = new System.Windows.Forms.Label();
             this.textBoxWordInOriginalLanguage = new System.Windows.Forms.TextBox();
             this.textBoxWordTranslationToOtherLanguage = new System.Windows.Forms.TextBox();
             this.lblTranslationOfWord = new System.Windows.Forms.Label();
@@ -95,6 +95,7 @@ namespace WinformUI
             this.comboBoxOriginalLanguage.Name = "comboBoxOriginalLanguage";
             this.comboBoxOriginalLanguage.Size = new System.Drawing.Size(135, 24);
             this.comboBoxOriginalLanguage.TabIndex = 4;
+            this.comboBoxOriginalLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxOriginalLanguage_SelectedIndexChanged);
             // 
             // comboBoxTranslationLanguage
             // 
@@ -103,6 +104,7 @@ namespace WinformUI
             this.comboBoxTranslationLanguage.Name = "comboBoxTranslationLanguage";
             this.comboBoxTranslationLanguage.Size = new System.Drawing.Size(135, 24);
             this.comboBoxTranslationLanguage.TabIndex = 5;
+            this.comboBoxTranslationLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxTranslationLanguage_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -133,14 +135,14 @@ namespace WinformUI
             this.lblWordTitle.TabIndex = 8;
             this.lblWordTitle.Text = "Add word";
             // 
-            // lblWordInLang1
+            // lblWordInOriginalLanguage
             // 
-            this.lblWordInLang1.AutoSize = true;
-            this.lblWordInLang1.Location = new System.Drawing.Point(34, 249);
-            this.lblWordInLang1.Name = "lblWordInLang1";
-            this.lblWordInLang1.Size = new System.Drawing.Size(170, 17);
-            this.lblWordInLang1.TabIndex = 9;
-            this.lblWordInLang1.Text = "Word in original language";
+            this.lblWordInOriginalLanguage.AutoSize = true;
+            this.lblWordInOriginalLanguage.Location = new System.Drawing.Point(34, 249);
+            this.lblWordInOriginalLanguage.Name = "lblWordInOriginalLanguage";
+            this.lblWordInOriginalLanguage.Size = new System.Drawing.Size(170, 17);
+            this.lblWordInOriginalLanguage.TabIndex = 9;
+            this.lblWordInOriginalLanguage.Text = "Word in original language";
             // 
             // textBoxWordInOriginalLanguage
             // 
@@ -274,7 +276,7 @@ namespace WinformUI
             this.Controls.Add(this.textBoxWordTranslationToOtherLanguage);
             this.Controls.Add(this.lblTranslationOfWord);
             this.Controls.Add(this.textBoxWordInOriginalLanguage);
-            this.Controls.Add(this.lblWordInLang1);
+            this.Controls.Add(this.lblWordInOriginalLanguage);
             this.Controls.Add(this.lblWordTitle);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -302,7 +304,7 @@ namespace WinformUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblWordTitle;
-        private System.Windows.Forms.Label lblWordInLang1;
+        private System.Windows.Forms.Label lblWordInOriginalLanguage;
         private System.Windows.Forms.TextBox textBoxWordInOriginalLanguage;
         private System.Windows.Forms.TextBox textBoxWordTranslationToOtherLanguage;
         private System.Windows.Forms.Label lblTranslationOfWord;
