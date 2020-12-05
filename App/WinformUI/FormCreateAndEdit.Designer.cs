@@ -138,9 +138,9 @@ namespace WinformUI
             this.lblWordInLang1.AutoSize = true;
             this.lblWordInLang1.Location = new System.Drawing.Point(34, 249);
             this.lblWordInLang1.Name = "lblWordInLang1";
-            this.lblWordInLang1.Size = new System.Drawing.Size(162, 17);
+            this.lblWordInLang1.Size = new System.Drawing.Size(170, 17);
             this.lblWordInLang1.TabIndex = 9;
-            this.lblWordInLang1.Text = "Word in lang - set on init";
+            this.lblWordInLang1.Text = "Word in original language";
             // 
             // textBoxWordInOriginalLanguage
             // 
@@ -161,9 +161,9 @@ namespace WinformUI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(34, 308);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(200, 17);
+            this.label4.Size = new System.Drawing.Size(208, 17);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Translation to lang - set on init";
+            this.label4.Text = "Translation to second language";
             // 
             // textBoxWordUsedInSentence
             // 
@@ -230,14 +230,14 @@ namespace WinformUI
             this.listBoxWords.Location = new System.Drawing.Point(518, 90);
             this.listBoxWords.Name = "listBoxWords";
             this.listBoxWords.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxWords.Size = new System.Drawing.Size(248, 324);
+            this.listBoxWords.Size = new System.Drawing.Size(248, 356);
             this.listBoxWords.TabIndex = 19;
             this.listBoxWords.SelectedIndexChanged += new System.EventHandler(this.listBoxWords_SelectedIndexChanged);
             // 
             // btnRemoveWords
             // 
             this.btnRemoveWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveWords.Location = new System.Drawing.Point(567, 433);
+            this.btnRemoveWords.Location = new System.Drawing.Point(567, 475);
             this.btnRemoveWords.Name = "btnRemoveWords";
             this.btnRemoveWords.Size = new System.Drawing.Size(150, 35);
             this.btnRemoveWords.TabIndex = 20;
