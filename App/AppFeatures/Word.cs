@@ -124,6 +124,18 @@ namespace AppFeatures
         public Word(
             string originalWord,
             string translation,
+            string sentence)
+        {
+            OriginalWord = originalWord;
+            Translation = translation;
+            Sentence = sentence;
+            Weight = 5;
+            TimesAnsweredCorrectly = 0;
+        }
+
+        public Word(
+            string originalWord,
+            string translation,
             string sentence,
             int weight,
             int timesAnsweredCorrectly)
@@ -148,17 +160,20 @@ namespace AppFeatures
 
 
 
-
         /**
          * 
          * ===================  Methods  ===================
          * 
          */
 
-        public override string ToString()
+        public string GetWordWithTranslation()
         {
-            return $"{ OriginalWord }";
+            return $"{ OriginalWord } - { Translation }";
         }
 
+        public override string ToString()
+        {
+            return $"{ OriginalWord } - { Translation }";
+        }
     }
 }
