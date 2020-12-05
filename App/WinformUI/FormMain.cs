@@ -293,20 +293,6 @@ namespace WinformUI
             }
         }
 
-        private void RemoveSelectedVocabularies(IEnumerator<int> indices)
-        {
-            // Removes corresponding vocabularies in GUI and storage.
-            int itemsRemoved = 0;
-            do
-            {
-                int indexToRemoveAt = indices.Current - itemsRemoved;
-                RemoveVocabularyFromGUI(indexToRemoveAt);
-                VocabularyManager.RemoveAt(indexToRemoveAt);
-
-                itemsRemoved++;
-            } while (indices.MoveNext());
-        }
-
         private void RemoveVocabularyFromGUI(int index)
         {
             listViewVocabularies.Items.RemoveAt(index);
@@ -342,14 +328,18 @@ namespace WinformUI
 
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
         {
-            CreateAndEditForm = new FormCreateAndEdit();
+            CreateAndEditForm = new FormCreateAndEdit(
+                VocabularyManager.GetNamesForAllVocabularies());
 
             DialogResult result = CreateAndEditForm.ShowDialog();
 
             if (result == DialogResult.Yes)
             {
+                VocabularyManager.AddVocabulary(CreateAndEditForm.Vocabulary);
                 UpdateVocabulariesInGUI();
             }
+         
+            SetGUIToViewState();
         }
 
         private void btnEditVocabulary_Click(object sender, EventArgs e)
@@ -374,7 +364,9 @@ namespace WinformUI
 
             Vocabulary vocabularyToEdit = VocabularyManager.GetVocabulary(item.Text);
 
-            CreateAndEditForm = new FormCreateAndEdit(vocabularyToEdit);
+            CreateAndEditForm = new FormCreateAndEdit(
+                VocabularyManager.GetNamesForAllVocabularies(),
+                vocabularyToEdit);
 
             DialogResult result = CreateAndEditForm.ShowDialog();
 
@@ -383,7 +375,7 @@ namespace WinformUI
                 UpdateVocabulariesInGUI();
             }
 
-            MessageBox.Show(result.ToString());
+            SetGUIToViewState();
         }
 
         private void btnRemoveVocabulary_Click(object sender, EventArgs e)
@@ -427,6 +419,8 @@ namespace WinformUI
             {
                 throw new InvalidOperationException("Dialog result is invalid.");
             }
+
+            SetGUIToViewState();
         }
 
         private void btnStartPractice_Click(object sender, EventArgs e)
