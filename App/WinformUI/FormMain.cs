@@ -151,6 +151,8 @@ namespace WinformUI
             btnStartPractice.Enabled = false;
             btnEditVocabulary.Enabled = false;
             btnRemoveVocabulary.Enabled = false;
+
+            listViewVocabularies.SelectedItems.Clear();
         }
 
         private void SetGUIToEditState()
@@ -262,8 +264,6 @@ namespace WinformUI
             List<Word> v3words = new List<Word> { v3w1, v3w2, v3w3 };
             Vocabulary vocabulary3 = new Vocabulary("Software engineering", v3words, "English", "Swedish");
 
-
-
             VocabularyManager.AddVocabulary(vocabulary1);
             VocabularyManager.AddVocabulary(vocabulary2);
             VocabularyManager.AddVocabulary(vocabulary3);
@@ -338,7 +338,7 @@ namespace WinformUI
                 VocabularyManager.AddVocabulary(CreateAndEditForm.Vocabulary);
                 UpdateVocabulariesInGUI();
             }
-         
+
             SetGUIToViewState();
         }
 
@@ -360,9 +360,12 @@ namespace WinformUI
                 return;
             }
 
-            ListViewItem item = listViewVocabularies.SelectedItems[0];
+            //ListViewItem item = listViewVocabularies.SelectedItems[0];
+            //Vocabulary vocabularyToEdit = VocabularyManager.GetVocabulary(item.Text);
 
-            Vocabulary vocabularyToEdit = VocabularyManager.GetVocabulary(item.Text);
+            int selectedIndex = listViewVocabularies.SelectedIndices[0];
+
+            Vocabulary vocabularyToEdit = VocabularyManager.GetCopyOfVocabulary(selectedIndex);
 
             CreateAndEditForm = new FormCreateAndEdit(
                 VocabularyManager.GetNamesForAllVocabularies(),
@@ -372,6 +375,8 @@ namespace WinformUI
 
             if (result == DialogResult.Yes)
             {
+                Vocabulary originalVocabulary = VocabularyManager.GetVocabularyAt(selectedIndex);
+                VocabularyManager.UpdateVocabulary(originalVocabulary, vocabularyToEdit);
                 UpdateVocabulariesInGUI();
             }
 
