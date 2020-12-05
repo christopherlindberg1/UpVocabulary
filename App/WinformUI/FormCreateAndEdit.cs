@@ -17,6 +17,7 @@ namespace WinformUI
         private Vocabulary _vocabulary;
         private string[] _namesOfAllVocabulaies;
         private bool _editingExistingVocabulary;
+        private string _originalVocabularyName;
 
 
 
@@ -38,9 +39,10 @@ namespace WinformUI
 
             set
             {
-                _vocabulary = value ?? throw new ArgumentNullException(
-                    "Vocabulary",
-                    "Vocabulary cannot be null.");
+                _vocabulary = value ??
+                    throw new ArgumentNullException(
+                        "Vocabulary",
+                        "Vocabulary cannot be null.");
             }
         }
 
@@ -50,9 +52,10 @@ namespace WinformUI
 
             set
             {
-                _namesOfAllVocabulaies = value ?? throw new ArgumentNullException(
-                    "NameOfAllVocabularies",
-                    "NameOfAllVocabularies cannot be null.");
+                _namesOfAllVocabulaies = value ??
+                    throw new ArgumentNullException(
+                        "NameOfAllVocabularies",
+                        "NameOfAllVocabularies cannot be null.");
             }
         }
 
@@ -61,6 +64,19 @@ namespace WinformUI
             get => _editingExistingVocabulary;
 
             set => _editingExistingVocabulary = value;
+        }
+
+        private string OriginalVocabularyName
+        {
+            get => _originalVocabularyName;
+
+            set
+            {
+                _originalVocabularyName = value ??
+                    throw new ArgumentNullException(
+                        "OriginalVocabularyName",
+                        "OriginalVocabularyName cannot be null.");
+            }
         }
 
 
@@ -91,6 +107,7 @@ namespace WinformUI
             NamesOfAllVocabularies = namesOfAllVocabularies;
             Vocabulary = vocabulary;
             EditingExistingVocabulary = true;
+            OriginalVocabularyName = vocabulary.Name;
 
             InitializeForm();
         }
@@ -110,6 +127,7 @@ namespace WinformUI
         private void InitializeGUI()
         {
             FillLanguageMenusWithData();
+            SetGUIToCreateState();
 
             if (Vocabulary == null)
             {
@@ -169,24 +187,38 @@ namespace WinformUI
         {
             bool vocabularyNameOk = ValidateVocabularyName();
             bool vocabularyLanguagesOk = ValidateLanguages();
-            bool validateWordsExist = ValidateWordsExist();
+            //bool validateWordsExist = ValidateWordsExist();
 
-            return vocabularyNameOk && vocabularyLanguagesOk && validateWordsExist;
+            return vocabularyNameOk && vocabularyLanguagesOk;
         }
 
         private bool ValidateVocabularyName()
         {
-            bool nameNotUsed = ValidateVocabularyNameIsNotUsed();
+            bool nameNotUsed = ValidateVocabularyNameCanBeUsed();
             bool nameOk = InputValidator.ValidateTextBoxString(
                 this.textBoxNameOfVocabulary, "The vocabulary must have a name.");
 
             return nameNotUsed && nameOk;
         }
 
-        private bool ValidateVocabularyNameIsNotUsed()
+        private bool ValidateVocabularyNameCanBeUsed()
         {
             string name = textBoxNameOfVocabulary.Text;
 
+            // True when editing existing vocabulary
+            if (EditingExistingVocabulary == true)
+            {
+                if (OriginalVocabularyName.Equals(name))
+                {
+                    return true;
+                }
+            }
+
+            return VocabularyNameIsAlreadyUsed(name);
+        }
+
+        private bool VocabularyNameIsAlreadyUsed(string name)
+        {
             for (int i = 0; i < NamesOfAllVocabularies.Length; i++)
             {
                 if (NamesOfAllVocabularies[i].Equals(name))
@@ -232,16 +264,16 @@ namespace WinformUI
             return true;
         }
 
-        private bool ValidateWordsExist()
-        {
-            if (this.listBoxWords.Items.Count == 0)
-            {
-                InputValidator.AddMessage("You must have at least one word.");
-                return false;
-            }
+        //private bool ValidateWordsExist()
+        //{
+        //    if (this.listBoxWords.Items.Count == 0)
+        //    {
+        //        InputValidator.AddMessage("You must have at least one word.");
+        //        return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         private bool ValidateWordData()
         {
@@ -265,6 +297,17 @@ namespace WinformUI
                 this.textBoxWordTranslationToOtherLanguage, "Translation cannot be empty");
 
             return translationOk;
+        }
+
+        private void SetGUIToEditState()
+        {
+            btnRemoveWords.Enabled = true;
+        }
+
+        private void SetGUIToCreateState()
+        {
+            btnRemoveWords.Enabled = false;
+            ClearWordInputFields();
         }
 
         private void ClearWordInputFields()
@@ -321,12 +364,20 @@ namespace WinformUI
                 Vocabulary.UpdateWord(Vocabulary.GetWordAt(selectedWordIndex), newWord);
             }
 
-            //MessageBox.Show(Vocabulary.GetWordAt(0).ToString());
-
             UpdateWordsInGUI();
-            ClearWordInputFields();
 
             listBoxWords.SelectedIndex = -1;
+        }
+
+        private void RemoveWord(int index)
+        {
+            RemoveWordFromGUI(index);
+            Vocabulary.RemoveWordAt(index);
+        }
+
+        private void RemoveWordFromGUI(int index)
+        {
+            listBoxWords.Items.RemoveAt(index);
         }
 
         /// <summary>
@@ -352,15 +403,23 @@ namespace WinformUI
 
         private void listBoxWords_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedWordIndex = listBoxWords.SelectedIndex;
-            
-            if (selectedWordIndex == -1)
+            if (listBoxWords.SelectedIndex == -1)
             {
+                SetGUIToCreateState();
                 return;
             }
+
+            if (listBoxWords.SelectedItems.Count == 1)
+            {
+                Word selectedWord = Vocabulary.GetWordAt(listBoxWords.SelectedIndex);
+                FillWordInputFields(selectedWord);
+                SetGUIToEditState();
+            }
+            else
+            {
+                ClearWordInputFields();
+            }
             
-            Word selectedWord = Vocabulary.GetWordAt(selectedWordIndex);
-            FillWordInputFields(selectedWord);
         }
 
         private void btnSaveWord_Click(object sender, EventArgs e)
@@ -378,7 +437,39 @@ namespace WinformUI
             else
             {
                 SaveWord();
+                SetGUIToCreateState();
             }
+        }
+
+        private void btnRemoveWords_Click(object sender, EventArgs e)
+        {
+            if (listBoxWords.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "Sure you want to remove the marked words?",
+                "Warning",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            int nrOfWordsRemoved = 0;
+            foreach (int index in listBoxWords.SelectedIndices)
+            {
+                int indexToRemoveAt = index - nrOfWordsRemoved;
+                Vocabulary.RemoveWordAt(indexToRemoveAt);
+
+                nrOfWordsRemoved++;
+            }
+
+            UpdateWordsInGUI();
+            SetGUIToCreateState();
         }
 
         private void btnSaveVocabulary_Click(object sender, EventArgs e)
@@ -400,7 +491,5 @@ namespace WinformUI
                 this.Close();
             }
         }
-
-        
     }
 }
