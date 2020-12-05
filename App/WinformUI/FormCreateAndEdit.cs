@@ -369,12 +369,6 @@ namespace WinformUI
             listBoxWords.SelectedIndex = -1;
         }
 
-        private void RemoveWord(int index)
-        {
-            RemoveWordFromGUI(index);
-            Vocabulary.RemoveWordAt(index);
-        }
-
         private void RemoveWordFromGUI(int index)
         {
             listBoxWords.Items.RemoveAt(index);
@@ -490,6 +484,14 @@ namespace WinformUI
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Check if anything has been changed
+
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }
