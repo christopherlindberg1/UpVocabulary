@@ -13,8 +13,8 @@ namespace WinformUI
 {
     public partial class FormCreateAndEdit : Form
     {
+        private DialogResult _saveVocabulary;
         private Vocabulary _vocabulary;
-
         private readonly InputValidator _inputValidator = new InputValidator();
 
 
@@ -25,6 +25,23 @@ namespace WinformUI
          * ===================  Properties  ===================
          * 
          */
+
+        public DialogResult SaveVocabulary
+        {
+            get => _saveVocabulary;
+
+            set
+            {
+                if (value != DialogResult.Yes && value != DialogResult.Cancel)
+                {
+                    throw new ArgumentException("Dialog result must be 'Yes' or 'Cancel'", "SaveVocabulary");
+                }
+                else
+                {
+                    _saveVocabulary = value;
+                }
+            }
+        }
 
         private Vocabulary Vocabulary
         {
@@ -317,7 +334,6 @@ namespace WinformUI
             
             Word selectedWord = Vocabulary.GetWordAt(selectedWordIndex);
             FillWordInputFields(selectedWord);
-
         }
 
         private void btnSaveWord_Click(object sender, EventArgs e)
@@ -352,7 +368,8 @@ namespace WinformUI
             }
             else
             {
-                // Save vocabulary
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
             }
         }
 
