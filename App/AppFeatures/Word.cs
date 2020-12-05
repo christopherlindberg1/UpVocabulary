@@ -166,6 +166,13 @@ namespace AppFeatures
          * 
          */
 
+        public static void CopyWord(Word wordToUpdate, Word wordToCopyFrom)
+        {
+            wordToUpdate.OriginalWord = wordToCopyFrom.OriginalWord;
+            wordToUpdate.Translation = wordToCopyFrom.Translation;
+            wordToUpdate.Sentence = wordToCopyFrom.Sentence;
+        }
+
         public string GetWordWithTranslation()
         {
             return $"{ OriginalWord } - { Translation }";
