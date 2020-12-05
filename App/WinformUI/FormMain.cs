@@ -271,10 +271,10 @@ namespace WinformUI
 
         private void AddDataToGUI()
         {
-            AddVocabularysDataToGUI();   
+            UpdateVocabulariesInGUI();   
         }
 
-        private void AddVocabularysDataToGUI()
+        private void UpdateVocabulariesInGUI()
         {
             listViewVocabularies.Items.Clear();
 
@@ -328,11 +328,28 @@ namespace WinformUI
             InitializeApp();
         }
 
+        private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (listViewVocabularies.SelectedIndices.Count == 0)
+            {
+                SetGUIToViewState();
+            }
+            else
+            {
+                SetGUIToEditState();
+            }
+        }
+
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
         {
             CreateAndEditForm = new FormCreateAndEdit();
 
-            CreateAndEditForm.Show();
+            DialogResult result = CreateAndEditForm.ShowDialog();
+
+            if (result == DialogResult.Yes)
+            {
+                UpdateVocabulariesInGUI();
+            }
         }
 
         private void btnEditVocabulary_Click(object sender, EventArgs e)
@@ -359,32 +376,14 @@ namespace WinformUI
 
             CreateAndEditForm = new FormCreateAndEdit(vocabularyToEdit);
 
-            CreateAndEditForm.Show();
-        }
-
-        private void btnStartPractice_Click(object sender, EventArgs e)
-        {
-            FormPracticeSettings practiceSettings = new FormPracticeSettings();
-
-            DialogResult result = practiceSettings.ShowDialog();
+            DialogResult result = CreateAndEditForm.ShowDialog();
 
             if (result == DialogResult.Yes)
             {
-                // Get practice settings from the form.
-                
+                UpdateVocabulariesInGUI();
             }
-        }
 
-        private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            if (listViewVocabularies.SelectedIndices.Count == 0)
-            {
-                SetGUIToViewState();
-            }
-            else
-            {
-                SetGUIToEditState();
-            }
+            MessageBox.Show(result.ToString());
         }
 
         private void btnRemoveVocabulary_Click(object sender, EventArgs e)
@@ -427,6 +426,19 @@ namespace WinformUI
             else
             {
                 throw new InvalidOperationException("Dialog result is invalid.");
+            }
+        }
+
+        private void btnStartPractice_Click(object sender, EventArgs e)
+        {
+            FormPracticeSettings practiceSettings = new FormPracticeSettings();
+
+            DialogResult result = practiceSettings.ShowDialog();
+
+            if (result == DialogResult.Yes)
+            {
+                // Get practice settings from the form.
+
             }
         }
     }
