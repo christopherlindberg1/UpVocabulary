@@ -21,8 +21,9 @@ namespace WinformUI
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
 
+        private string _originalLanguageToPracticeWith;
+        private string _translationLanguageToPracticeWith;
         private int _nrOfWordsToPracticeWith;
-        private string[] _languagesToPracticeWith;
 
 
 
@@ -69,14 +70,38 @@ namespace WinformUI
                     "PracticeForm Cannot be null");
         }
 
-        private string[] LanguagesToPracticeWith
+        public string OriginalLanguageToPracticeWith
         {
-            get => _languagesToPracticeWith;
+            get => _originalLanguageToPracticeWith;
 
-            set => _languagesToPracticeWith = value ??
-                throw new ArgumentNullException(
-                    "LanguagesToPracticeWith",
-                    "LanguagesToPracticeWith Cannot be null");
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException(
+                        "OriginalLanguage",
+                        "OriginalLanguage cannot be null");
+                }
+
+                _originalLanguageToPracticeWith = value;
+            }
+        }
+
+        public string TranslationLanguageToPracticeWith
+        {
+            get => _translationLanguageToPracticeWith;
+
+            set
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException(
+                        "TranslationLanguage",
+                        "TranslationLanguage cannot be null");
+                }
+
+                _translationLanguageToPracticeWith = value;
+            }
         }
 
         private int NrOfWordsToPracticeWith
@@ -133,7 +158,7 @@ namespace WinformUI
             // Setting width for columns
             listViewVocabularies.Columns[0].Width = 225;     // Name
             listViewVocabularies.Columns[1].Width = 100;     // Nr of words
-            listViewVocabularies.Columns[2].Width = 150;     // Languages
+            listViewVocabularies.Columns[2].Width = 147;     // Languages
 
             // Set the view to show details.
             listViewVocabularies.View = View.Details;
@@ -360,26 +385,24 @@ namespace WinformUI
                 return;
             }
 
-            //ListViewItem item = listViewVocabularies.SelectedItems[0];
-            //Vocabulary vocabularyToEdit = VocabularyManager.GetVocabulary(item.Text);
-
             int selectedIndex = listViewVocabularies.SelectedIndices[0];
 
-            Vocabulary vocabularyToEdit = VocabularyManager.GetCopyOfVocabulary(selectedIndex);
+            Vocabulary copyOfVocabulary = VocabularyManager.GetCopyOfVocabulary(selectedIndex);
 
             CreateAndEditForm = new FormCreateAndEdit(
                 VocabularyManager.GetNamesForAllVocabularies(),
-                vocabularyToEdit);
+                copyOfVocabulary);
 
             DialogResult result = CreateAndEditForm.ShowDialog();
 
             if (result == DialogResult.Yes)
             {
                 Vocabulary originalVocabulary = VocabularyManager.GetVocabularyAt(selectedIndex);
-                VocabularyManager.UpdateVocabulary(originalVocabulary, vocabularyToEdit);
+
+                VocabularyManager.UpdateVocabulary(originalVocabulary, copyOfVocabulary);
                 UpdateVocabulariesInGUI();
             }
-
+            
             SetGUIToViewState();
         }
 
@@ -430,7 +453,26 @@ namespace WinformUI
 
         private void btnStartPractice_Click(object sender, EventArgs e)
         {
-            FormPracticeSettings practiceSettings = new FormPracticeSettings();
+            if (listViewVocabularies.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            if (listViewVocabularies.SelectedItems.Count > 1)
+            {
+                MessageBox.Show(
+                    "Select only one vocabulary to practice with",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            Vocabulary vocabularyToPracticeWith =
+                VocabularyManager.GetVocabularyAt(listViewVocabularies.SelectedIndices[0]);
+
+            FormPracticeSettings practiceSettings = new FormPracticeSettings(vocabularyToPracticeWith);
 
             DialogResult result = practiceSettings.ShowDialog();
 
