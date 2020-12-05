@@ -13,7 +13,6 @@ namespace WinformUI
 {
     public partial class FormCreateAndEdit : Form
     {
-        private DialogResult _saveVocabulary;
         private Vocabulary _vocabulary;
         private readonly InputValidator _inputValidator = new InputValidator();
 
@@ -26,24 +25,7 @@ namespace WinformUI
          * 
          */
 
-        public DialogResult SaveVocabulary
-        {
-            get => _saveVocabulary;
-
-            set
-            {
-                if (value != DialogResult.Yes && value != DialogResult.Cancel)
-                {
-                    throw new ArgumentException("Dialog result must be 'Yes' or 'Cancel'", "SaveVocabulary");
-                }
-                else
-                {
-                    _saveVocabulary = value;
-                }
-            }
-        }
-
-        private Vocabulary Vocabulary
+        public Vocabulary Vocabulary
         {
             get => _vocabulary;
 
@@ -123,8 +105,8 @@ namespace WinformUI
         {
             string[] languages = Enum.GetNames(typeof(Languages));
 
-            comboBoxLanguage1.Items.AddRange(languages);
-            comboBoxLanguage2.Items.AddRange(languages);
+            comboBoxOriginalLanguage.Items.AddRange(languages);
+            comboBoxTranslationLanguage.Items.AddRange(languages);
         }
 
         private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
@@ -143,8 +125,8 @@ namespace WinformUI
 
         private void SetLanguagesInGUI(Vocabulary vocabulary)
         {
-            comboBoxLanguage1.SelectedItem = vocabulary.OriginalLanguage;
-            comboBoxLanguage2.SelectedItem = vocabulary.TranslationLanguage;
+            comboBoxOriginalLanguage.SelectedItem = vocabulary.OriginalLanguage;
+            comboBoxTranslationLanguage.SelectedItem = vocabulary.TranslationLanguage;
         }
 
 
@@ -185,19 +167,19 @@ namespace WinformUI
         private bool ValidateLanguagesAreChosen()
         {
             bool language1Ok = InputValidator.ValidateComboBoxItemIsSelected(
-                this.comboBoxLanguage1, "You must select a first language.");
+                this.comboBoxOriginalLanguage, "You must select a first language.");
 
             bool language2Ok = InputValidator.ValidateComboBoxItemIsSelected(
-                this.comboBoxLanguage2, "You must select a second language.");
+                this.comboBoxTranslationLanguage, "You must select a second language.");
 
             return language1Ok && language2Ok;
         }
 
         private bool ValidateLanguagesAreNotTheSame()
         {
-            if (this.comboBoxLanguage1.SelectedIndex
-                == this.comboBoxLanguage2.SelectedIndex
-                && this.comboBoxLanguage1.SelectedIndex != -1)
+            if (this.comboBoxOriginalLanguage.SelectedIndex
+                == this.comboBoxTranslationLanguage.SelectedIndex
+                && this.comboBoxOriginalLanguage.SelectedIndex != -1)
             {
                 InputValidator.AddMessage("You must have two different languages");
                 return false;
@@ -255,6 +237,13 @@ namespace WinformUI
             textBoxWordUsedInSentence.Text = word.Sentence;
         }
 
+        private void SaveVocabularyData()
+        {
+            Vocabulary.Name = textBoxNameOfVocabulary.Text;
+            Vocabulary.OriginalLanguage = comboBoxOriginalLanguage.SelectedItem.ToString();
+            Vocabulary.TranslationLanguage = comboBoxTranslationLanguage.SelectedItem.ToString();
+        }
+
         private void SaveWord()
         {
             string originalWord = textBoxWordInOriginalLanguage.Text.ToLower();
@@ -304,12 +293,6 @@ namespace WinformUI
         {
             listBoxWords.Items.Clear();
             listBoxWords.Items.AddRange(Vocabulary.GetWordsWithTranslation());
-        }
-
-        private void SaveWordToVocabulary(Word word)
-        {
-            Vocabulary.InsertWord(word);
-            throw new NotImplementedException();
         }
 
 
@@ -368,6 +351,7 @@ namespace WinformUI
             }
             else
             {
+                SaveVocabularyData();
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }
