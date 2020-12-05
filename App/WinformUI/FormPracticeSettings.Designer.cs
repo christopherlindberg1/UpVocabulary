@@ -112,6 +112,7 @@ namespace WinformUI
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FormPracticeSettings
             // 
@@ -129,7 +130,6 @@ namespace WinformUI
             this.Controls.Add(this.label1);
             this.Name = "FormPracticeSettings";
             this.Text = "UpVocabulary - Practice settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPracticeSettings_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
