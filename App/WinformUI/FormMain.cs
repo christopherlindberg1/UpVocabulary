@@ -24,6 +24,8 @@ namespace WinformUI
         private string _originalLanguageToPracticeWith;
         private string _translationLanguageToPracticeWith;
         private int _nrOfWordsToPracticeWith;
+        private bool _promptWithOriginalLanguageInPractice;
+        private bool _useLimitedAmountOfWords;
 
 
 
@@ -121,6 +123,20 @@ namespace WinformUI
                     _nrOfWordsToPracticeWith = value;
                 }
             }
+        }
+
+        public bool PromptWithOriginalLanguageInPractice
+        {
+            get => _promptWithOriginalLanguageInPractice;
+
+            set => _promptWithOriginalLanguageInPractice = value;
+        }
+
+        public bool UseLimitedAmountOfWords
+        {
+            get => _useLimitedAmountOfWords;
+
+            set => _useLimitedAmountOfWords = value;
         }
 
 
