@@ -18,7 +18,7 @@ namespace WinformUI
         private string[] _namesOfAllVocabulaies;
         private bool _editingExistingVocabulary;
         private string _originalVocabularyName;
-
+        private bool _vocabularyHasBeenChanged;
 
 
 
@@ -79,6 +79,13 @@ namespace WinformUI
             }
         }
 
+        private bool VocabularyHasBeenChanged
+        {
+            get => _vocabularyHasBeenChanged;
+
+            set => _vocabularyHasBeenChanged = value;
+        }
+
 
 
 
@@ -133,13 +140,13 @@ namespace WinformUI
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
                 lblHeading.Text = "Create new vocabulary";
-                lblWordTitle.Text = "Add word";
+                //lblWordTitle.Text = "Add word";
             }
             else
             {
                 this.Text = "UpVocabulary - Edit Vocabulary";
                 lblHeading.Text = "Edit vocabulary";
-                lblWordTitle.Text = "Edit word";
+                //lblWordTitle.Text = "Add word";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
             }
@@ -264,17 +271,6 @@ namespace WinformUI
             return true;
         }
 
-        //private bool ValidateWordsExist()
-        //{
-        //    if (this.listBoxWords.Items.Count == 0)
-        //    {
-        //        InputValidator.AddMessage("You must have at least one word.");
-        //        return false;
-        //    }
-
-        //    return true;
-        //}
-
         private bool ValidateWordData()
         {
             bool wordInOriginalLanguageOk = ValidateWordOriginalLanguage();
@@ -302,11 +298,13 @@ namespace WinformUI
         private void SetGUIToEditState()
         {
             btnRemoveWords.Enabled = true;
+            lblWordTitle.Text = "Edit word";
         }
 
         private void SetGUIToCreateState()
         {
             btnRemoveWords.Enabled = false;
+            lblWordTitle.Text = "Add word";
             ClearWordInputFields();
         }
 
