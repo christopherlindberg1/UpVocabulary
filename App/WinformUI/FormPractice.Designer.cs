@@ -40,6 +40,7 @@ namespace WinformUI
             this.label1 = new System.Windows.Forms.Label();
             this.lblNrOfCorrectAnswers = new System.Windows.Forms.Label();
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
+            this.btnEndPractice = new System.Windows.Forms.Button();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,12 +158,23 @@ namespace WinformUI
             this.lblCorrectOrWrong.Text = "[Cleared on init]";
             this.lblCorrectOrWrong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnEndPractice
+            // 
+            this.btnEndPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEndPractice.Location = new System.Drawing.Point(442, 367);
+            this.btnEndPractice.Name = "btnEndPractice";
+            this.btnEndPractice.Size = new System.Drawing.Size(310, 60);
+            this.btnEndPractice.TabIndex = 9;
+            this.btnEndPractice.Text = "End practice";
+            this.btnEndPractice.UseVisualStyleBackColor = true;
+            // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 402);
+            this.ClientSize = new System.Drawing.Size(800, 458);
+            this.Controls.Add(this.btnEndPractice);
             this.Controls.Add(this.lblCorrectOrWrong);
             this.Controls.Add(this.lblToggleScore);
             this.Controls.Add(this.groupBoxScore);
@@ -194,5 +206,6 @@ namespace WinformUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNrOfCorrectAnswers;
         private System.Windows.Forms.Label lblCorrectOrWrong;
+        private System.Windows.Forms.Button btnEndPractice;
     }
 }
