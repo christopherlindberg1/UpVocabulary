@@ -152,6 +152,8 @@ namespace WinformUI
             InitializeComponent();
 
             Vocabulary = vocabulary;
+            OriginalLanguage = Vocabulary.OriginalLanguage;
+            TranslationLanguage = Vocabulary.TranslationLanguage;
             NrOfWordsToPracticeWith = nrOfWordsToPracticeWith;
             PromptWithOriginalLanguage = promptWithOriginalLanguage;
             UseLimitedAmountOfWords = useLimitedAmountOfWords;
@@ -161,17 +163,26 @@ namespace WinformUI
 
         private void InitializeForm()
         {
+            GetFirstWord();
             InitializeGUI();
+            StartPractice();
         }
 
         private void InitializeGUI()
         {
             InitializeDescription();
+            UpdateGUIAccordingToCurrentWord();
+            ToggleSentenceUsingWord(false);
         }
 
         private void InitializeDescription()
         {
             lblDescription.Text = $"Words from { Vocabulary.Name }";
+        }
+
+        private void GetFirstWord()
+        {
+            CurrentWord = Vocabulary.GenerateWeightedRandomWord();
         }
 
 
@@ -183,6 +194,77 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
+
+        private void UpdateGUIAccordingToCurrentWord()
+        {
+            SetLabelForOriginalWord();
+            SetLabelForTogglingSentence();
+            SetLabelForWordUsedInSentence();
+        }
+
+        private void SetLabelForOriginalWord()
+        {
+            string wordToTranslate = null;
+            string translationLanguage = null;
+
+            if (PromptWithOriginalLanguage)
+            {
+                wordToTranslate = CurrentWord.OriginalWord;
+                translationLanguage = TranslationLanguage;
+            }
+            else
+            {
+                wordToTranslate = CurrentWord.Translation;
+                translationLanguage = OriginalLanguage;
+            }
+
+            lblWordToTranslate.Text = $"Translate '{ wordToTranslate }' to { translationLanguage }";
+        }
+
+        private void SetLabelForTogglingSentence()
+        {
+            string wordToTranslate = null;
+
+            if (PromptWithOriginalLanguage)
+            {
+                wordToTranslate = CurrentWord.OriginalWord;
+            }
+            else
+            {
+                wordToTranslate = CurrentWord.Translation;
+            }
+
+            lblToggleShowSentence.Text = $"Show '{ wordToTranslate }' used in a sentence";
+        }
+
+        private void ToggleSentenceUsingWord(bool visible)
+        {
+            lblWordUsedInSentence.Visible = visible;
+        }
+
+        private void SetLabelForWordUsedInSentence()
+        {
+            lblWordUsedInSentence.Text = CurrentWord.Sentence;
+        }
+
+        private void StartPractice()
+        {
+            
+
+            if (UseLimitedAmountOfWords)
+            {
+
+            }
+
+            // Generate next for to practice
+            while (LastUsedWordsContains(CurrentWord.OriginalWord))
+            {
+                CurrentWord = Vocabulary.GenerateWeightedRandomWord();
+            }
+        }
+
+
+        
 
         private bool LastUsedWordsContains(string word)
         {
