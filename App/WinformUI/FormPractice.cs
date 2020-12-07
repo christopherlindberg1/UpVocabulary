@@ -163,7 +163,7 @@ namespace WinformUI
 
         private void InitializeForm()
         {
-            GetFirstWord();
+            GetNextWord();
             InitializeGUI();
             StartPractice();
         }
@@ -172,7 +172,7 @@ namespace WinformUI
         {
             InitializeDescription();
             UpdateGUIAccordingToCurrentWord();
-            ToggleSentenceUsingWord(false);
+            lblCorrectOrWrong.Text = "";
         }
 
         private void InitializeDescription()
@@ -180,10 +180,6 @@ namespace WinformUI
             lblDescription.Text = $"Words from { Vocabulary.Name }";
         }
 
-        private void GetFirstWord()
-        {
-            CurrentWord = Vocabulary.GenerateWeightedRandomWord();
-        }
 
 
 
@@ -195,11 +191,19 @@ namespace WinformUI
          * 
          */
 
+        private void GetNextWord()
+        {
+            /**
+             SHOULD CHECK THAT WORD IS NOT IN LASTWORDSUSED
+             */
+            CurrentWord = Vocabulary.GenerateWeightedRandomWord();
+            LastUsedWords.Enqueue(CurrentWord.OriginalWord);
+        }
+
         private void UpdateGUIAccordingToCurrentWord()
         {
             SetLabelForOriginalWord();
-            SetLabelForTogglingSentence();
-            SetLabelForWordUsedInSentence();
+            InitializeSentenceSection();
         }
 
         private void SetLabelForOriginalWord()
@@ -221,46 +225,70 @@ namespace WinformUI
             lblWordToTranslate.Text = $"Translate '{ wordToTranslate }' to { translationLanguage }";
         }
 
-        private void SetLabelForTogglingSentence()
+        private void InitializeSentenceSection()
         {
-            string wordToTranslate = null;
-
-            if (PromptWithOriginalLanguage)
+            // Check for when sentence should not be displayed
+            if (PromptWithOriginalLanguage == false
+                || String.IsNullOrWhiteSpace(CurrentWord.Sentence))
             {
-                wordToTranslate = CurrentWord.OriginalWord;
+                // Hide entire sentence section
+                lblToggleSentence.Visible = false;
+                lblWordUsedInSentence.Visible = false;
+                return;
             }
             else
             {
-                wordToTranslate = CurrentWord.Translation;
+                SetSentence();
+                ToggleSentence(false);
+                lblToggleSentence.Visible = true;
+                lblWordUsedInSentence.Visible = false;
             }
-
-            lblToggleShowSentence.Text = $"Show '{ wordToTranslate }' used in a sentence";
         }
 
-        private void ToggleSentenceUsingWord(bool visible)
-        {
-            lblWordUsedInSentence.Visible = visible;
-        }
-
-        private void SetLabelForWordUsedInSentence()
+        private void SetSentence()
         {
             lblWordUsedInSentence.Text = CurrentWord.Sentence;
         }
 
+        private void ToggleSentence(bool visible)
+        {
+            if (visible)
+            {
+                lblToggleSentence.Text = $"Hide sentence";
+            }
+            else
+            {
+                lblToggleSentence.Text = $"Show '{ CurrentWord.OriginalWord }' used in a sentence";
+            }
+
+            lblWordUsedInSentence.Visible = visible;
+        }
+
+        private void ToggleSentence()
+        {
+            ToggleSentence(!lblWordUsedInSentence.Visible);
+        }
+
         private void StartPractice()
         {
-            
-
             if (UseLimitedAmountOfWords)
             {
-
+                RunPracticeWithLimitedAmountOfWords();
             }
-
-            // Generate next for to practice
-            while (LastUsedWordsContains(CurrentWord.OriginalWord))
+            else
             {
-                CurrentWord = Vocabulary.GenerateWeightedRandomWord();
+                RunPracticeTillUserStops();
             }
+        }
+
+        private void RunPracticeWithLimitedAmountOfWords()
+        {
+
+        }
+
+        private void RunPracticeTillUserStops()
+        {
+
         }
 
 
@@ -298,16 +326,17 @@ namespace WinformUI
 
         private void lblToggleShowSentence_Click(object sender, EventArgs e)
         {
-            if (lblWordUsedInSentence.Visible)
-            {
-                // text - show
-            }
-            else
-            {
-                // text - hide
-            }
+            //if (lblWordUsedInSentence.Visible)
+            //{
+            //    // text - show
+            //}
+            //else
+            //{
+            //    // text - hide
+            //}
 
-            lblWordUsedInSentence.Visible = !lblWordUsedInSentence.Visible;
+            //lblWordUsedInSentence.Visible = !lblWordUsedInSentence.Visible;
+            ToggleSentence();
         }
 
         private void lblToggleScore_Click(object sender, EventArgs e)
@@ -322,6 +351,18 @@ namespace WinformUI
             }
 
             groupBoxScore.Visible = !groupBoxScore.Visible;
+        }
+
+        private void textBoxTranslation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            byte charNumber = (byte)e.KeyChar;
+
+            // Enter key
+            if (charNumber == 13)
+            {
+                // Check if translation is correct
+
+            }
         }
     }
 }
