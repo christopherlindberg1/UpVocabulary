@@ -22,6 +22,7 @@ namespace WinformUI
         private bool _useLimitedAmountOfWords;
         private Word _currentWord;
         private readonly Queue<string> _lastUsedWords = new Queue<string>();
+        private int _nrOfLastUsedWordsStored;
 
 
 
@@ -133,6 +134,23 @@ namespace WinformUI
             get => _lastUsedWords;
         }
 
+        private int NrOfLastUsedWordsStored
+        {
+            get => _nrOfLastUsedWordsStored;
+
+            set
+            {
+                if (value > 5 || value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "NrOfLastWordsUsed",
+                        "NrOfLastWordsUsed must be in the range 0 - 5.");
+                }
+
+                _nrOfLastUsedWordsStored = value;
+            }
+        }
+
 
 
 
@@ -157,7 +175,8 @@ namespace WinformUI
             NrOfWordsToPracticeWith = nrOfWordsToPracticeWith;
             PromptWithOriginalLanguage = promptWithOriginalLanguage;
             UseLimitedAmountOfWords = useLimitedAmountOfWords;
-
+            
+            InitializeNrOfLastUsedWordsStored();
             InitializeForm();
         }
 
@@ -190,6 +209,32 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
+
+        private void InitializeNrOfLastUsedWordsStored()
+        {
+            if (Vocabulary == null)
+            {
+                throw new InvalidOperationException(
+                    "The Vocabulary property must be initialized before calling this method.");
+            }
+
+            if (Vocabulary.NrOfWords == 1)
+            {
+                _nrOfLastUsedWordsStored = 0;
+            }
+            else if (Vocabulary.NrOfWords < 4)
+            {
+                _nrOfLastUsedWordsStored = 1;
+            }
+            else if (Vocabulary.NrOfWords < 6)
+            {
+                _nrOfLastUsedWordsStored = 2;
+            }
+            else
+            {
+                _nrOfLastUsedWordsStored = 3;
+            }
+        }
 
         private void GetNextWord()
         {
