@@ -218,12 +218,19 @@ namespace WinformUI
         private void InitializeGUI()
         {
             InitializeDescription();
-            lblCorrectOrWrong.Text = "";
+            InitializeCorrectOrWrong();
         }
 
         private void InitializeDescription()
         {
             lblDescription.Text = $"Words from { Vocabulary.Name }";
+        }
+
+        private void InitializeCorrectOrWrong()
+        {
+            lblCorrectOrWrong.Text = "";
+            lblCorrectAnswer.Text = "";
+            lblCorrectOrWrong.ForeColor = Color.White;
         }
 
         private void InitializeNrOfLastUsedWordsStored()
@@ -266,6 +273,7 @@ namespace WinformUI
             SetLabelForOriginalWord();
             UpdateSentenceSection();
             textBoxTranslation.Text = "";
+            lblCorrectOrWrong.Text = "";
         }
 
         private void GetNextWord()
@@ -373,7 +381,14 @@ namespace WinformUI
                 return;
             }
 
-            MessageBox.Show(CheckTranslation().ToString());
+            if (CheckTranslation())
+            {
+                ShowAnswerIsCorrect();
+            }
+            else
+            {
+                ShowAnswerIsWrong();
+            }
             // Take user answer and compare with real answer
 
             // Update score
@@ -387,8 +402,7 @@ namespace WinformUI
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
             {
-                GetNextWord();
-                UpdateGUIToNextWord();
+                //AskNextQuestion();
             }
             else
             {
@@ -430,12 +444,30 @@ namespace WinformUI
             return false;
         }
 
+        private void ShowAnswerIsCorrect()
+        {
+            lblCorrectOrWrong.Text = "Correct";
+            lblCorrectOrWrong.BackColor = Color.Green;
+            lblCorrectOrWrong.Visible = true;
+        }
 
-        
+        private void ShowAnswerIsWrong()
+        {
+            string correctAnswer = (PromptWithOriginalLanguage == true)
+                ? CurrentWord.Translation : CurrentWord.OriginalWord;
 
-        
+            lblCorrectOrWrong.Text = "Wrong";
+            lblCorrectOrWrong.BackColor = Color.Red;
+            lblCorrectOrWrong.Visible = true;
+            lblCorrectAnswer.Text = $"The correct translation is '{ correctAnswer }'";
+        }
 
-        
+
+
+
+
+
+
 
 
 
@@ -475,17 +507,13 @@ namespace WinformUI
             {
                 // Check if translation is correct
                 HandleAnswer();
+                e.Handled = true;
             }
         }
 
         private void btnSubmitAnswer_Click(object sender, EventArgs e)
         {
             HandleAnswer();
-            // Check answer
-
-            // Display answer
-
-            // Check if app should ask new question
         }
     }
 }
