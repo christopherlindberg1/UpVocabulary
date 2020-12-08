@@ -31,16 +31,17 @@ namespace WinformUI
         {
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblWordToTranslate = new System.Windows.Forms.Label();
-            this.lblToggleShowSentence = new System.Windows.Forms.Label();
+            this.lblToggleSentence = new System.Windows.Forms.Label();
             this.lblWordUsedInSentence = new System.Windows.Forms.Label();
             this.lblTranslation = new System.Windows.Forms.Label();
             this.textBoxTranslation = new System.Windows.Forms.TextBox();
             this.groupBoxScore = new System.Windows.Forms.GroupBox();
-            this.lblToggleScore = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblNrOfCorrectAnswers = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblToggleScore = new System.Windows.Forms.Label();
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
             this.btnEndPractice = new System.Windows.Forms.Button();
+            this.btnSubmitAnswer = new System.Windows.Forms.Button();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,17 +65,17 @@ namespace WinformUI
             this.lblWordToTranslate.TabIndex = 1;
             this.lblWordToTranslate.Text = "Translate [word] to [translationLanguage]";
             // 
-            // lblToggleShowSentence
+            // lblToggleSentence
             // 
-            this.lblToggleShowSentence.AutoSize = true;
-            this.lblToggleShowSentence.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblToggleShowSentence.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToggleShowSentence.Location = new System.Drawing.Point(32, 117);
-            this.lblToggleShowSentence.Name = "lblToggleShowSentence";
-            this.lblToggleShowSentence.Size = new System.Drawing.Size(247, 20);
-            this.lblToggleShowSentence.TabIndex = 2;
-            this.lblToggleShowSentence.Text = "Show [word] used in a sentence";
-            this.lblToggleShowSentence.Click += new System.EventHandler(this.lblToggleShowSentence_Click);
+            this.lblToggleSentence.AutoSize = true;
+            this.lblToggleSentence.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblToggleSentence.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToggleSentence.Location = new System.Drawing.Point(32, 117);
+            this.lblToggleSentence.Name = "lblToggleSentence";
+            this.lblToggleSentence.Size = new System.Drawing.Size(247, 20);
+            this.lblToggleSentence.TabIndex = 2;
+            this.lblToggleSentence.Text = "Show [word] used in a sentence";
+            this.lblToggleSentence.Click += new System.EventHandler(this.lblToggleShowSentence_Click);
             // 
             // lblWordUsedInSentence
             // 
@@ -104,6 +105,7 @@ namespace WinformUI
             this.textBoxTranslation.Name = "textBoxTranslation";
             this.textBoxTranslation.Size = new System.Drawing.Size(247, 27);
             this.textBoxTranslation.TabIndex = 5;
+            this.textBoxTranslation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTranslation_KeyPress);
             // 
             // groupBoxScore
             // 
@@ -115,6 +117,26 @@ namespace WinformUI
             this.groupBoxScore.Size = new System.Drawing.Size(310, 126);
             this.groupBoxScore.TabIndex = 6;
             this.groupBoxScore.TabStop = false;
+            // 
+            // lblNrOfCorrectAnswers
+            // 
+            this.lblNrOfCorrectAnswers.AutoSize = true;
+            this.lblNrOfCorrectAnswers.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNrOfCorrectAnswers.Location = new System.Drawing.Point(22, 65);
+            this.lblNrOfCorrectAnswers.Name = "lblNrOfCorrectAnswers";
+            this.lblNrOfCorrectAnswers.Size = new System.Drawing.Size(178, 36);
+            this.lblNrOfCorrectAnswers.TabIndex = 1;
+            this.lblNrOfCorrectAnswers.Text = "0 / 0 Correct";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Score";
             // 
             // lblToggleScore
             // 
@@ -128,30 +150,10 @@ namespace WinformUI
             this.lblToggleScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblToggleScore.Click += new System.EventHandler(this.lblToggleScore_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Score";
-            // 
-            // lblNrOfCorrectAnswers
-            // 
-            this.lblNrOfCorrectAnswers.AutoSize = true;
-            this.lblNrOfCorrectAnswers.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNrOfCorrectAnswers.Location = new System.Drawing.Point(22, 65);
-            this.lblNrOfCorrectAnswers.Name = "lblNrOfCorrectAnswers";
-            this.lblNrOfCorrectAnswers.Size = new System.Drawing.Size(178, 36);
-            this.lblNrOfCorrectAnswers.TabIndex = 1;
-            this.lblNrOfCorrectAnswers.Text = "0 / 0 Correct";
-            // 
             // lblCorrectOrWrong
             // 
             this.lblCorrectOrWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorrectOrWrong.Location = new System.Drawing.Point(27, 303);
+            this.lblCorrectOrWrong.Location = new System.Drawing.Point(27, 367);
             this.lblCorrectOrWrong.Name = "lblCorrectOrWrong";
             this.lblCorrectOrWrong.Size = new System.Drawing.Size(252, 23);
             this.lblCorrectOrWrong.TabIndex = 8;
@@ -168,12 +170,24 @@ namespace WinformUI
             this.btnEndPractice.Text = "End practice";
             this.btnEndPractice.UseVisualStyleBackColor = true;
             // 
+            // btnSubmitAnswer
+            // 
+            this.btnSubmitAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitAnswer.Location = new System.Drawing.Point(32, 293);
+            this.btnSubmitAnswer.Name = "btnSubmitAnswer";
+            this.btnSubmitAnswer.Size = new System.Drawing.Size(247, 38);
+            this.btnSubmitAnswer.TabIndex = 10;
+            this.btnSubmitAnswer.Text = "Submit";
+            this.btnSubmitAnswer.UseVisualStyleBackColor = true;
+            this.btnSubmitAnswer.Click += new System.EventHandler(this.btnSubmitAnswer_Click);
+            // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 458);
+            this.Controls.Add(this.btnSubmitAnswer);
             this.Controls.Add(this.btnEndPractice);
             this.Controls.Add(this.lblCorrectOrWrong);
             this.Controls.Add(this.lblToggleScore);
@@ -181,7 +195,7 @@ namespace WinformUI
             this.Controls.Add(this.textBoxTranslation);
             this.Controls.Add(this.lblTranslation);
             this.Controls.Add(this.lblWordUsedInSentence);
-            this.Controls.Add(this.lblToggleShowSentence);
+            this.Controls.Add(this.lblToggleSentence);
             this.Controls.Add(this.lblWordToTranslate);
             this.Controls.Add(this.lblDescription);
             this.Name = "FormPractice";
@@ -197,7 +211,7 @@ namespace WinformUI
 
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblWordToTranslate;
-        private System.Windows.Forms.Label lblToggleShowSentence;
+        private System.Windows.Forms.Label lblToggleSentence;
         private System.Windows.Forms.Label lblWordUsedInSentence;
         private System.Windows.Forms.Label lblTranslation;
         private System.Windows.Forms.TextBox textBoxTranslation;
@@ -207,5 +221,6 @@ namespace WinformUI
         private System.Windows.Forms.Label lblNrOfCorrectAnswers;
         private System.Windows.Forms.Label lblCorrectOrWrong;
         private System.Windows.Forms.Button btnEndPractice;
+        private System.Windows.Forms.Button btnSubmitAnswer;
     }
 }
