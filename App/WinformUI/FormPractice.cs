@@ -23,6 +23,12 @@ namespace WinformUI
         private Word _currentWord;
         private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
         private int _nrOfLastUsedWordsStored;
+        private int _nrOfQuestionsAsked;
+        private readonly Dictionary<string, int> _score = new Dictionary<string, int>
+        { 
+            {"correct", 0 },
+            {"wrong", 0 }
+        };
 
 
 
@@ -125,8 +131,8 @@ namespace WinformUI
 
             set => _currentWord = value ??
                 throw new ArgumentNullException(
-                    "Current word",
-                    "Current word cannot be null");
+                    "CurrentWord",
+                    "CurrentWord cannot be null");
         }
 
         private Queue<Word> LastUsedWords
@@ -143,12 +149,34 @@ namespace WinformUI
                 if (value > 5 || value < 0)
                 {
                     throw new ArgumentOutOfRangeException(
-                        "NrOfLastWordsUsed",
-                        "NrOfLastWordsUsed must be in the range 0 - 5.");
+                        "NrOfLastUsedWordsStored",
+                        "NrOfLastUsedWordsStored must be in the range 0 - 5.");
                 }
 
                 _nrOfLastUsedWordsStored = value;
             }
+        }
+
+        private int NrOfQuestionsAsked
+        {
+            get => _nrOfQuestionsAsked;
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "NrOfQuestionsAsked",
+                        "NrOfQuestionsAsked cennot be less than 0.");
+                }
+
+                _nrOfQuestionsAsked = value;
+            }
+        }
+
+        private Dictionary<string, int> Score
+        {
+            get => _score;
         }
 
 
@@ -175,6 +203,7 @@ namespace WinformUI
             NrOfWordsToPracticeWith = nrOfWordsToPracticeWith;
             PromptWithOriginalLanguage = promptWithOriginalLanguage;
             UseLimitedAmountOfWords = useLimitedAmountOfWords;
+            NrOfQuestionsAsked = 0;
             
             InitializeNrOfLastUsedWordsStored();
             InitializeForm();
@@ -182,7 +211,6 @@ namespace WinformUI
 
         private void InitializeForm()
         {
-            GetNextWord();
             InitializeGUI();
             StartPractice();
         }
@@ -190,7 +218,6 @@ namespace WinformUI
         private void InitializeGUI()
         {
             InitializeDescription();
-            UpdateGUIAccordingToCurrentWord();
             lblCorrectOrWrong.Text = "";
         }
 
@@ -198,17 +225,6 @@ namespace WinformUI
         {
             lblDescription.Text = $"Words from { Vocabulary.Name }";
         }
-
-
-
-
-
-
-        /**
-         * 
-         * ===================  Methods  ===================
-         * 
-         */
 
         private void InitializeNrOfLastUsedWordsStored()
         {
@@ -236,6 +252,21 @@ namespace WinformUI
             }
         }
 
+
+
+
+        /**
+         * 
+         * ===================  Methods  ===================
+         * 
+         */
+
+        private void UpdateGUIToNextWord()
+        {
+            SetLabelForOriginalWord();
+            UpdateSentenceSection();
+        }
+
         private void GetNextWord()
         {
             CurrentWord = Vocabulary.GenerateWeightedRandomWord();
@@ -250,12 +281,6 @@ namespace WinformUI
             {
                 LastUsedWords.Dequeue();
             }
-        }
-
-        private void UpdateGUIAccordingToCurrentWord()
-        {
-            SetLabelForOriginalWord();
-            InitializeSentenceSection();
         }
 
         private void SetLabelForOriginalWord()
@@ -277,7 +302,7 @@ namespace WinformUI
             lblWordToTranslate.Text = $"Translate '{ wordToTranslate }' to { translationLanguage }";
         }
 
-        private void InitializeSentenceSection()
+        private void UpdateSentenceSection()
         {
             // Check for when sentence should not be displayed
             if (PromptWithOriginalLanguage == false
@@ -333,14 +358,29 @@ namespace WinformUI
             }
         }
 
+        private void AskNextQuestion()
+        {
+            GetNextWord();
+            UpdateGUIToNextWord();
+        }
+
         private void RunPracticeWithLimitedAmountOfWords()
         {
+            int nrOfQuestionsAsked = 0;
+            while (nrOfQuestionsAsked < NrOfWordsToPracticeWith)
+            {
+                AskNextQuestion();
 
+                nrOfQuestionsAsked++;
+            }
         }
 
         private void RunPracticeTillUserStops()
         {
-
+            while (true)
+            {
+                AskNextQuestion();
+            }
         }
 
 
