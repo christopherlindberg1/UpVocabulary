@@ -265,6 +265,7 @@ namespace WinformUI
         {
             SetLabelForOriginalWord();
             UpdateSentenceSection();
+            textBoxTranslation.Text = "";
         }
 
         private void GetNextWord()
@@ -348,39 +349,85 @@ namespace WinformUI
 
         private void StartPractice()
         {
-            if (UseLimitedAmountOfWords)
-            {
-                RunPracticeWithLimitedAmountOfWords();
-            }
-            else
-            {
-                RunPracticeTillUserStops();
-            }
+            AskNextQuestion();
         }
 
+        
         private void AskNextQuestion()
         {
             GetNextWord();
             UpdateGUIToNextWord();
         }
 
-        private void RunPracticeWithLimitedAmountOfWords()
+        private void HandleAnswer()
         {
-            int nrOfQuestionsAsked = 0;
-            while (nrOfQuestionsAsked < NrOfWordsToPracticeWith)
+            // Check that there is an answer, abort otherwise
+            if (ValidateAnswerInputExists() == false)
             {
-                AskNextQuestion();
+                MessageBox.Show(
+                    InputValidator.GetMessages(),
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
-                nrOfQuestionsAsked++;
+                return;
+            }
+
+            MessageBox.Show(CheckTranslation().ToString());
+            // Take user answer and compare with real answer
+
+            // Update score
+
+            // Ask next question
+
+
+
+            NrOfQuestionsAsked++;
+
+            if (UseLimitedAmountOfWords == false
+                || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
+            {
+                GetNextWord();
+                UpdateGUIToNextWord();
+            }
+            else
+            {
+                // Stop practice
+                return;
             }
         }
 
-        private void RunPracticeTillUserStops()
+        private bool ValidateAnswerInputExists()
         {
-            while (true)
+            if (String.IsNullOrWhiteSpace(textBoxTranslation.Text))
             {
-                AskNextQuestion();
+                InputValidator.AddMessage("You must provide a translation");
+                return false;
             }
+
+            return true;
+        }
+
+        private bool CheckTranslation()
+        {
+            string userTranslation = textBoxTranslation.Text.ToLower();
+
+            if (PromptWithOriginalLanguage)
+            {
+                if (userTranslation.Equals(CurrentWord.Translation.ToLower()))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (userTranslation.Equals(CurrentWord.OriginalWord.ToLower()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
 
@@ -427,8 +474,18 @@ namespace WinformUI
             if (charNumber == 13)
             {
                 // Check if translation is correct
-
+                HandleAnswer();
             }
+        }
+
+        private void btnSubmitAnswer_Click(object sender, EventArgs e)
+        {
+            HandleAnswer();
+            // Check answer
+
+            // Display answer
+
+            // Check if app should ask new question
         }
     }
 }
