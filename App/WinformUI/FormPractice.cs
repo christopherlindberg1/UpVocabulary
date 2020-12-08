@@ -21,7 +21,7 @@ namespace WinformUI
         private bool _promptWithOriginalLanguage;
         private bool _useLimitedAmountOfWords;
         private Word _currentWord;
-        private readonly Queue<string> _lastUsedWords = new Queue<string>();
+        private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
         private int _nrOfLastUsedWordsStored;
 
 
@@ -129,7 +129,7 @@ namespace WinformUI
                     "Current word cannot be null");
         }
 
-        private Queue<string> LastUsedWords
+        private Queue<Word> LastUsedWords
         {
             get => _lastUsedWords;
         }
@@ -238,11 +238,18 @@ namespace WinformUI
 
         private void GetNextWord()
         {
-            /**
-             SHOULD CHECK THAT WORD IS NOT IN LASTWORDSUSED
-             */
             CurrentWord = Vocabulary.GenerateWeightedRandomWord();
-            LastUsedWords.Enqueue(CurrentWord.OriginalWord);
+
+            while (LastUsedWords.Contains(CurrentWord))
+            {
+                CurrentWord = Vocabulary.GenerateWeightedRandomWord();
+                LastUsedWords.Enqueue(CurrentWord);
+            }
+
+            while (NrOfLastUsedWordsStored < LastUsedWords.Count)
+            {
+                LastUsedWords.Dequeue();
+            }
         }
 
         private void UpdateGUIAccordingToCurrentWord()
@@ -339,25 +346,9 @@ namespace WinformUI
 
         
 
-        private bool LastUsedWordsContains(string word)
-        {
-            return LastUsedWords.Contains(word);
-        }
+        
 
-        /// <summary>
-        ///   Adds a word to the queue. Dequeues the word at the beginning of
-        ///   the queue if there was three words already.
-        /// </summary>
-        /// <param name="word">Word to add to the queue</param>
-        private void AddWordToLastUsedWords(string word)
-        {
-            if (LastUsedWords.Count == 3)
-            {
-                LastUsedWords.Dequeue();
-            }
-
-            LastUsedWords.Enqueue(word);
-        }
+        
 
 
 
@@ -371,16 +362,6 @@ namespace WinformUI
 
         private void lblToggleShowSentence_Click(object sender, EventArgs e)
         {
-            //if (lblWordUsedInSentence.Visible)
-            //{
-            //    // text - show
-            //}
-            //else
-            //{
-            //    // text - hide
-            //}
-
-            //lblWordUsedInSentence.Visible = !lblWordUsedInSentence.Visible;
             ToggleSentence();
         }
 
@@ -402,7 +383,7 @@ namespace WinformUI
         {
             byte charNumber = (byte)e.KeyChar;
 
-            // Enter key
+            // Enter-key
             if (charNumber == 13)
             {
                 // Check if translation is correct
