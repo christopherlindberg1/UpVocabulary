@@ -173,8 +173,17 @@ namespace WinformUI
         {
             // Setting width for columns
             listViewVocabularies.Columns[0].Width = 225;     // Name
-            listViewVocabularies.Columns[1].Width = 100;     // Nr of words
-            listViewVocabularies.Columns[2].Width = 147;     // Languages
+            listViewVocabularies.Columns[1].Width = 95;      // Nr of words
+            listViewVocabularies.Columns[2].Width = 165;     // Languages
+            listViewVocabularies.Columns[3].Width = 120;     // Languages
+
+            listViewVocabularies.Width =
+                listViewVocabularies.Columns[0].Width +
+                listViewVocabularies.Columns[1].Width +
+                listViewVocabularies.Columns[2].Width +
+                listViewVocabularies.Columns[3].Width +
+                4;
+
 
             // Set the view to show details.
             listViewVocabularies.View = View.Details;
@@ -219,7 +228,7 @@ namespace WinformUI
             (
                 "also",
                 "också",
-                "Aaa aa aaaa",
+                "",
                 5,
                 0
             );
@@ -227,7 +236,7 @@ namespace WinformUI
             (
                 "paper",
                 "papper",
-                "Ccc!",
+                "",
                 5,
                 0
             );
@@ -235,7 +244,7 @@ namespace WinformUI
             (
                 "zoo",
                 "zoo",
-                "Eeee ee ee eee",
+                "",
                 5,
                 0
             );
