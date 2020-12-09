@@ -22,7 +22,7 @@ namespace WinformUI
         private bool _useLimitedAmountOfWords;
         private Word _currentWord;
         private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
-        private int _nrOfLastUsedWordsStored;
+        private int _nrOfLastUsedWordsToStore;
         private int _nrOfQuestionsAsked;
         private readonly Dictionary<string, int> _score = new Dictionary<string, int>
         { 
@@ -140,9 +140,9 @@ namespace WinformUI
             get => _lastUsedWords;
         }
 
-        private int NrOfLastUsedWordsStored
+        private int NrOfLastUsedWordsToStore
         {
-            get => _nrOfLastUsedWordsStored;
+            get => _nrOfLastUsedWordsToStore;
 
             set
             {
@@ -153,7 +153,7 @@ namespace WinformUI
                         "NrOfLastUsedWordsStored must be in the range 0 - 5.");
                 }
 
-                _nrOfLastUsedWordsStored = value;
+                _nrOfLastUsedWordsToStore = value;
             }
         }
 
@@ -243,21 +243,22 @@ namespace WinformUI
 
             if (Vocabulary.NrOfWords == 1)
             {
-                _nrOfLastUsedWordsStored = 0;
+                NrOfLastUsedWordsToStore = 0;
             }
             else if (Vocabulary.NrOfWords < 4)
             {
-                _nrOfLastUsedWordsStored = 1;
+                NrOfLastUsedWordsToStore = 1;
             }
             else if (Vocabulary.NrOfWords < 6)
             {
-                _nrOfLastUsedWordsStored = 2;
+                NrOfLastUsedWordsToStore = 2;
             }
             else
             {
-                _nrOfLastUsedWordsStored = 3;
+                NrOfLastUsedWordsToStore = 3;
             }
         }
+
 
 
 
@@ -282,13 +283,23 @@ namespace WinformUI
         {
             CurrentWord = Vocabulary.GenerateWeightedRandomWord();
 
+            // Make sure next word is not one of the last used ones
             while (LastUsedWords.Contains(CurrentWord))
             {
                 CurrentWord = Vocabulary.GenerateWeightedRandomWord();
-                LastUsedWords.Enqueue(CurrentWord);
             }
 
-            while (NrOfLastUsedWordsStored < LastUsedWords.Count)
+            LastUsedWords.Enqueue(CurrentWord);
+
+            //StringBuilder sb = new StringBuilder();
+
+            //sb.Append($"LastUsedWords.Count: { LastUsedWords.Count }\n");
+            //sb.Append($"LastUsedWords.Count: { LastUsedWords.Peek().ToString() }\n");
+
+            //MessageBox.Show(sb.ToString());
+
+            // Dequeue last used words if there are more than what should be kept track of
+            while (LastUsedWords.Count > NrOfLastUsedWordsToStore)
             {
                 LastUsedWords.Dequeue();
             }
@@ -362,7 +373,6 @@ namespace WinformUI
             AskNextQuestion();
         }
 
-        
         private void AskNextQuestion()
         {
             GetNextWord();
@@ -398,7 +408,6 @@ namespace WinformUI
 
             // Delay execution for a while
 
-            NrOfQuestionsAsked++;
             // Update score
 
 
@@ -409,6 +418,8 @@ namespace WinformUI
             sb.Append($"Times answered correctly: { CurrentWord.TimesAnsweredCorrectly}\n");
 
             MessageBox.Show(sb.ToString());
+
+            NrOfQuestionsAsked++;
 
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
