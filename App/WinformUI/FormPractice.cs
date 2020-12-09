@@ -274,6 +274,8 @@ namespace WinformUI
             UpdateSentenceSection();
             textBoxTranslation.Text = "";
             lblCorrectOrWrong.Text = "";
+            lblCorrectOrWrong.Visible = false;
+            lblCorrectAnswer.Text = "";
         }
 
         private void GetNextWord()
@@ -384,25 +386,34 @@ namespace WinformUI
             if (CheckTranslation())
             {
                 ShowAnswerIsCorrect();
+                Vocabulary.UpdateWeightOfWord(CurrentWord, true);
+                UpdateScore(true);
             }
             else
             {
                 ShowAnswerIsWrong();
+                Vocabulary.UpdateWeightOfWord(CurrentWord, false);
+                UpdateScore(false);
             }
-            // Take user answer and compare with real answer
 
-            // Update score
-
-            // Ask next question
-
-
+            // Delay execution for a while
 
             NrOfQuestionsAsked++;
+            // Update score
+
+
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Current word: { CurrentWord }\n");
+            sb.Append($"Weight: { CurrentWord.Weight }\n");
+            sb.Append($"Times answered correctly: { CurrentWord.TimesAnsweredCorrectly}\n");
+
+            MessageBox.Show(sb.ToString());
 
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
             {
-                //AskNextQuestion();
+                AskNextQuestion();
             }
             else
             {
@@ -448,7 +459,10 @@ namespace WinformUI
         {
             lblCorrectOrWrong.Text = "Correct";
             lblCorrectOrWrong.BackColor = Color.Green;
+            lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
+            lblCorrectOrWrong.Refresh();
+            lblCorrectAnswer.Text = "";
         }
 
         private void ShowAnswerIsWrong()
@@ -458,8 +472,29 @@ namespace WinformUI
 
             lblCorrectOrWrong.Text = "Wrong";
             lblCorrectOrWrong.BackColor = Color.Red;
+            lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
             lblCorrectAnswer.Text = $"The correct translation is '{ correctAnswer }'";
+        }
+
+        private void UpdateScore(bool userAnsweredCorrenctly)
+        {
+            if (userAnsweredCorrenctly)
+            {
+                Score["correct"]++;
+            }
+            else
+            {
+                Score["wrong"]++;
+            }
+
+            UpdateScoreInGUI();
+        }
+
+        private void UpdateScoreInGUI()
+        {
+            lblNrOfCorrectAnswers.Text =
+                $"{ Score["correct"] } / { Score["correct"] + Score["wrong"] } correct";
         }
 
 
@@ -500,10 +535,8 @@ namespace WinformUI
 
         private void textBoxTranslation_KeyPress(object sender, KeyPressEventArgs e)
         {
-            byte charNumber = (byte)e.KeyChar;
-
             // Enter-key
-            if (charNumber == 13)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 // Check if translation is correct
                 HandleAnswer();
