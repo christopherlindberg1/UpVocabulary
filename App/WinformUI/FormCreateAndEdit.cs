@@ -296,13 +296,16 @@ namespace WinformUI
         private void SetGUIToEditState()
         {
             btnRemoveWords.Enabled = true;
+            btnCancelWordEditing.Enabled = true;
             lblWordTitle.Text = "Edit word";
         }
 
         private void SetGUIToCreateState()
         {
             btnRemoveWords.Enabled = false;
+            btnCancelWordEditing.Enabled = false;
             lblWordTitle.Text = "Add word";
+            listBoxWords.SelectedIndex = -1;
             ClearWordInputFields();
         }
 
@@ -420,7 +423,16 @@ namespace WinformUI
             {
                 ClearWordInputFields();
             }
-            
+        }
+
+        private void comboBoxOriginalLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
+        }
+
+        private void comboBoxTranslationLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
         }
 
         private void btnSaveWord_Click(object sender, EventArgs e)
@@ -440,6 +452,11 @@ namespace WinformUI
                 SaveWord();
                 SetGUIToCreateState();
             }
+        }
+
+        private void btnCancelWordEditing_Click(object sender, EventArgs e)
+        {
+            SetGUIToCreateState();
         }
 
         private void btnRemoveWords_Click(object sender, EventArgs e)
@@ -515,16 +532,6 @@ namespace WinformUI
             }
 
             this.Close();
-        }
-
-        private void comboBoxOriginalLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetLanguageLabelsForOriginalWordAndTranslation();
-        }
-
-        private void comboBoxTranslationLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetLanguageLabelsForOriginalWordAndTranslation();
         }
     }
 }
