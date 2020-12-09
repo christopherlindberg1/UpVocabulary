@@ -51,6 +51,7 @@ namespace WinformUI
             this.listBoxWords = new System.Windows.Forms.ListBox();
             this.btnRemoveWords = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnCancelWordEditing = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblHeading
@@ -183,7 +184,7 @@ namespace WinformUI
             this.textBoxWordUsedInSentence.Location = new System.Drawing.Point(37, 386);
             this.textBoxWordUsedInSentence.Multiline = true;
             this.textBoxWordUsedInSentence.Name = "textBoxWordUsedInSentence";
-            this.textBoxWordUsedInSentence.Size = new System.Drawing.Size(322, 63);
+            this.textBoxWordUsedInSentence.Size = new System.Drawing.Size(377, 63);
             this.textBoxWordUsedInSentence.TabIndex = 14;
             // 
             // label5
@@ -203,7 +204,7 @@ namespace WinformUI
             this.btnSaveWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveWord.Location = new System.Drawing.Point(37, 470);
             this.btnSaveWord.Name = "btnSaveWord";
-            this.btnSaveWord.Size = new System.Drawing.Size(322, 45);
+            this.btnSaveWord.Size = new System.Drawing.Size(244, 45);
             this.btnSaveWord.TabIndex = 15;
             this.btnSaveWord.Text = "Save word";
             this.btnSaveWord.UseVisualStyleBackColor = false;
@@ -255,9 +256,9 @@ namespace WinformUI
             // btnRemoveWords
             // 
             this.btnRemoveWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveWords.Location = new System.Drawing.Point(567, 475);
+            this.btnRemoveWords.Location = new System.Drawing.Point(567, 470);
             this.btnRemoveWords.Name = "btnRemoveWords";
-            this.btnRemoveWords.Size = new System.Drawing.Size(150, 35);
+            this.btnRemoveWords.Size = new System.Drawing.Size(150, 45);
             this.btnRemoveWords.TabIndex = 20;
             this.btnRemoveWords.Text = "Remove";
             this.btnRemoveWords.UseVisualStyleBackColor = true;
@@ -274,12 +275,24 @@ namespace WinformUI
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnCancelWordEditing
+            // 
+            this.btnCancelWordEditing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelWordEditing.Location = new System.Drawing.Point(304, 470);
+            this.btnCancelWordEditing.Name = "btnCancelWordEditing";
+            this.btnCancelWordEditing.Size = new System.Drawing.Size(110, 45);
+            this.btnCancelWordEditing.TabIndex = 22;
+            this.btnCancelWordEditing.Text = "Cancel";
+            this.btnCancelWordEditing.UseVisualStyleBackColor = true;
+            this.btnCancelWordEditing.Click += new System.EventHandler(this.btnCancelWordEditing_Click);
+            // 
             // FormCreateAndEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 681);
+            this.Controls.Add(this.btnCancelWordEditing);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRemoveWords);
             this.Controls.Add(this.listBoxWords);
@@ -333,5 +346,6 @@ namespace WinformUI
         private System.Windows.Forms.ListBox listBoxWords;
         private System.Windows.Forms.Button btnRemoveWords;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCancelWordEditing;
     }
 }
