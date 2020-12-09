@@ -38,6 +38,7 @@ namespace WinformUI
             this.btnStartPractice = new System.Windows.Forms.Button();
             this.btnEditVocabulary = new System.Windows.Forms.Button();
             this.btnRemoveVocabulary = new System.Windows.Forms.Button();
+            this.listViewVocabularies_DateLastUsed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -55,14 +56,15 @@ namespace WinformUI
             this.listViewVocabularies.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.listViewVocabularies_Name,
             this.listViewVocabularies_NrOfWords,
-            this.listViewVocabularies_Languages});
+            this.listViewVocabularies_Languages,
+            this.listViewVocabularies_DateLastUsed});
             this.listViewVocabularies.Cursor = System.Windows.Forms.Cursors.Default;
             this.listViewVocabularies.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewVocabularies.HideSelection = false;
             this.listViewVocabularies.Location = new System.Drawing.Point(33, 77);
             this.listViewVocabularies.MaximumSize = new System.Drawing.Size(1000, 1000);
             this.listViewVocabularies.Name = "listViewVocabularies";
-            this.listViewVocabularies.Size = new System.Drawing.Size(634, 263);
+            this.listViewVocabularies.Size = new System.Drawing.Size(746, 263);
             this.listViewVocabularies.TabIndex = 1;
             this.listViewVocabularies.UseCompatibleStateImageBehavior = false;
             this.listViewVocabularies.View = System.Windows.Forms.View.Details;
@@ -87,7 +89,7 @@ namespace WinformUI
             // 
             this.btnCreateNewVocabulary.BackColor = System.Drawing.Color.Transparent;
             this.btnCreateNewVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateNewVocabulary.Location = new System.Drawing.Point(185, 368);
+            this.btnCreateNewVocabulary.Location = new System.Drawing.Point(281, 367);
             this.btnCreateNewVocabulary.Name = "btnCreateNewVocabulary";
             this.btnCreateNewVocabulary.Size = new System.Drawing.Size(308, 60);
             this.btnCreateNewVocabulary.TabIndex = 2;
@@ -98,7 +100,7 @@ namespace WinformUI
             // btnStartPractice
             // 
             this.btnStartPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartPractice.Location = new System.Drawing.Point(703, 120);
+            this.btnStartPractice.Location = new System.Drawing.Point(883, 115);
             this.btnStartPractice.Name = "btnStartPractice";
             this.btnStartPractice.Size = new System.Drawing.Size(185, 45);
             this.btnStartPractice.TabIndex = 3;
@@ -109,7 +111,7 @@ namespace WinformUI
             // btnEditVocabulary
             // 
             this.btnEditVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditVocabulary.Location = new System.Drawing.Point(703, 189);
+            this.btnEditVocabulary.Location = new System.Drawing.Point(883, 184);
             this.btnEditVocabulary.Name = "btnEditVocabulary";
             this.btnEditVocabulary.Size = new System.Drawing.Size(185, 45);
             this.btnEditVocabulary.TabIndex = 4;
@@ -120,7 +122,7 @@ namespace WinformUI
             // btnRemoveVocabulary
             // 
             this.btnRemoveVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveVocabulary.Location = new System.Drawing.Point(703, 258);
+            this.btnRemoveVocabulary.Location = new System.Drawing.Point(883, 253);
             this.btnRemoveVocabulary.Name = "btnRemoveVocabulary";
             this.btnRemoveVocabulary.Size = new System.Drawing.Size(185, 45);
             this.btnRemoveVocabulary.TabIndex = 5;
@@ -128,12 +130,16 @@ namespace WinformUI
             this.btnRemoveVocabulary.UseVisualStyleBackColor = true;
             this.btnRemoveVocabulary.Click += new System.EventHandler(this.btnRemoveVocabulary_Click);
             // 
+            // listViewVocabularies_DateLastUsed
+            // 
+            this.listViewVocabularies_DateLastUsed.Text = "Date of last use";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(923, 450);
+            this.ClientSize = new System.Drawing.Size(1109, 450);
             this.Controls.Add(this.btnRemoveVocabulary);
             this.Controls.Add(this.btnEditVocabulary);
             this.Controls.Add(this.btnStartPractice);
@@ -159,6 +165,7 @@ namespace WinformUI
         private System.Windows.Forms.Button btnStartPractice;
         private System.Windows.Forms.Button btnEditVocabulary;
         private System.Windows.Forms.Button btnRemoveVocabulary;
+        private System.Windows.Forms.ColumnHeader listViewVocabularies_DateLastUsed;
     }
 }
 
