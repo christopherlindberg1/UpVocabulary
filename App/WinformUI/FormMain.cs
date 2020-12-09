@@ -184,7 +184,6 @@ namespace WinformUI
                 listViewVocabularies.Columns[3].Width +
                 4;
 
-
             // Set the view to show details.
             listViewVocabularies.View = View.Details;
             // Allow the user to rearrange columns.
@@ -194,7 +193,6 @@ namespace WinformUI
             // Display grid lines.
             listViewVocabularies.GridLines = true;
         }
-
 
         private void SetGUIToViewState()
         {
@@ -338,6 +336,7 @@ namespace WinformUI
 
                 item.SubItems.Add(vocabulary.NrOfWords.ToString());
                 item.SubItems.Add($"{ vocabulary.OriginalLanguage } - { vocabulary.TranslationLanguage }");
+                item.SubItems.Add(vocabulary.DateLastUsed.ToShortDateString());
 
                 listViewVocabularies.Items.Add(item);
             }
