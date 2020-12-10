@@ -42,6 +42,7 @@ namespace WinformUI
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
             this.btnEndPractice = new System.Windows.Forms.Button();
             this.btnSubmitAnswer = new System.Windows.Forms.Button();
+            this.lblCorrectAnswer = new System.Windows.Forms.Label();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,7 +104,7 @@ namespace WinformUI
             this.textBoxTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTranslation.Location = new System.Drawing.Point(32, 249);
             this.textBoxTranslation.Name = "textBoxTranslation";
-            this.textBoxTranslation.Size = new System.Drawing.Size(247, 27);
+            this.textBoxTranslation.Size = new System.Drawing.Size(315, 27);
             this.textBoxTranslation.TabIndex = 5;
             this.textBoxTranslation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTranslation_KeyPress);
             // 
@@ -112,7 +113,7 @@ namespace WinformUI
             this.groupBoxScore.Controls.Add(this.lblNrOfCorrectAnswers);
             this.groupBoxScore.Controls.Add(this.label1);
             this.groupBoxScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxScore.Location = new System.Drawing.Point(442, 68);
+            this.groupBoxScore.Location = new System.Drawing.Point(508, 65);
             this.groupBoxScore.Name = "groupBoxScore";
             this.groupBoxScore.Size = new System.Drawing.Size(310, 126);
             this.groupBoxScore.TabIndex = 6;
@@ -142,7 +143,7 @@ namespace WinformUI
             // 
             this.lblToggleScore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblToggleScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToggleScore.Location = new System.Drawing.Point(620, 33);
+            this.lblToggleScore.Location = new System.Drawing.Point(686, 33);
             this.lblToggleScore.Name = "lblToggleScore";
             this.lblToggleScore.Size = new System.Drawing.Size(132, 23);
             this.lblToggleScore.TabIndex = 7;
@@ -153,9 +154,11 @@ namespace WinformUI
             // lblCorrectOrWrong
             // 
             this.lblCorrectOrWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorrectOrWrong.Location = new System.Drawing.Point(27, 367);
+            this.lblCorrectOrWrong.ForeColor = System.Drawing.Color.White;
+            this.lblCorrectOrWrong.Location = new System.Drawing.Point(27, 359);
             this.lblCorrectOrWrong.Name = "lblCorrectOrWrong";
-            this.lblCorrectOrWrong.Size = new System.Drawing.Size(252, 23);
+            this.lblCorrectOrWrong.Padding = new System.Windows.Forms.Padding(10);
+            this.lblCorrectOrWrong.Size = new System.Drawing.Size(320, 70);
             this.lblCorrectOrWrong.TabIndex = 8;
             this.lblCorrectOrWrong.Text = "[Cleared on init]";
             this.lblCorrectOrWrong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,30 +166,41 @@ namespace WinformUI
             // btnEndPractice
             // 
             this.btnEndPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEndPractice.Location = new System.Drawing.Point(442, 367);
+            this.btnEndPractice.Location = new System.Drawing.Point(508, 439);
             this.btnEndPractice.Name = "btnEndPractice";
             this.btnEndPractice.Size = new System.Drawing.Size(310, 60);
             this.btnEndPractice.TabIndex = 9;
             this.btnEndPractice.Text = "End practice";
             this.btnEndPractice.UseVisualStyleBackColor = true;
+            this.btnEndPractice.Click += new System.EventHandler(this.btnEndPractice_Click);
             // 
             // btnSubmitAnswer
             // 
             this.btnSubmitAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitAnswer.Location = new System.Drawing.Point(32, 293);
             this.btnSubmitAnswer.Name = "btnSubmitAnswer";
-            this.btnSubmitAnswer.Size = new System.Drawing.Size(247, 38);
+            this.btnSubmitAnswer.Size = new System.Drawing.Size(315, 38);
             this.btnSubmitAnswer.TabIndex = 10;
             this.btnSubmitAnswer.Text = "Submit";
             this.btnSubmitAnswer.UseVisualStyleBackColor = true;
             this.btnSubmitAnswer.Click += new System.EventHandler(this.btnSubmitAnswer_Click);
+            // 
+            // lblCorrectAnswer
+            // 
+            this.lblCorrectAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorrectAnswer.Location = new System.Drawing.Point(32, 451);
+            this.lblCorrectAnswer.Name = "lblCorrectAnswer";
+            this.lblCorrectAnswer.Size = new System.Drawing.Size(345, 58);
+            this.lblCorrectAnswer.TabIndex = 11;
+            this.lblCorrectAnswer.Text = "The correct answer is [correct answer]";
             // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 458);
+            this.ClientSize = new System.Drawing.Size(857, 542);
+            this.Controls.Add(this.lblCorrectAnswer);
             this.Controls.Add(this.btnSubmitAnswer);
             this.Controls.Add(this.btnEndPractice);
             this.Controls.Add(this.lblCorrectOrWrong);
@@ -200,6 +214,7 @@ namespace WinformUI
             this.Controls.Add(this.lblDescription);
             this.Name = "FormPractice";
             this.Text = "UpVocabulary - Practice";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPractice_FormClosed);
             this.groupBoxScore.ResumeLayout(false);
             this.groupBoxScore.PerformLayout();
             this.ResumeLayout(false);
@@ -222,5 +237,6 @@ namespace WinformUI
         private System.Windows.Forms.Label lblCorrectOrWrong;
         private System.Windows.Forms.Button btnEndPractice;
         private System.Windows.Forms.Button btnSubmitAnswer;
+        private System.Windows.Forms.Label lblCorrectAnswer;
     }
 }
