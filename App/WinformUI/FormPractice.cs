@@ -559,5 +559,27 @@ namespace WinformUI
         {
             HandleAnswer();
         }
+
+        private void btnEndPractice_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Sure you want to quit your practice session?",
+                "Info",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information);
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void FormPractice_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Vocabulary.UpdateDateLastUsed();
+        }
     }
 }
