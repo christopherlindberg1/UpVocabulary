@@ -34,16 +34,13 @@ namespace DataAccess
             }
         }
 
-        public static void SaveVocabularyManager(VocabularyManager vocabularyManager)
+        public static void XmlSerialize<T>(string filePath, T obj)
         {
-            string storageFolderPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\App\DataAccess\Data\");
-            string filePath = Path.Combine(storageFolderPath, @".\VocabularyManager.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-            XmlSerializer serializer = new XmlSerializer(typeof(VocabularyManager));
-
-            using (StreamWriter sw = new StreamWriter(filePath))
+            using (StreamWriter streamWriter = new StreamWriter(filePath))
             {
-                serializer.Serialize(sw, vocabularyManager);
+                serializer.Serialize(streamWriter, obj);
             }
         }
     }
