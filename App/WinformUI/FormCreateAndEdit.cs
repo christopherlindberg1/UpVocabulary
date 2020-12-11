@@ -134,6 +134,7 @@ namespace WinformUI
         private void InitializeGUI()
         {
             FillLanguageMenusWithData();
+            FillWordClassMenuWithData();
             SetLanguageLabelsForOriginalWordAndTranslation();
             SetGUIToCreateState();
 
@@ -159,6 +160,12 @@ namespace WinformUI
             comboBoxTranslationLanguage.Items.AddRange(languages);
         }
 
+        private void FillWordClassMenuWithData()
+        {
+            string[] wordClasses = Enum.GetNames(typeof(WordClasses));
+            comboBoxWordClasses.Items.AddRange(wordClasses);
+        }
+
         private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
         {
             textBoxNameOfVocabulary.Text = vocabulary.Name;
@@ -166,18 +173,7 @@ namespace WinformUI
             SetLanguagesInGUI(vocabulary);
         }
 
-        private void AddWordsToGUIList(Vocabulary vocabulary)
-        {
-            listBoxWords.Items.Clear();
-            
-            listBoxWords.Items.AddRange(vocabulary.GetWordsWithTranslation());
-        }
-
-        private void SetLanguagesInGUI(Vocabulary vocabulary)
-        {
-            comboBoxOriginalLanguage.SelectedItem = vocabulary.OriginalLanguage;
-            comboBoxTranslationLanguage.SelectedItem = vocabulary.TranslationLanguage;
-        }
+        
 
 
 
@@ -188,6 +184,21 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
+
+        
+
+        private void AddWordsToGUIList(Vocabulary vocabulary)
+        {
+            listBoxWords.Items.Clear();
+
+            listBoxWords.Items.AddRange(vocabulary.GetWordsWithTranslation());
+        }
+
+        private void SetLanguagesInGUI(Vocabulary vocabulary)
+        {
+            comboBoxOriginalLanguage.SelectedItem = vocabulary.OriginalLanguage;
+            comboBoxTranslationLanguage.SelectedItem = vocabulary.TranslationLanguage;
+        }
 
         private bool ValidateVocabularyData()
         {
@@ -334,7 +345,7 @@ namespace WinformUI
             if (comboBoxTranslationLanguage.SelectedIndex != -1)
             {
                 lblTranslationOfWord.Text =
-                    $"Translation to { comboBoxTranslationLanguage.SelectedItem }";
+                    $"Add translation to { comboBoxTranslationLanguage.SelectedItem }";
             }
         }
 
@@ -452,6 +463,8 @@ namespace WinformUI
                 SaveWord();
                 SetGUIToCreateState();
             }
+
+            textBoxWordInOriginalLanguage.Focus();
         }
 
         private void btnCancelWordEditing_Click(object sender, EventArgs e)
