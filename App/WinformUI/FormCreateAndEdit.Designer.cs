@@ -52,6 +52,12 @@ namespace WinformUI
             this.btnRemoveWords = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancelWordEditing = new System.Windows.Forms.Button();
+            this.listBoxTranslations = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnRemoveTranslation = new System.Windows.Forms.Button();
+            this.btnAddTranslation = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblHeading
@@ -79,7 +85,7 @@ namespace WinformUI
             this.textBoxNameOfVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNameOfVocabulary.Location = new System.Drawing.Point(35, 90);
             this.textBoxNameOfVocabulary.Name = "textBoxNameOfVocabulary";
-            this.textBoxNameOfVocabulary.Size = new System.Drawing.Size(240, 27);
+            this.textBoxNameOfVocabulary.Size = new System.Drawing.Size(324, 27);
             this.textBoxNameOfVocabulary.TabIndex = 2;
             // 
             // label1
@@ -157,7 +163,7 @@ namespace WinformUI
             this.textBoxWordInOriginalLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxWordInOriginalLanguage.Location = new System.Drawing.Point(37, 269);
             this.textBoxWordInOriginalLanguage.Name = "textBoxWordInOriginalLanguage";
-            this.textBoxWordInOriginalLanguage.Size = new System.Drawing.Size(133, 27);
+            this.textBoxWordInOriginalLanguage.Size = new System.Drawing.Size(181, 27);
             this.textBoxWordInOriginalLanguage.TabIndex = 10;
             // 
             // textBoxWordTranslationToOtherLanguage
@@ -165,7 +171,7 @@ namespace WinformUI
             this.textBoxWordTranslationToOtherLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxWordTranslationToOtherLanguage.Location = new System.Drawing.Point(37, 328);
             this.textBoxWordTranslationToOtherLanguage.Name = "textBoxWordTranslationToOtherLanguage";
-            this.textBoxWordTranslationToOtherLanguage.Size = new System.Drawing.Size(133, 27);
+            this.textBoxWordTranslationToOtherLanguage.Size = new System.Drawing.Size(181, 27);
             this.textBoxWordTranslationToOtherLanguage.TabIndex = 12;
             // 
             // lblTranslationOfWord
@@ -174,9 +180,9 @@ namespace WinformUI
             this.lblTranslationOfWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTranslationOfWord.Location = new System.Drawing.Point(33, 305);
             this.lblTranslationOfWord.Name = "lblTranslationOfWord";
-            this.lblTranslationOfWord.Size = new System.Drawing.Size(242, 20);
+            this.lblTranslationOfWord.Size = new System.Drawing.Size(271, 20);
             this.lblTranslationOfWord.TabIndex = 11;
-            this.lblTranslationOfWord.Text = "Translation to second language";
+            this.lblTranslationOfWord.Text = "Add translation to second language";
             // 
             // textBoxWordUsedInSentence
             // 
@@ -184,7 +190,7 @@ namespace WinformUI
             this.textBoxWordUsedInSentence.Location = new System.Drawing.Point(37, 386);
             this.textBoxWordUsedInSentence.Multiline = true;
             this.textBoxWordUsedInSentence.Name = "textBoxWordUsedInSentence";
-            this.textBoxWordUsedInSentence.Size = new System.Drawing.Size(377, 63);
+            this.textBoxWordUsedInSentence.Size = new System.Drawing.Size(380, 123);
             this.textBoxWordUsedInSentence.TabIndex = 14;
             // 
             // label5
@@ -202,7 +208,7 @@ namespace WinformUI
             this.btnSaveWord.BackColor = System.Drawing.Color.Transparent;
             this.btnSaveWord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSaveWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveWord.Location = new System.Drawing.Point(37, 470);
+            this.btnSaveWord.Location = new System.Drawing.Point(39, 538);
             this.btnSaveWord.Name = "btnSaveWord";
             this.btnSaveWord.Size = new System.Drawing.Size(244, 45);
             this.btnSaveWord.TabIndex = 15;
@@ -214,16 +220,16 @@ namespace WinformUI
             // 
             this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(29, 536);
+            this.label6.Location = new System.Drawing.Point(37, 610);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(737, 3);
+            this.label6.Size = new System.Drawing.Size(980, 3);
             this.label6.TabIndex = 16;
             this.label6.Text = "label6";
             // 
             // btnSaveVocabulary
             // 
             this.btnSaveVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveVocabulary.Location = new System.Drawing.Point(97, 575);
+            this.btnSaveVocabulary.Location = new System.Drawing.Point(235, 647);
             this.btnSaveVocabulary.Name = "btnSaveVocabulary";
             this.btnSaveVocabulary.Size = new System.Drawing.Size(262, 73);
             this.btnSaveVocabulary.TabIndex = 17;
@@ -235,7 +241,7 @@ namespace WinformUI
             // 
             this.lblWordList.AutoSize = true;
             this.lblWordList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWordList.Location = new System.Drawing.Point(514, 67);
+            this.lblWordList.Location = new System.Drawing.Point(726, 58);
             this.lblWordList.Name = "lblWordList";
             this.lblWordList.Size = new System.Drawing.Size(58, 20);
             this.lblWordList.TabIndex = 18;
@@ -246,17 +252,17 @@ namespace WinformUI
             this.listBoxWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxWords.FormattingEnabled = true;
             this.listBoxWords.ItemHeight = 20;
-            this.listBoxWords.Location = new System.Drawing.Point(518, 90);
+            this.listBoxWords.Location = new System.Drawing.Point(730, 81);
             this.listBoxWords.Name = "listBoxWords";
             this.listBoxWords.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxWords.Size = new System.Drawing.Size(248, 344);
+            this.listBoxWords.Size = new System.Drawing.Size(294, 424);
             this.listBoxWords.TabIndex = 19;
             this.listBoxWords.SelectedIndexChanged += new System.EventHandler(this.listBoxWords_SelectedIndexChanged);
             // 
             // btnRemoveWords
             // 
             this.btnRemoveWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveWords.Location = new System.Drawing.Point(567, 470);
+            this.btnRemoveWords.Location = new System.Drawing.Point(802, 538);
             this.btnRemoveWords.Name = "btnRemoveWords";
             this.btnRemoveWords.Size = new System.Drawing.Size(150, 45);
             this.btnRemoveWords.TabIndex = 20;
@@ -267,7 +273,7 @@ namespace WinformUI
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(431, 575);
+            this.btnCancel.Location = new System.Drawing.Point(569, 647);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(262, 73);
             this.btnCancel.TabIndex = 21;
@@ -278,7 +284,7 @@ namespace WinformUI
             // btnCancelWordEditing
             // 
             this.btnCancelWordEditing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelWordEditing.Location = new System.Drawing.Point(304, 470);
+            this.btnCancelWordEditing.Location = new System.Drawing.Point(306, 538);
             this.btnCancelWordEditing.Name = "btnCancelWordEditing";
             this.btnCancelWordEditing.Size = new System.Drawing.Size(110, 45);
             this.btnCancelWordEditing.TabIndex = 22;
@@ -286,12 +292,77 @@ namespace WinformUI
             this.btnCancelWordEditing.UseVisualStyleBackColor = true;
             this.btnCancelWordEditing.Click += new System.EventHandler(this.btnCancelWordEditing_Click);
             // 
+            // listBoxTranslations
+            // 
+            this.listBoxTranslations.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTranslations.FormattingEnabled = true;
+            this.listBoxTranslations.ItemHeight = 20;
+            this.listBoxTranslations.Location = new System.Drawing.Point(469, 270);
+            this.listBoxTranslations.Name = "listBoxTranslations";
+            this.listBoxTranslations.Size = new System.Drawing.Size(199, 244);
+            this.listBoxTranslations.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(465, 246);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(175, 20);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Translations of [Word]";
+            // 
+            // btnRemoveTranslation
+            // 
+            this.btnRemoveTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveTranslation.Location = new System.Drawing.Point(517, 520);
+            this.btnRemoveTranslation.Name = "btnRemoveTranslation";
+            this.btnRemoveTranslation.Size = new System.Drawing.Size(100, 32);
+            this.btnRemoveTranslation.TabIndex = 26;
+            this.btnRemoveTranslation.Text = "Remove";
+            this.btnRemoveTranslation.UseVisualStyleBackColor = true;
+            // 
+            // btnAddTranslation
+            // 
+            this.btnAddTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTranslation.Location = new System.Drawing.Point(229, 326);
+            this.btnAddTranslation.Name = "btnAddTranslation";
+            this.btnAddTranslation.Size = new System.Drawing.Size(75, 32);
+            this.btnAddTranslation.TabIndex = 27;
+            this.btnAddTranslation.Text = "Add";
+            this.btnAddTranslation.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(296, 270);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.TabIndex = 28;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(292, 246);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(94, 20);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Word class";
+            // 
             // FormCreateAndEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 681);
+            this.ClientSize = new System.Drawing.Size(1062, 742);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnAddTranslation);
+            this.Controls.Add(this.btnRemoveTranslation);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.listBoxTranslations);
             this.Controls.Add(this.btnCancelWordEditing);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRemoveWords);
@@ -347,5 +418,11 @@ namespace WinformUI
         private System.Windows.Forms.Button btnRemoveWords;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCancelWordEditing;
+        private System.Windows.Forms.ListBox listBoxTranslations;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnRemoveTranslation;
+        private System.Windows.Forms.Button btnAddTranslation;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
     }
 }
