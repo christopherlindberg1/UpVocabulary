@@ -180,11 +180,6 @@ namespace AppFeatures
             wordToUpdate.Sentence = wordToCopyFrom.Sentence;
         }
 
-        public string GetWordWithTranslation()
-        {
-            return $"{ OriginalWord } - { Translation }";
-        }
-
         public override string ToString()
         {
             return $"{ OriginalWord } - { Translation }";

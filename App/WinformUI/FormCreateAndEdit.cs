@@ -130,7 +130,6 @@ namespace WinformUI
             }
         }
 
-
         private void InitializeGUI()
         {
             FillLanguageMenusWithData();
@@ -142,6 +141,7 @@ namespace WinformUI
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
                 lblHeading.Text = "Create new vocabulary";
+                InitializeTranslationsList(false);
             }
             else
             {
@@ -149,6 +149,7 @@ namespace WinformUI
                 lblHeading.Text = "Edit vocabulary";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
+                InitializeTranslationsList(true);
             }
         }
 
@@ -164,6 +165,12 @@ namespace WinformUI
         {
             string[] wordClasses = Enum.GetNames(typeof(WordClasses));
             comboBoxWordClasses.Items.AddRange(wordClasses);
+        }
+
+        private void InitializeTranslationsList(bool visible)
+        {
+            ToggleListWithTranslations(visible);
+            btnRemoveTranslation.Enabled = false;
         }
 
         private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
@@ -185,12 +192,16 @@ namespace WinformUI
          * 
          */
 
-        
+        private void ToggleListWithTranslations(bool visible)
+        {
+            lblTranslations.Visible = visible;
+            listBoxTranslations.Visible = visible;
+            btnRemoveTranslation.Visible = visible;
+        }
 
         private void AddWordsToGUIList(Vocabulary vocabulary)
         {
             listBoxWords.Items.Clear();
-
             listBoxWords.Items.AddRange(vocabulary.GetWordsWithTranslation());
         }
 
@@ -410,13 +421,27 @@ namespace WinformUI
 
 
 
+
+
         /**
          * 
-         * ===================  Events  ===================
+         * ===================  Event Handlers  ===================
          * 
          */
 
-        private void listBoxWords_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxTranslationasIndexChanged_EventHandler()
+        {
+            if (listBoxTranslations.SelectedIndex == -1)
+            {
+                btnRemoveTranslation.Enabled = false;
+            }
+            else
+            {
+                btnRemoveTranslation.Enabled = true;
+            }
+        }
+
+        private void ListBoxWordsSelectedIndexChanged_EventHandler()
         {
             if (listBoxWords.SelectedIndex == -1)
             {
@@ -436,17 +461,7 @@ namespace WinformUI
             }
         }
 
-        private void comboBoxOriginalLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetLanguageLabelsForOriginalWordAndTranslation();
-        }
-
-        private void comboBoxTranslationLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetLanguageLabelsForOriginalWordAndTranslation();
-        }
-
-        private void btnSaveWord_Click(object sender, EventArgs e)
+        private void SaveWord_EventHandler()
         {
             bool wordData = ValidateWordData();
 
@@ -467,12 +482,7 @@ namespace WinformUI
             textBoxWordInOriginalLanguage.Focus();
         }
 
-        private void btnCancelWordEditing_Click(object sender, EventArgs e)
-        {
-            SetGUIToCreateState();
-        }
-
-        private void btnRemoveWords_Click(object sender, EventArgs e)
+        private void RemoveWords_EventHandler()
         {
             if (listBoxWords.SelectedIndex == -1)
             {
@@ -503,7 +513,7 @@ namespace WinformUI
             SetGUIToCreateState();
         }
 
-        private void btnSaveVocabulary_Click(object sender, EventArgs e)
+        private void SaveVocabulary_EventHandler()
         {
             bool vocabularyDataOk = ValidateVocabularyData();
 
@@ -523,7 +533,7 @@ namespace WinformUI
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void CancelVocabularyChanges_EventHandler()
         {
             if (VocabularyHasBeenChanged)
             {
@@ -545,6 +555,64 @@ namespace WinformUI
             }
 
             this.Close();
+        }
+
+
+
+        /**
+         * 
+         * ===================  Events  ===================
+         * 
+         */
+
+        private void listBoxWords_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxWordsSelectedIndexChanged_EventHandler();
+        }
+
+        private void comboBoxOriginalLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
+        }
+
+        private void comboBoxTranslationLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetLanguageLabelsForOriginalWordAndTranslation();
+        }
+
+        private void btnAddTranslation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveWord_Click(object sender, EventArgs e)
+        {
+            SaveWord_EventHandler();
+        }
+
+        private void btnCancelWordEditing_Click(object sender, EventArgs e)
+        {
+            SetGUIToCreateState();
+        }
+
+        private void btnRemoveWords_Click(object sender, EventArgs e)
+        {
+            RemoveWords_EventHandler();
+        }
+
+        private void btnSaveVocabulary_Click(object sender, EventArgs e)
+        {
+            SaveVocabulary_EventHandler();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            CancelVocabularyChanges_EventHandler();
+        }
+
+        private void listBoxTranslations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxTranslationasIndexChanged_EventHandler();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AppFeatures
 {
-    public enum WordTypes
+    public enum WordClasses
     {
         Noun,
         Verb,

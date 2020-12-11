@@ -576,10 +576,5 @@ namespace WinformUI
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-        private void FormPractice_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Vocabulary.UpdateDateLastUsed();
-        }
     }
 }

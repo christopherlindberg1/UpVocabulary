@@ -214,7 +214,6 @@ namespace WinformUI
             this.Controls.Add(this.lblDescription);
             this.Name = "FormPractice";
             this.Text = "UpVocabulary - Practice";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPractice_FormClosed);
             this.groupBoxScore.ResumeLayout(false);
             this.groupBoxScore.PerformLayout();
             this.ResumeLayout(false);
