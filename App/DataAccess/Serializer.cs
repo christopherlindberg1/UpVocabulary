@@ -40,7 +40,33 @@ namespace DataAccess
 
             using (StreamWriter streamWriter = new StreamWriter(filePath))
             {
-                serializer.Serialize(streamWriter, obj);
+                try
+                {
+                    serializer.Serialize(streamWriter, obj);
+                }
+                // Catch more specific exception than this
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
+
+        public static T XmlDeserialize<T>(string filePath)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+            using (StreamReader streamReader = new StreamReader(filePath))
+            {
+                try
+                {
+                    return (T)serializer.Deserialize(streamReader);
+                }
+                // Catch more specific exception than this
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException();
+                }
             }
         }
     }
