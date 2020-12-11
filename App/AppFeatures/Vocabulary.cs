@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace AppFeatures
 {
-    public class Vocabulary
+    [Serializable()]
+    public class Vocabulary : ISerializable
     {
         private string _name;
         private string _originalLanguage;
@@ -71,7 +74,7 @@ namespace AppFeatures
             }
         }
 
-        private List<Word> Words
+        public List<Word> Words
         {
             get => _words;
 
@@ -117,6 +120,7 @@ namespace AppFeatures
 
         public Vocabulary()
         {
+            DateLastUsed = DateTime.Now.Date;
         }
 
         public Vocabulary(
@@ -129,6 +133,7 @@ namespace AppFeatures
             Words = words;
             OriginalLanguage = originalLanguage;
             TranslationLanguage = translationLanguage;
+            DateLastUsed = DateTime.Now.Date;
         }
 
 
@@ -322,9 +327,66 @@ namespace AppFeatures
             return info;
         }
 
+        public void UpdateWeightOfWord(Word word, bool answeredCorractly)
+        {
+            if (answeredCorractly == false)
+            {
+                if (word.Weight == 5)
+                {
+                    return;
+                }
+                else
+                {
+                    word.Weight++;
+                }
+            }
+            else
+            {
+                if (word.Weight == 1)
+                {
+                    return;
+                }
+                else
+                {
+                    if (word.TimesAnsweredCorrectly == 1)
+                    {
+                        word.Weight--;
+                        word.TimesAnsweredCorrectly = 0;
+                    }
+                    else
+                    {
+                        word.TimesAnsweredCorrectly++;
+                    }
+                }
+            }
+        }
+
+        public void UpdateDateLastUsed()
+        {
+            DateLastUsed = DateTime.Now.Date;
+        }
+
         public override string ToString()
         {
             return $"Name: { Name }";
+        }
+        
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Name", Name);
+            info.AddValue("OriginalLanguage", OriginalLanguage);
+            info.AddValue("TranslationLanguage", TranslationLanguage);
+            info.AddValue("Words", Words);
+            info.AddValue("DateLastUsed", DateLastUsed);
+        }
+
+        public Vocabulary(SerializationInfo info, StreamingContext context)
+        {
+            Name = (string)info.GetValue("Name", typeof(string));
+            OriginalLanguage = (string)info.GetValue("OriginalLanguage", typeof(string));
+            TranslationLanguage = (string)info.GetValue("TranslationLanguage", typeof(string));
+            Words = (List<Word>)info.GetValue("Words", typeof(List<Word>));
+            DateLastUsed = (DateTime)info.GetValue("DateLastUsed", typeof(DateTime));
         }
     }
 }

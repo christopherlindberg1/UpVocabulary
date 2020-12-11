@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace AppFeatures
 {
-    public class VocabularyManager
+    [Serializable()]
+    public class VocabularyManager : ISerializable
     {
         private readonly List<Vocabulary> _vocabularies = new List<Vocabulary>();
 
@@ -18,19 +23,19 @@ namespace AppFeatures
          * 
          */
 
-        private List<Vocabulary> Vocabularies
+        public List<Vocabulary> Vocabularies
         {
             get => _vocabularies;
 
-            //set
-            //{
-            //    if (value == null)
-            //    {
-            //        throw new ArgumentNullException(
-            //            "Vocabularies",
-            //            "Vocabularies cannot be null");
-            //    }
-            //}
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(
+                        "Vocabularies",
+                        "Vocabularies cannot be null");
+                }
+            }
         }
 
         public int NrOfVocabularies
@@ -50,7 +55,6 @@ namespace AppFeatures
 
         public VocabularyManager()
         {
-            //Vocabularies = new List<Vocabulary>();
         }
 
 
@@ -143,6 +147,16 @@ namespace AppFeatures
             }
 
             return vocabularyNames;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Vocabularies", Vocabularies);
+        }
+
+        public VocabularyManager(SerializationInfo info, StreamingContext context)
+        {
+            Vocabularies = (List<Vocabulary>)info.GetValue("Vocabularies", typeof(List<Vocabulary>));
         }
     }
 }

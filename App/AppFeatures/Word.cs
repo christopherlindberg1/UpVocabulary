@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization;
+
 
 namespace AppFeatures
 {
-    public class Word
+    [Serializable()]
+    public class Word : ISerializable
     {
         private string _originalWord;
         private string _translation;
@@ -121,6 +124,10 @@ namespace AppFeatures
          * 
          */
 
+        public Word()
+        {
+        }
+
         public Word(
             string originalWord,
             string translation,
@@ -181,6 +188,29 @@ namespace AppFeatures
         public override string ToString()
         {
             return $"{ OriginalWord } - { Translation }";
+        }
+
+        /// <summary>
+        ///   Method for serializing Word objects
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("OriginalWord", OriginalWord);
+            info.AddValue("Translation", Translation);
+            info.AddValue("Sentence", Sentence);
+            info.AddValue("Weight", Weight);
+            info.AddValue("TimesAnsweredCorrectly", TimesAnsweredCorrectly);
+        }
+
+        public Word(SerializationInfo info, StreamingContext context)
+        {
+            OriginalWord = (string)info.GetValue("OriginalWord", typeof(string));
+            Translation = (string)info.GetValue("Translation", typeof(string));
+            Sentence = (string)info.GetValue("Sentence", typeof(string));
+            Weight = (int)info.GetValue("Weight", typeof(int));
+            TimesAnsweredCorrectly = (int)info.GetValue("TimesAnsweredCorrectly", typeof(int));
         }
     }
 }
