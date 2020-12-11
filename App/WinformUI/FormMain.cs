@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using DataAccess;
 using AppFeatures;
@@ -16,6 +18,7 @@ namespace WinformUI
     public partial class FormMain : Form
     {
         private readonly VocabularyManager _vocabularyManager = new VocabularyManager();
+        private string _dataStorageFolder = ConfigurationSettings.AppSettings["DataStorageFolder"];
 
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
@@ -40,6 +43,21 @@ namespace WinformUI
         private VocabularyManager VocabularyManager
         {
             get => _vocabularyManager;
+            
+        }
+
+        private string DataStorageFolder
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(_dataStorageFolder))
+                {
+                    _dataStorageFolder = Path.GetFullPath(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\DataAccess\Data"));
+                }
+
+                return _dataStorageFolder;
+            }
         }
 
         private FormCreateAndEdit CreateAndEditForm
@@ -161,6 +179,7 @@ namespace WinformUI
             ConfigureGUIOnInit();
             LoadSampleData();
             AddDataToGUI();
+            SaveVocabularyManagerToStorage();
         }
 
         private void ConfigureGUIOnInit()
@@ -198,7 +217,7 @@ namespace WinformUI
         {
             btnStartPractice.Enabled = false;
             btnEditVocabulary.Enabled = false;
-            btnRemoveVocabulary.Enabled = false;
+            btnRemoveVocabularies.Enabled = false;
 
             listViewVocabularies.SelectedItems.Clear();
         }
@@ -207,7 +226,7 @@ namespace WinformUI
         {
             btnStartPractice.Enabled = true;
             btnEditVocabulary.Enabled = true;
-            btnRemoveVocabulary.Enabled = true;
+            btnRemoveVocabularies.Enabled = true;
         }
 
 
@@ -219,6 +238,19 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
+
+        private void SaveVocabularyManagerToStorage()
+        {
+            try
+            {
+                string filePath = Path.GetFullPath(Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
+                Serializer.XmlSerialize<VocabularyManager>(filePath, VocabularyManager);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void LoadSampleData()
         {
@@ -354,23 +386,7 @@ namespace WinformUI
             UseLimitedAmountOfWordsInPractice = PracticeSettingsForm.UseLimitedAmountOfWords;
         }
 
-
-
-
-
-
-        /**
-         * 
-         * ===================  Events  ===================
-         * 
-         */
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            InitializeApp();
-        }
-
-        private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void ListViewVocabulariesIndexChanged_EventHandler()
         {
             if (listViewVocabularies.SelectedIndices.Count == 0)
             {
@@ -382,7 +398,7 @@ namespace WinformUI
             }
         }
 
-        private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
+        private void CreateVocabulary_EventHandler()
         {
             CreateAndEditForm = new FormCreateAndEdit(
                 VocabularyManager.GetNamesForAllVocabularies());
@@ -398,7 +414,7 @@ namespace WinformUI
             SetGUIToViewState();
         }
 
-        private void btnEditVocabulary_Click(object sender, EventArgs e)
+        private void EditVocabulary_EventHandler()
         {
             if (listViewVocabularies.SelectedItems.Count == 0)
             {
@@ -431,13 +447,14 @@ namespace WinformUI
                 Vocabulary originalVocabulary = VocabularyManager.GetVocabularyAt(selectedIndex);
 
                 VocabularyManager.UpdateVocabulary(originalVocabulary, copyOfVocabulary);
+                SaveVocabularyManagerToStorage();
                 UpdateVocabulariesInGUI();
             }
-            
+
             SetGUIToViewState();
         }
 
-        private void btnRemoveVocabulary_Click(object sender, EventArgs e)
+        private void RemoveVocabularies_EventHandler()
         {
             if (listViewVocabularies.SelectedItems.Count == 0)
             {
@@ -482,7 +499,7 @@ namespace WinformUI
             SetGUIToViewState();
         }
 
-        private void btnStartPractice_Click(object sender, EventArgs e)
+        private void StartPractice_EventHandler()
         {
             if (listViewVocabularies.SelectedItems.Count == 0)
             {
@@ -507,18 +524,61 @@ namespace WinformUI
 
             DialogResult result = PracticeSettingsForm.ShowDialog();
 
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.Cancel)
             {
-                GetPracticeSettings();
-
-                PracticeForm = new FormPractice(
-                    vocabularyToPracticeWith,
-                    NrOfWordsToPracticeWith,
-                    PromptWithOriginalLanguageInPractice,
-                    UseLimitedAmountOfWordsInPractice);
-
-                PracticeForm.ShowDialog();
+                return;
             }
+
+            GetPracticeSettings();
+            PracticeForm = new FormPractice(
+                vocabularyToPracticeWith,
+                NrOfWordsToPracticeWith,
+                PromptWithOriginalLanguageInPractice,
+                UseLimitedAmountOfWordsInPractice);
+
+            PracticeForm.ShowDialog();
+            vocabularyToPracticeWith.UpdateDateLastUsed();
+        }
+
+
+
+
+
+
+        /**
+         * 
+         * ===================  Events  ===================
+         * 
+         */
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            InitializeApp();
+        }
+
+        private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            ListViewVocabulariesIndexChanged_EventHandler();
+        }
+
+        private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
+        {
+            CreateVocabulary_EventHandler();
+        }
+
+        private void btnEditVocabulary_Click(object sender, EventArgs e)
+        {
+            EditVocabulary_EventHandler();
+        }
+
+        private void btnRemoveVocabularies_Click(object sender, EventArgs e)
+        {
+            RemoveVocabularies_EventHandler();
+        }
+
+        private void btnStartPractice_Click(object sender, EventArgs e)
+        {
+            StartPractice_EventHandler();
         }
     }
 }
