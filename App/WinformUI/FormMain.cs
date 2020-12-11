@@ -43,7 +43,14 @@ namespace WinformUI
         private VocabularyManager VocabularyManager
         {
             get => _vocabularyManager;
-            
+
+            //set
+            //{
+            //    VocabularyManager = value ??
+            //        throw new ArgumentNullException(
+            //            "VocabularyManager",
+            //            "VocabularyManager cannot be null.");
+            //}
         }
 
         private string DataStorageFolder
@@ -177,7 +184,7 @@ namespace WinformUI
         private void InitializeApp()
         {
             ConfigureGUIOnInit();
-            LoadSampleData();
+            LoadDataOnInit();
             AddDataToGUI();
             SaveVocabularyManagerToStorage();
         }
@@ -239,6 +246,32 @@ namespace WinformUI
          * 
          */
 
+        private void LoadDataOnInit()
+        {
+            LoadVocabularyManagerFromStorage();
+        }
+
+        private void LoadVocabularyManagerFromStorage()
+        {
+            try
+            {
+                string filePath = Path.GetFullPath(Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
+                PopulateVocabularyManagerWithData(Serializer.XmlDeserialize<VocabularyManager>(filePath));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void PopulateVocabularyManagerWithData(VocabularyManager vocabularyManagerToCopy)
+        {
+            for (int i = 0; i < vocabularyManagerToCopy.NrOfVocabularies; i++)
+            {
+                VocabularyManager.AddVocabulary(vocabularyManagerToCopy.GetVocabularyAt(i));
+            }
+        }
+
         private void SaveVocabularyManagerToStorage()
         {
             try
@@ -246,9 +279,10 @@ namespace WinformUI
                 string filePath = Path.GetFullPath(Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
                 Serializer.XmlSerialize<VocabularyManager>(filePath, VocabularyManager);
             }
+            // Catch more specific exceptions
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                throw;
             }
         }
 
@@ -284,7 +318,6 @@ namespace WinformUI
 
 
 
-
             Word v2w1 = new Word
             (
                 "also",
@@ -312,7 +345,6 @@ namespace WinformUI
 
             List<Word> v2words = new List<Word> { v2w1, v2w2, v2w3 };
             Vocabulary vocabulary2 = new Vocabulary("Learn C#", v2words, "English", "Swedish");
-
 
 
 
@@ -408,6 +440,7 @@ namespace WinformUI
             if (result == DialogResult.Yes)
             {
                 VocabularyManager.AddVocabulary(CreateAndEditForm.Vocabulary);
+                SaveVocabularyManagerToStorage();
                 UpdateVocabulariesInGUI();
             }
 
@@ -490,6 +523,8 @@ namespace WinformUI
 
                     itemsRemoved++;
                 }
+
+                SaveVocabularyManagerToStorage();
             }
             else
             {
