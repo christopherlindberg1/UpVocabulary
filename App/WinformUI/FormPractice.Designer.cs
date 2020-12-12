@@ -43,6 +43,7 @@ namespace WinformUI
             this.btnEndPractice = new System.Windows.Forms.Button();
             this.btnSubmitAnswer = new System.Windows.Forms.Button();
             this.lblCorrectAnswer = new System.Windows.Forms.Label();
+            this.btnGetNextWord = new System.Windows.Forms.Button();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,10 +156,10 @@ namespace WinformUI
             // 
             this.lblCorrectOrWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCorrectOrWrong.ForeColor = System.Drawing.Color.White;
-            this.lblCorrectOrWrong.Location = new System.Drawing.Point(27, 359);
+            this.lblCorrectOrWrong.Location = new System.Drawing.Point(32, 359);
             this.lblCorrectOrWrong.Name = "lblCorrectOrWrong";
             this.lblCorrectOrWrong.Padding = new System.Windows.Forms.Padding(10);
-            this.lblCorrectOrWrong.Size = new System.Drawing.Size(320, 70);
+            this.lblCorrectOrWrong.Size = new System.Drawing.Size(315, 70);
             this.lblCorrectOrWrong.TabIndex = 8;
             this.lblCorrectOrWrong.Text = "[Cleared on init]";
             this.lblCorrectOrWrong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,12 +195,24 @@ namespace WinformUI
             this.lblCorrectAnswer.TabIndex = 11;
             this.lblCorrectAnswer.Text = "The correct answer is [correct answer]";
             // 
+            // btnGetNextWord
+            // 
+            this.btnGetNextWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetNextWord.Location = new System.Drawing.Point(362, 451);
+            this.btnGetNextWord.Name = "btnGetNextWord";
+            this.btnGetNextWord.Size = new System.Drawing.Size(122, 32);
+            this.btnGetNextWord.TabIndex = 12;
+            this.btnGetNextWord.Text = "Next word";
+            this.btnGetNextWord.UseVisualStyleBackColor = true;
+            this.btnGetNextWord.Click += new System.EventHandler(this.btnGetNextWord_Click);
+            // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(857, 542);
+            this.Controls.Add(this.btnGetNextWord);
             this.Controls.Add(this.lblCorrectAnswer);
             this.Controls.Add(this.btnSubmitAnswer);
             this.Controls.Add(this.btnEndPractice);
@@ -237,5 +250,6 @@ namespace WinformUI
         private System.Windows.Forms.Button btnEndPractice;
         private System.Windows.Forms.Button btnSubmitAnswer;
         private System.Windows.Forms.Label lblCorrectAnswer;
+        private System.Windows.Forms.Button btnGetNextWord;
     }
 }
