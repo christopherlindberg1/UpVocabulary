@@ -618,5 +618,10 @@ namespace WinformUI
         {
             StartPractice_EventHandler();
         }
+
+        private void listViewVocabularies_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            StartPractice_EventHandler();
+        }
     }
 }

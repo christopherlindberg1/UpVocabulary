@@ -69,6 +69,7 @@ namespace WinformUI
             this.listViewVocabularies.UseCompatibleStateImageBehavior = false;
             this.listViewVocabularies.View = System.Windows.Forms.View.Details;
             this.listViewVocabularies.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewVocabularies_ItemSelectionChanged);
+            this.listViewVocabularies.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewVocabularies_MouseDoubleClick);
             // 
             // listViewVocabularies_Name
             // 
