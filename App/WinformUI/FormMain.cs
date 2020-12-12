@@ -573,6 +573,9 @@ namespace WinformUI
 
             PracticeForm.ShowDialog();
             vocabularyToPracticeWith.UpdateDateLastUsed();
+
+            SaveVocabularyManagerToStorage();
+            UpdateVocabulariesInGUI();
         }
 
 
