@@ -22,9 +22,9 @@ Requirements are defined below and given a priority of must, should or could (th
 ### Must
 * Store data on the user's computer using XML serialization. **Done.**
 * Each word shall have a weight attached to it on a scale 1 - 5 representing how hard it is (1 = easy, 5 = hard). Each word has a weight of 5 when they are first added to a vocabulary. **Done.**
-* The weight of the words shall get updated after each practice session. One incorrect answer will increase the weight by one (unless it is currently 5), and two correct answers in a row (could be from different sessions) will reduce the weight by one (unless it is currently 1).
-* During the practice sessions, the app should generate a weighted random word, which takes into account the weight of each word.
-* The app shall never generate a word that was asked less than n steps back, where n depends on the number of words in the vocabulary.
+* The weight of the words shall get updated after each practice session. One incorrect answer will increase the weight by one (unless it is currently 5), and two correct answers in a row (could be from different sessions) will reduce the weight by one (unless it is currently 1). **Done.**
+* During the practice sessions, the app should generate a weighted random word, which takes into account the weight of each word. **Implemented. Verify with unit test**
+* The app shall never generate a word that was asked less than n steps back, where n depends on the number of words in the vocabulary. **Implemented. Verify with unit test**
 
 ### Should
 * Store multiple translations.
