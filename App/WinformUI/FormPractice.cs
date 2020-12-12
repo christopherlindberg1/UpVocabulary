@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppFeatures;
@@ -219,6 +220,7 @@ namespace WinformUI
         {
             InitializeDescription();
             InitializeCorrectOrWrong();
+            ToggleBtnNextWord(false);
         }
 
         private void InitializeDescription()
@@ -291,14 +293,6 @@ namespace WinformUI
 
             LastUsedWords.Enqueue(CurrentWord);
 
-            //StringBuilder sb = new StringBuilder();
-
-            //sb.Append($"LastUsedWords.Count: { LastUsedWords.Count }\n");
-            //sb.Append($"LastUsedWords.Count: { LastUsedWords.Peek().ToString() }\n");
-
-            //MessageBox.Show(sb.ToString());
-
-            // Dequeue last used words if there are more than what should be kept track of
             while (LastUsedWords.Count > NrOfLastUsedWordsToStore)
             {
                 LastUsedWords.Dequeue();
@@ -368,6 +362,11 @@ namespace WinformUI
             ToggleSentence(!lblWordUsedInSentence.Visible);
         }
 
+        private void ToggleBtnNextWord(bool visible)
+        {
+            btnGetNextWord.Visible = visible;
+        }
+
         private void StartPractice()
         {
             AskNextQuestion();
@@ -393,11 +392,14 @@ namespace WinformUI
                 return;
             }
 
-            if (CheckTranslation())
+            bool correctTranslation = CheckTranslation();
+
+            if (correctTranslation)
             {
                 ShowAnswerIsCorrect();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, true);
                 UpdateScore(true);
+
             }
             else
             {
@@ -417,14 +419,24 @@ namespace WinformUI
             sb.Append($"Weight: { CurrentWord.Weight }\n");
             sb.Append($"Times answered correctly: { CurrentWord.TimesAnsweredCorrectly}\n");
 
-            MessageBox.Show(sb.ToString());
+            //MessageBox.Show(sb.ToString());
 
             NrOfQuestionsAsked++;
 
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
             {
-                AskNextQuestion();
+                // If user gave correct translation, Wait 2 sec before asking next word
+                if (correctTranslation)
+                {
+                    Thread.Sleep(2000);
+                    AskNextQuestion();
+                }
+                // If user gave incorrect translation, let user click btn to get next word
+                else
+                {
+                    ToggleBtnNextWord(true);
+                }
             }
             else
             {
@@ -558,6 +570,13 @@ namespace WinformUI
         private void btnSubmitAnswer_Click(object sender, EventArgs e)
         {
             HandleAnswer();
+        }
+
+        private void btnGetNextWord_Click(object sender, EventArgs e)
+        {
+            AskNextQuestion();
+            ToggleBtnNextWord(false);
+            textBoxTranslation.Focus();
         }
 
         private void btnEndPractice_Click(object sender, EventArgs e)
