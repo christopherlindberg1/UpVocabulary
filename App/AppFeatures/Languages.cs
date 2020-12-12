@@ -6,6 +6,7 @@ namespace AppFeatures
 {
     public enum Languages
     {
+        Albanian,
         English,
         German,
         Spanish,
