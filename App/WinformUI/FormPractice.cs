@@ -378,7 +378,7 @@ namespace WinformUI
             UpdateGUIToNextWord();
         }
 
-        private void HandleAnswer()
+        private async void HandleAnswer()
         {
             // Check that there is an answer, abort otherwise
             if (ValidateAnswerInputExists() == false)
@@ -399,7 +399,6 @@ namespace WinformUI
                 ShowAnswerIsCorrect();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, true);
                 UpdateScore(true);
-
             }
             else
             {
@@ -408,28 +407,15 @@ namespace WinformUI
                 UpdateScore(false);
             }
 
-            // Delay execution for a while
-
-            // Update score
-
-
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Current word: { CurrentWord }\n");
-            sb.Append($"Weight: { CurrentWord.Weight }\n");
-            sb.Append($"Times answered correctly: { CurrentWord.TimesAnsweredCorrectly}\n");
-
-            //MessageBox.Show(sb.ToString());
-
             NrOfQuestionsAsked++;
 
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
             {
-                // If user gave correct translation, Wait 2 sec before asking next word
+                // If user gave correct translation, Wait before asking next word
                 if (correctTranslation)
                 {
-                    Thread.Sleep(2000);
+                    await Task.Delay(1500);
                     AskNextQuestion();
                 }
                 // If user gave incorrect translation, let user click btn to get next word
