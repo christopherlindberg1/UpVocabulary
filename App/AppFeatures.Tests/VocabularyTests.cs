@@ -79,6 +79,7 @@ namespace AppFeatures.Tests
 
 
 
+
         /**
          * 
          * ===================  Properties  ===================
@@ -91,8 +92,8 @@ namespace AppFeatures.Tests
 
             set
             {
-                _sampleVocabulary = value
-                    ?? throw new ArgumentNullException(
+                _sampleVocabulary = value ??
+                    throw new ArgumentNullException(
                         "SampleVocabulary",
                         "SampleVocabulary cannot be null");
             }
@@ -299,6 +300,74 @@ namespace AppFeatures.Tests
             Assert.Equal(expectedName, actualName);
             Assert.Equal(expectedNrOfWords, actualNrOfWords);
             Assert.Equal(expectedLanguages, actualLanguages);
+        }
+
+        [Fact]
+        public void GenerateWeightedRandomWord_ShouldHaveAcceptableDistribution()
+        {
+            // Arrange
+            int iterationsInSimulation = 100000;
+
+            int wordAlsoCount = 0;      // Weight = 2
+            int wordCanCount = 0;       // Weight = 5
+            int wordPaperCount = 0;     // Weight = 3
+
+            // Total weight = 10
+
+            float deviationTolerance = 0.01f;
+
+            /**
+             * Calculate limits for expected value, taking into account the
+             * tolerance level for the randomness.
+             */
+
+            float wordAlsoExpected = (float)iterationsInSimulation * ((float)2 / (float)10);
+            float wordCanExpected = (float)iterationsInSimulation * ((float)5 / (float)10);
+            float wordPaperExpected = (float)iterationsInSimulation * ((float)3 / (float)10);
+
+            int[] wordAlsoLimits = new int[]
+            {
+                (int)Math.Ceiling((float)wordAlsoExpected - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordAlsoExpected + (float)iterationsInSimulation * deviationTolerance)
+            };
+
+            int[] wordCanLimits = new int[]
+            {
+                (int)Math.Ceiling((float)wordCanExpected - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordCanExpected + (float)iterationsInSimulation * deviationTolerance)
+            };
+
+            int[] wordPaperLimits = new int[]
+            {
+                (int)Math.Ceiling((float)wordPaperExpected - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordPaperExpected + (float)iterationsInSimulation * deviationTolerance)
+            };
+
+
+            // Act
+            for (int i = 0; i < iterationsInSimulation; i++)
+            {
+                Word generatedWord = SampleVocabulary.GenerateWeightedRandomWord();
+
+                if (generatedWord == SampleWords[0])
+                {
+                    wordAlsoCount++;
+                }
+                else if (generatedWord == SampleWords[1])
+                {
+                    wordCanCount++;
+                }
+                else if (generatedWord == SampleWords[2])
+                {
+                    wordPaperCount++;
+                }
+            }
+
+
+            // Assert
+            Assert.True(wordAlsoCount >= wordAlsoLimits[0] && wordAlsoCount <= wordAlsoLimits[1]);
+            Assert.True(wordCanCount >= wordCanLimits[0] && wordCanCount <= wordCanLimits[1]);
+            Assert.True(wordPaperCount >= wordPaperLimits[0] && wordPaperCount <= wordPaperLimits[1]);
         }
     }
 }
