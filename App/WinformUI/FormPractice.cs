@@ -489,7 +489,6 @@ namespace WinformUI
                 PracticeIsDone = true;
                 await Task.Delay(1500);
                 ShowResults();
-
             }
         }
 
@@ -595,7 +594,7 @@ namespace WinformUI
             lblDescription.Focus();
             FillResultsList();
             TogglePracticeElements(false);
-            btnPracticeAgain.Visible = true;
+            //btnPracticeAgain.Visible = true;
 
             // Show results
             ToggleResultsSection(true);
@@ -639,32 +638,6 @@ namespace WinformUI
                 string resultLine = $"{ i + 1 }: { promptedWord } - { translation } --- { result }";
                 listBoxResults.Items.Add(resultLine);
             }
-
-
-
-            //int wordOrder = 1;
-            //foreach (KeyValuePair<Word, bool> entry in Results)
-            //{
-            //    string promptedWord;
-            //    string translation;
-            //    string result = (entry.Value) ? "Correct" : "Wrong";
-
-            //    if (PromptWithOriginalLanguage)
-            //    {
-            //        promptedWord = entry.Key.OriginalWord;
-            //        translation = entry.Key.Translation;
-            //    }
-            //    else
-            //    {
-            //        promptedWord = entry.Key.Translation;
-            //        translation = entry.Key.OriginalWord;
-            //    }
-
-            //    string resultLine = $"{ wordOrder }: { promptedWord } - { translation } --- { result }";
-            //    listBoxResults.Items.Add(resultLine);
-
-            //    wordOrder++;
-            //}
         }
 
         private void ToggleResultsSection(bool visible)
@@ -746,6 +719,11 @@ namespace WinformUI
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnPracticeAgain_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

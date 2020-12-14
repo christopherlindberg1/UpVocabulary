@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Class used to create vocabulary managers that maintain vocabularies.
+    /// </summary>
     [Serializable()]
     public class VocabularyManager : ISerializable
     {
@@ -90,6 +93,11 @@ namespace AppFeatures
             return Vocabularies[index];
         }
 
+        /// <summary>
+        ///   Returns a copy of a vocabulary instead of the reference.
+        /// </summary>
+        /// <param name="index">index of the vocabulary</param>
+        /// <returns>Copy of the vocabulary at a given index.</returns>
         public Vocabulary GetCopyOfVocabulary(int index)
         {
             Vocabulary originalVocabulary = GetVocabularyAt(index);
@@ -119,6 +127,11 @@ namespace AppFeatures
             return true;
         }
 
+        /// <summary>
+        ///   Updates a vocabulary by copying the properties of an updated vocabulary.
+        /// </summary>
+        /// <param name="originalVocabulary">Vocabulary to change.</param>
+        /// <param name="updatedVocabulary">Vocabulary to copy from.</param>
         public void UpdateVocabulary(Vocabulary originalVocabulary, Vocabulary updatedVocabulary)
         {
             Vocabulary.CopyVocabulary(updatedVocabulary, originalVocabulary);
@@ -149,11 +162,21 @@ namespace AppFeatures
             return vocabularyNames;
         }
 
+        /// <summary>
+        ///   Method for serializing VocabularyManager objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Vocabularies", Vocabularies);
         }
 
+        /// <summary>
+        ///   Method for deserializing VocabularyManager objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public VocabularyManager(SerializationInfo info, StreamingContext context)
         {
             Vocabularies = (List<Vocabulary>)info.GetValue("Vocabularies", typeof(List<Vocabulary>));

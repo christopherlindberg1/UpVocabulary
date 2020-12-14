@@ -132,15 +132,8 @@ namespace WinformUI
 
             for (int i = 0; i < choices.Length; i++)
             {
-                if (choices[i] > VocabularyToPracticeWith.NrOfWords)
-                {
-                    break;
-                }
-
                 comboBoxNrOfWords.Items.Add(choices[i]);
             }
-
-            comboBoxNrOfWords.Items.Add("No limit");
         }
 
 

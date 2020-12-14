@@ -238,6 +238,7 @@ namespace WinformUI
             this.btnPracticeAgain.TabIndex = 15;
             this.btnPracticeAgain.Text = "Practice again";
             this.btnPracticeAgain.UseVisualStyleBackColor = true;
+            this.btnPracticeAgain.Click += new System.EventHandler(this.btnPracticeAgain_Click);
             // 
             // FormPractice
             // 

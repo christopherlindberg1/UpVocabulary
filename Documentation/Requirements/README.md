@@ -6,7 +6,7 @@ Requirements are defined below and given a priority of must, should or could (th
 ### Must
 * Create new vocabularies. **Done.**
 * CRUD operations on vocabularies. **Done.**
-* Practice each vocabulary.
+* Practice with each vocabulary. **Done.**
 
 ### Should
 * Option to have multiple translations for a word. One main translation, and more optional translation if user wants to.

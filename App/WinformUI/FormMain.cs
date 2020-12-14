@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Configuration;
@@ -171,7 +172,6 @@ namespace WinformUI
             ConfigureGUIOnInit();
             LoadDataOnInit();
             AddDataToGUI();
-            SaveVocabularyManagerToStorage();
         }
 
         private void ConfigureGUIOnInit()
@@ -559,6 +559,7 @@ namespace WinformUI
 
             SaveVocabularyManagerToStorage();
             UpdateVocabulariesInGUI();
+            SetGUIToViewState();
         }
 
 
