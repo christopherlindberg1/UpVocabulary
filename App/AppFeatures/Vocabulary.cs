@@ -6,6 +6,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Class used to create Vocabulary objects that
+    ///   keep track of collections of words.
+    /// </summary>
     [Serializable()]
     public class Vocabulary : ISerializable
     {
@@ -161,6 +165,11 @@ namespace AppFeatures
             return Words[index];
         }
 
+        /// <summary>
+        ///   Gets a Word object which's OriginalWord property matches the provided argument.
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>Word object if there is a match, null otherwise.</returns>
         public Word GetWord(string word)
         {
             for (int i = 0; i < Words.Count; i++)
@@ -186,6 +195,12 @@ namespace AppFeatures
             }
         }
 
+        /// <summary>
+        ///   Inserts a Word object in order.
+        ///   The collection is ordered by the OriginalWord property.
+        /// </summary>
+        /// <param name="word">Word to insert</param>
+        /// <returns>true if word got inserted, false otherwise.</returns>
         public bool InsertWord(Word word)
         {
             bool hasInserted = false;
@@ -216,6 +231,12 @@ namespace AppFeatures
             return hasInserted;
         }
 
+        /// <summary>
+        ///   Updates the properties of a word by copying them from another.
+        /// </summary>
+        /// <param name="wordToUpdate">Word to update.</param>
+        /// <param name="updatedWord">Word to copy from.</param>
+        /// <returns>true if word got updated, false otherwise.</returns>
         public bool UpdateWord(Word wordToUpdate, Word updatedWord)
         {
             //Word wordToUpdate = GetWord(word);
@@ -260,6 +281,12 @@ namespace AppFeatures
             return true;
         }
 
+        /// <summary>
+        ///   Copies a vocabulary by setting its properties to those
+        ///   of another vocabulary.
+        /// </summary>
+        /// <param name="vocabularyToCopyFrom">Vocabulary to copy from.</param>
+        /// <param name="vocabularyToChange">Vocabulary to change.</param>
         public static void CopyVocabulary(Vocabulary vocabularyToCopyFrom, Vocabulary vocabularyToChange)
         {
             vocabularyToChange.Name = vocabularyToCopyFrom.Name;
@@ -272,6 +299,11 @@ namespace AppFeatures
             vocabularyToChange.Words = new List<Word>(copyOfWords);
         }
 
+        /// <summary>
+        ///   Gets a string[] with the ToString() representation
+        ///   for all words.
+        /// </summary>
+        /// <returns>string[] with representations for all words.</returns>
         public string[] GetWordsWithTranslation()
         {
             string[] words = new string[Words.Count];
@@ -371,6 +403,11 @@ namespace AppFeatures
             return $"Name: { Name }";
         }
         
+        /// <summary>
+        ///   Method for serializing Vocabulary objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Name", Name);
@@ -380,6 +417,11 @@ namespace AppFeatures
             info.AddValue("DateLastUsed", DateLastUsed);
         }
 
+        /// <summary>
+        ///   Method for deserializing Vocabulary objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public Vocabulary(SerializationInfo info, StreamingContext context)
         {
             Name = (string)info.GetValue("Name", typeof(string));
