@@ -18,7 +18,6 @@ namespace WinformUI
     public partial class FormMain : Form
     {
         private readonly VocabularyManager _vocabularyManager = new VocabularyManager();
-        private string _dataStorageFolder = ConfigurationSettings.AppSettings["DataStorageFolder"];
 
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
@@ -51,20 +50,6 @@ namespace WinformUI
             //            "VocabularyManager",
             //            "VocabularyManager cannot be null.");
             //}
-        }
-
-        private string DataStorageFolder
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(_dataStorageFolder))
-                {
-                    _dataStorageFolder = Path.GetFullPath(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\DataAccess\Data"));
-                }
-
-                return _dataStorageFolder;
-            }
         }
 
         private FormCreateAndEdit CreateAndEditForm
@@ -255,8 +240,7 @@ namespace WinformUI
         {
             try
             {
-                string filePath = Path.GetFullPath(Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
-                PopulateVocabularyManagerWithData(Serializer.XmlDeserialize<VocabularyManager>(filePath));
+                PopulateVocabularyManagerWithData(Serializer.XmlDeserialize<VocabularyManager>(FilePaths.VocabularyManagerFilePath));
             }
             catch (Exception ex)
             {
@@ -276,8 +260,7 @@ namespace WinformUI
         {
             try
             {
-                string filePath = Path.GetFullPath(Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
-                Serializer.XmlSerialize<VocabularyManager>(filePath, VocabularyManager);
+                Serializer.XmlSerialize<VocabularyManager>(FilePaths.VocabularyManagerFilePath, VocabularyManager);
             }
             // Catch more specific exceptions
             catch (Exception ex)
