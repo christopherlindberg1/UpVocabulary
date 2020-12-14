@@ -44,6 +44,8 @@ namespace WinformUI
             this.btnSubmitTranslation = new System.Windows.Forms.Button();
             this.lblCorrectAnswer = new System.Windows.Forms.Label();
             this.btnGetNextWord = new System.Windows.Forms.Button();
+            this.listBoxResults = new System.Windows.Forms.ListBox();
+            this.lblResults = new System.Windows.Forms.Label();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +116,7 @@ namespace WinformUI
             this.groupBoxScore.Controls.Add(this.lblNrOfCorrectAnswers);
             this.groupBoxScore.Controls.Add(this.label1);
             this.groupBoxScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxScore.Location = new System.Drawing.Point(508, 65);
+            this.groupBoxScore.Location = new System.Drawing.Point(592, 65);
             this.groupBoxScore.Name = "groupBoxScore";
             this.groupBoxScore.Size = new System.Drawing.Size(310, 126);
             this.groupBoxScore.TabIndex = 6;
@@ -144,7 +146,7 @@ namespace WinformUI
             // 
             this.lblToggleScore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblToggleScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToggleScore.Location = new System.Drawing.Point(686, 33);
+            this.lblToggleScore.Location = new System.Drawing.Point(770, 33);
             this.lblToggleScore.Name = "lblToggleScore";
             this.lblToggleScore.Size = new System.Drawing.Size(132, 23);
             this.lblToggleScore.TabIndex = 7;
@@ -167,7 +169,7 @@ namespace WinformUI
             // btnEndPractice
             // 
             this.btnEndPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEndPractice.Location = new System.Drawing.Point(508, 439);
+            this.btnEndPractice.Location = new System.Drawing.Point(592, 554);
             this.btnEndPractice.Name = "btnEndPractice";
             this.btnEndPractice.Size = new System.Drawing.Size(310, 60);
             this.btnEndPractice.TabIndex = 9;
@@ -189,29 +191,50 @@ namespace WinformUI
             // lblCorrectAnswer
             // 
             this.lblCorrectAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorrectAnswer.Location = new System.Drawing.Point(32, 451);
+            this.lblCorrectAnswer.Location = new System.Drawing.Point(32, 476);
             this.lblCorrectAnswer.Name = "lblCorrectAnswer";
-            this.lblCorrectAnswer.Size = new System.Drawing.Size(345, 58);
+            this.lblCorrectAnswer.Size = new System.Drawing.Size(315, 58);
             this.lblCorrectAnswer.TabIndex = 11;
-            this.lblCorrectAnswer.Text = "The correct answer is [correct answer]";
+            this.lblCorrectAnswer.Text = "The correct translation is [correct translation]";
             // 
             // btnGetNextWord
             // 
             this.btnGetNextWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetNextWord.Location = new System.Drawing.Point(362, 451);
+            this.btnGetNextWord.Location = new System.Drawing.Point(394, 476);
             this.btnGetNextWord.Name = "btnGetNextWord";
-            this.btnGetNextWord.Size = new System.Drawing.Size(122, 32);
+            this.btnGetNextWord.Size = new System.Drawing.Size(125, 40);
             this.btnGetNextWord.TabIndex = 12;
             this.btnGetNextWord.Text = "Next word";
             this.btnGetNextWord.UseVisualStyleBackColor = true;
             this.btnGetNextWord.Click += new System.EventHandler(this.btnGetNextWord_Click);
+            // 
+            // listBoxResults
+            // 
+            this.listBoxResults.FormattingEnabled = true;
+            this.listBoxResults.ItemHeight = 16;
+            this.listBoxResults.Location = new System.Drawing.Point(592, 229);
+            this.listBoxResults.Name = "listBoxResults";
+            this.listBoxResults.Size = new System.Drawing.Size(310, 308);
+            this.listBoxResults.TabIndex = 13;
+            // 
+            // lblResults
+            // 
+            this.lblResults.AutoSize = true;
+            this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResults.Location = new System.Drawing.Point(588, 206);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(66, 20);
+            this.lblResults.TabIndex = 14;
+            this.lblResults.Text = "Results";
             // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(857, 542);
+            this.ClientSize = new System.Drawing.Size(942, 653);
+            this.Controls.Add(this.lblResults);
+            this.Controls.Add(this.listBoxResults);
             this.Controls.Add(this.btnGetNextWord);
             this.Controls.Add(this.lblCorrectAnswer);
             this.Controls.Add(this.btnSubmitTranslation);
@@ -251,5 +274,7 @@ namespace WinformUI
         private System.Windows.Forms.Button btnSubmitTranslation;
         private System.Windows.Forms.Label lblCorrectAnswer;
         private System.Windows.Forms.Button btnGetNextWord;
+        private System.Windows.Forms.ListBox listBoxResults;
+        private System.Windows.Forms.Label lblResults;
     }
 }
