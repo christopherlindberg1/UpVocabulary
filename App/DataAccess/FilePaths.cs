@@ -5,6 +5,9 @@ using System.IO;
 
 namespace DataAccess
 {
+    /// <summary>
+    ///   Class containing file paths that are used withinthe app.
+    /// </summary>
     public abstract class FilePaths
     {
         private static string DataStorageFolder

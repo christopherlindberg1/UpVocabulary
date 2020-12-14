@@ -4,6 +4,10 @@ using System.Text;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Helper class for the Word class.
+    ///   Is used to keep track of data during a practice session.
+    /// </summary>
     public class PracticeWord
     {
         public Word Word { get; set; }
