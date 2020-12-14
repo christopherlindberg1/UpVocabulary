@@ -31,7 +31,7 @@ namespace WinformUI
             {"correct", 0 },
             {"wrong", 0 }
         };
-
+        private readonly Dictionary<Word, bool> _results = new Dictionary<Word, bool>();
 
 
 
@@ -186,6 +186,11 @@ namespace WinformUI
         private Dictionary<string, int> Score
         {
             get => _score;
+        }
+
+        private Dictionary<Word, bool> Results
+        {
+            get => _results;
         }
 
 
@@ -516,7 +521,21 @@ namespace WinformUI
                 $"{ Score["correct"] } / { Score["correct"] + Score["wrong"] } correct";
         }
 
+        private void ShowResults()
+        {
+            listBoxResults.Items.Clear();
 
+            // Fill list with results
+
+            // Show results
+            ToggleResultsSection(true);
+        }
+
+        private void ToggleResultsSection(bool visible)
+        {
+            lblResults.Visible = visible;
+            listBoxResults.Visible = visible;
+        }
 
 
 
