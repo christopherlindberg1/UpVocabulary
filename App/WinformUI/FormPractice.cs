@@ -23,6 +23,7 @@ namespace WinformUI
         private bool _useLimitedAmountOfWords;
         private Word _currentWord;
         private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
+        private readonly List<PracticeWord> _askedWords = new List<PracticeWord>();
         private int _nrOfLastUsedWordsToStore;
         private int _nrOfQuestionsAsked;
         private bool _currentlyHandlingQuestion;
@@ -31,7 +32,8 @@ namespace WinformUI
             {"correct", 0 },
             {"wrong", 0 }
         };
-        private readonly Dictionary<Word, bool> _results = new Dictionary<Word, bool>();
+        //private readonly Dictionary<Word, bool> _results = new Dictionary<Word, bool>();
+        private bool _practiceIsDone;
 
 
 
@@ -142,6 +144,11 @@ namespace WinformUI
             get => _lastUsedWords;
         }
 
+        private List<PracticeWord> AskedWords
+        {
+            get => _askedWords;
+        }
+
         private int NrOfLastUsedWordsToStore
         {
             get => _nrOfLastUsedWordsToStore;
@@ -188,9 +195,16 @@ namespace WinformUI
             get => _score;
         }
 
-        private Dictionary<Word, bool> Results
+        //private Dictionary<Word, bool> Results
+        //{
+        //    get => _results;
+        //}
+
+        private bool PracticeIsDone
         {
-            get => _results;
+            get => _practiceIsDone;
+
+            set => _practiceIsDone = value;
         }
 
 
@@ -234,7 +248,8 @@ namespace WinformUI
             InitializeDescription();
             InitializeCorrectOrWrong();
             ToggleBtnNextWord(false);
-            ToggleResultsSection(false);
+            InitializeResultsSection();
+            btnPracticeAgain.Visible = false;
         }
 
         private void InitializeDescription()
@@ -275,7 +290,13 @@ namespace WinformUI
             }
         }
 
-
+        private void InitializeResultsSection()
+        {
+            ToggleResultsSection(false);
+            lblResults.Location = new Point(22, 170);
+            listBoxResults.Location = new Point(24, 193);
+            listBoxResults.Size = new Size(651, 256);
+        }
 
 
 
@@ -395,6 +416,7 @@ namespace WinformUI
 
         private void StartPractice()
         {
+            PracticeIsDone = false;
             AskNextQuestion();
         }
 
@@ -420,6 +442,8 @@ namespace WinformUI
             }
 
             CurrentlyHandlingQuestion = true;
+            PracticeWord practiceWord = null;
+            
             bool correctTranslation = CheckTranslation();
 
             if (correctTranslation)
@@ -427,18 +451,23 @@ namespace WinformUI
                 ShowAnswerIsCorrect();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, true);
                 UpdateScore(true);
-                Results.Add(CurrentWord, true);
+                practiceWord = new PracticeWord(CurrentWord, textBoxTranslation.Text.ToLower(), true);
+                //Results.Add(CurrentWord, true);
             }
             else
             {
                 ShowAnswerIsWrong();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, false);
                 UpdateScore(false);
-                Results.Add(CurrentWord, false);
+                practiceWord = new PracticeWord(CurrentWord, textBoxTranslation.Text.ToLower(), false);
+                //Results.Add(CurrentWord, false);
             }
+
+            AskedWords.Add(practiceWord);
 
             NrOfQuestionsAsked++;
 
+            // True when practice session is not done.
             if (UseLimitedAmountOfWords == false
                 || NrOfQuestionsAsked < NrOfWordsToPracticeWith)
             {
@@ -454,11 +483,13 @@ namespace WinformUI
                     ToggleBtnNextWord(true);
                 }
             }
+            // True when practice session is done.
             else
             {
+                PracticeIsDone = true;
                 await Task.Delay(1500);
                 ShowResults();
-                return;
+
             }
         }
 
@@ -559,44 +590,81 @@ namespace WinformUI
 
         private void ShowResults()
         {
+            // Prepare GUI to show results
             ToggleScore(true);
             lblDescription.Focus();
             FillResultsList();
             TogglePracticeElements(false);
+            btnPracticeAgain.Visible = true;
 
             // Show results
             ToggleResultsSection(true);
-
-            MessageBox.Show(Results.Count.ToString());
         }
 
         private void FillResultsList()
         {
             listBoxResults.Items.Clear();
 
-            int wordOrder = 1;
-            foreach (KeyValuePair<Word, bool> entry in Results)
+            for (int i = 0; i < AskedWords.Count; i++)
             {
                 string promptedWord;
-                string translation;
-                string result = (entry.Value) ? "Correct" : "Wrong";
+                string translation = AskedWords[i].UserTranslation;
+                string result;
 
                 if (PromptWithOriginalLanguage)
                 {
-                    promptedWord = entry.Key.OriginalWord;
-                    translation = entry.Key.Translation;
+                    promptedWord = AskedWords[i].Word.OriginalWord;
                 }
                 else
                 {
-                    promptedWord = entry.Key.Translation;
-                    translation = entry.Key.OriginalWord;
+                    promptedWord = AskedWords[i].Word.Translation;
                 }
 
-                string resultLine = $"{ wordOrder }: { promptedWord } - { translation } --- { result }";
+                if (AskedWords[i].CorrectTranslation)
+                {
+                    result = "Correct";
+                }
+                else
+                {
+                    if (PromptWithOriginalLanguage)
+                    {
+                        result = $"Wrong (correct translation is '{ AskedWords[i].Word.Translation }')";
+                    }
+                    else
+                    {
+                        result = $"Wrong (correct translation is '{ AskedWords[i].Word.OriginalWord }')";
+                    }
+                }
+            
+                string resultLine = $"{ i + 1 }: { promptedWord } - { translation } --- { result }";
                 listBoxResults.Items.Add(resultLine);
-
-                wordOrder++;
             }
+
+
+
+            //int wordOrder = 1;
+            //foreach (KeyValuePair<Word, bool> entry in Results)
+            //{
+            //    string promptedWord;
+            //    string translation;
+            //    string result = (entry.Value) ? "Correct" : "Wrong";
+
+            //    if (PromptWithOriginalLanguage)
+            //    {
+            //        promptedWord = entry.Key.OriginalWord;
+            //        translation = entry.Key.Translation;
+            //    }
+            //    else
+            //    {
+            //        promptedWord = entry.Key.Translation;
+            //        translation = entry.Key.OriginalWord;
+            //    }
+
+            //    string resultLine = $"{ wordOrder }: { promptedWord } - { translation } --- { result }";
+            //    listBoxResults.Items.Add(resultLine);
+
+            //    wordOrder++;
+            //}
         }
 
         private void ToggleResultsSection(bool visible)
@@ -604,9 +672,6 @@ namespace WinformUI
             lblResults.Visible = visible;
             listBoxResults.Visible = visible;
         }
-
-
-
 
 
 
@@ -665,15 +730,18 @@ namespace WinformUI
 
         private void btnEndPractice_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
+            if (PracticeIsDone == false)
+            {
+                DialogResult result = MessageBox.Show(
                 "Sure you want to quit your practice session?",
                 "Info",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Information);
 
-            if (result == DialogResult.Cancel)
-            {
-                return;
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
 
             this.DialogResult = DialogResult.OK;
