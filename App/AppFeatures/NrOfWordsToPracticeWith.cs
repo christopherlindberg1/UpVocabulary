@@ -4,6 +4,10 @@ using System.Text;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Enum for the available alternatives of how many words
+    ///   should be used in a practice session.
+    /// </summary>
     public enum NrOfWordsToPracticeWith
     {
         First = 5,
