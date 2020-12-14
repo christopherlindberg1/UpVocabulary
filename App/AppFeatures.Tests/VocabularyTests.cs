@@ -302,45 +302,59 @@ namespace AppFeatures.Tests
             Assert.Equal(expectedLanguages, actualLanguages);
         }
 
+        /// <summary>
+        ///   Runs a simulation to verify that the weighted random word generator
+        ///   has the correct probability of generating each word.
+        ///   The test compares the expected frequency to the actual frequency generated
+        ///   in the sumulation.  
+        ///   Since the results vary from execution to execution due to randomness,
+        ///   a deviation of 1% (1% of the total nr of iterations) for the actual
+        ///   frequency from the expected frequency is tolerated.
+        /// </summary>
         [Fact]
         public void GenerateWeightedRandomWord_ShouldHaveAcceptableDistribution()
         {
             // Arrange
             int iterationsInSimulation = 100000;
 
-            int wordAlsoCount = 0;      // Weight = 2
-            int wordCanCount = 0;       // Weight = 5
-            int wordPaperCount = 0;     // Weight = 3
+            int wordAlsoFrequency = 0;      // Weight = 2
+            int wordCanFrequency = 0;       // Weight = 5
+            int wordPaperFrequency = 0;     // Weight = 3
 
             // Total weight = 10
 
             float deviationTolerance = 0.01f;
 
             /**
-             * Calculate limits for expected value, taking into account the
-             * tolerance level for the randomness.
+             * Calculate expected frequencies for each word.
              */
 
-            float wordAlsoExpected = (float)iterationsInSimulation * ((float)2 / (float)10);
-            float wordCanExpected = (float)iterationsInSimulation * ((float)5 / (float)10);
-            float wordPaperExpected = (float)iterationsInSimulation * ((float)3 / (float)10);
+            float wordAlsoExpectedFrequency = (float)iterationsInSimulation * ((float)2 / (float)10);
+            float wordCanExpectedFrequency = (float)iterationsInSimulation * ((float)5 / (float)10);
+            float wordPaperExpectedFrequency = (float)iterationsInSimulation * ((float)3 / (float)10);
+
+            /**
+             * Calculate upper and lower limits for the expected frequency for each word,
+             * taking into account the deviation tolerance level (tolerance for randomness).
+             *
+             */
 
             int[] wordAlsoLimits = new int[]
             {
-                (int)Math.Ceiling((float)wordAlsoExpected - (float)iterationsInSimulation * deviationTolerance),
-                (int)((float)wordAlsoExpected + (float)iterationsInSimulation * deviationTolerance)
+                (int)Math.Ceiling((float)wordAlsoExpectedFrequency - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordAlsoExpectedFrequency + (float)iterationsInSimulation * deviationTolerance)
             };
 
             int[] wordCanLimits = new int[]
             {
-                (int)Math.Ceiling((float)wordCanExpected - (float)iterationsInSimulation * deviationTolerance),
-                (int)((float)wordCanExpected + (float)iterationsInSimulation * deviationTolerance)
+                (int)Math.Ceiling((float)wordCanExpectedFrequency - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordCanExpectedFrequency + (float)iterationsInSimulation * deviationTolerance)
             };
 
             int[] wordPaperLimits = new int[]
             {
-                (int)Math.Ceiling((float)wordPaperExpected - (float)iterationsInSimulation * deviationTolerance),
-                (int)((float)wordPaperExpected + (float)iterationsInSimulation * deviationTolerance)
+                (int)Math.Ceiling((float)wordPaperExpectedFrequency - (float)iterationsInSimulation * deviationTolerance),
+                (int)((float)wordPaperExpectedFrequency + (float)iterationsInSimulation * deviationTolerance)
             };
 
 
@@ -351,23 +365,23 @@ namespace AppFeatures.Tests
 
                 if (generatedWord == SampleWords[0])
                 {
-                    wordAlsoCount++;
+                    wordAlsoFrequency++;
                 }
                 else if (generatedWord == SampleWords[1])
                 {
-                    wordCanCount++;
+                    wordCanFrequency++;
                 }
                 else if (generatedWord == SampleWords[2])
                 {
-                    wordPaperCount++;
+                    wordPaperFrequency++;
                 }
             }
 
 
             // Assert
-            Assert.True(wordAlsoCount >= wordAlsoLimits[0] && wordAlsoCount <= wordAlsoLimits[1]);
-            Assert.True(wordCanCount >= wordCanLimits[0] && wordCanCount <= wordCanLimits[1]);
-            Assert.True(wordPaperCount >= wordPaperLimits[0] && wordPaperCount <= wordPaperLimits[1]);
+            Assert.True(wordAlsoFrequency >= wordAlsoLimits[0] && wordAlsoFrequency <= wordAlsoLimits[1]);
+            Assert.True(wordCanFrequency >= wordCanLimits[0] && wordCanFrequency <= wordCanLimits[1]);
+            Assert.True(wordPaperFrequency >= wordPaperLimits[0] && wordPaperFrequency <= wordPaperLimits[1]);
         }
     }
 }
