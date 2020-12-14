@@ -7,33 +7,11 @@ using AppFeatures;
 
 namespace DataAccess
 {
+    /// <summary>
+    ///   Class used for serializing objects.
+    /// </summary>
     public class Serializer
     {
-        private static string _dataFolderPath;
-
-
-
-
-
-        /**
-         * 
-         * ===================  Properties  ===================
-         * 
-         */
-
-        private static string DataFolderPath
-        {
-            get => _dataFolderPath;
-
-            set
-            {
-                _dataFolderPath = value ??
-                    throw new ArgumentNullException(
-                        "DataFolderPath",
-                        "DataFolderPath cannot be null.");
-            }
-        }
-
         public static void XmlSerialize<T>(string filePath, T obj)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
