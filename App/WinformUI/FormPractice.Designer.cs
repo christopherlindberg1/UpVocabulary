@@ -41,7 +41,7 @@ namespace WinformUI
             this.lblToggleScore = new System.Windows.Forms.Label();
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
             this.btnEndPractice = new System.Windows.Forms.Button();
-            this.btnSubmitAnswer = new System.Windows.Forms.Button();
+            this.btnSubmitTranslation = new System.Windows.Forms.Button();
             this.lblCorrectAnswer = new System.Windows.Forms.Label();
             this.btnGetNextWord = new System.Windows.Forms.Button();
             this.groupBoxScore.SuspendLayout();
@@ -175,16 +175,16 @@ namespace WinformUI
             this.btnEndPractice.UseVisualStyleBackColor = true;
             this.btnEndPractice.Click += new System.EventHandler(this.btnEndPractice_Click);
             // 
-            // btnSubmitAnswer
+            // btnSubmitTranslation
             // 
-            this.btnSubmitAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmitAnswer.Location = new System.Drawing.Point(32, 293);
-            this.btnSubmitAnswer.Name = "btnSubmitAnswer";
-            this.btnSubmitAnswer.Size = new System.Drawing.Size(315, 38);
-            this.btnSubmitAnswer.TabIndex = 10;
-            this.btnSubmitAnswer.Text = "Submit";
-            this.btnSubmitAnswer.UseVisualStyleBackColor = true;
-            this.btnSubmitAnswer.Click += new System.EventHandler(this.btnSubmitAnswer_Click);
+            this.btnSubmitTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitTranslation.Location = new System.Drawing.Point(32, 293);
+            this.btnSubmitTranslation.Name = "btnSubmitTranslation";
+            this.btnSubmitTranslation.Size = new System.Drawing.Size(315, 38);
+            this.btnSubmitTranslation.TabIndex = 10;
+            this.btnSubmitTranslation.Text = "Submit";
+            this.btnSubmitTranslation.UseVisualStyleBackColor = true;
+            this.btnSubmitTranslation.Click += new System.EventHandler(this.btnSubmitAnswer_Click);
             // 
             // lblCorrectAnswer
             // 
@@ -214,7 +214,7 @@ namespace WinformUI
             this.ClientSize = new System.Drawing.Size(857, 542);
             this.Controls.Add(this.btnGetNextWord);
             this.Controls.Add(this.lblCorrectAnswer);
-            this.Controls.Add(this.btnSubmitAnswer);
+            this.Controls.Add(this.btnSubmitTranslation);
             this.Controls.Add(this.btnEndPractice);
             this.Controls.Add(this.lblCorrectOrWrong);
             this.Controls.Add(this.lblToggleScore);
@@ -248,7 +248,7 @@ namespace WinformUI
         private System.Windows.Forms.Label lblNrOfCorrectAnswers;
         private System.Windows.Forms.Label lblCorrectOrWrong;
         private System.Windows.Forms.Button btnEndPractice;
-        private System.Windows.Forms.Button btnSubmitAnswer;
+        private System.Windows.Forms.Button btnSubmitTranslation;
         private System.Windows.Forms.Label lblCorrectAnswer;
         private System.Windows.Forms.Button btnGetNextWord;
     }
