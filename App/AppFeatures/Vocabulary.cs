@@ -330,6 +330,11 @@ namespace AppFeatures
 
         public Word GenerateWeightedRandomWord()
         {
+            if (Words.Count == 0)
+            {
+                return null;
+            }
+
             int totalWeight = GetTotalWeightOfAllWords();
             int randomNumber = RandomObject.Next(1, totalWeight + 1);
             int counter = 0;
