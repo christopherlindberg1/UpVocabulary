@@ -42,10 +42,11 @@ namespace WinformUI
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
             this.btnEndPractice = new System.Windows.Forms.Button();
             this.btnSubmitTranslation = new System.Windows.Forms.Button();
-            this.lblCorrectAnswer = new System.Windows.Forms.Label();
+            this.lblCorrectTranslation = new System.Windows.Forms.Label();
             this.btnGetNextWord = new System.Windows.Forms.Button();
             this.listBoxResults = new System.Windows.Forms.ListBox();
             this.lblResults = new System.Windows.Forms.Label();
+            this.btnPracticeAgain = new System.Windows.Forms.Button();
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,7 +170,7 @@ namespace WinformUI
             // btnEndPractice
             // 
             this.btnEndPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEndPractice.Location = new System.Drawing.Point(592, 554);
+            this.btnEndPractice.Location = new System.Drawing.Point(592, 563);
             this.btnEndPractice.Name = "btnEndPractice";
             this.btnEndPractice.Size = new System.Drawing.Size(310, 60);
             this.btnEndPractice.TabIndex = 9;
@@ -188,14 +189,14 @@ namespace WinformUI
             this.btnSubmitTranslation.UseVisualStyleBackColor = true;
             this.btnSubmitTranslation.Click += new System.EventHandler(this.btnSubmitAnswer_Click);
             // 
-            // lblCorrectAnswer
+            // lblCorrectTranslation
             // 
-            this.lblCorrectAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorrectAnswer.Location = new System.Drawing.Point(32, 476);
-            this.lblCorrectAnswer.Name = "lblCorrectAnswer";
-            this.lblCorrectAnswer.Size = new System.Drawing.Size(315, 58);
-            this.lblCorrectAnswer.TabIndex = 11;
-            this.lblCorrectAnswer.Text = "The correct translation is [correct translation]";
+            this.lblCorrectTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorrectTranslation.Location = new System.Drawing.Point(32, 476);
+            this.lblCorrectTranslation.Name = "lblCorrectTranslation";
+            this.lblCorrectTranslation.Size = new System.Drawing.Size(315, 58);
+            this.lblCorrectTranslation.TabIndex = 11;
+            this.lblCorrectTranslation.Text = "The correct translation is [correct translation]";
             // 
             // btnGetNextWord
             // 
@@ -210,11 +211,12 @@ namespace WinformUI
             // 
             // listBoxResults
             // 
+            this.listBoxResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxResults.FormattingEnabled = true;
-            this.listBoxResults.ItemHeight = 16;
+            this.listBoxResults.ItemHeight = 20;
             this.listBoxResults.Location = new System.Drawing.Point(592, 229);
             this.listBoxResults.Name = "listBoxResults";
-            this.listBoxResults.Size = new System.Drawing.Size(310, 308);
+            this.listBoxResults.Size = new System.Drawing.Size(310, 304);
             this.listBoxResults.TabIndex = 13;
             // 
             // lblResults
@@ -227,16 +229,27 @@ namespace WinformUI
             this.lblResults.TabIndex = 14;
             this.lblResults.Text = "Results";
             // 
+            // btnPracticeAgain
+            // 
+            this.btnPracticeAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPracticeAgain.Location = new System.Drawing.Point(32, 563);
+            this.btnPracticeAgain.Name = "btnPracticeAgain";
+            this.btnPracticeAgain.Size = new System.Drawing.Size(487, 60);
+            this.btnPracticeAgain.TabIndex = 15;
+            this.btnPracticeAgain.Text = "Practice again";
+            this.btnPracticeAgain.UseVisualStyleBackColor = true;
+            // 
             // FormPractice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(942, 653);
+            this.Controls.Add(this.btnPracticeAgain);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.listBoxResults);
             this.Controls.Add(this.btnGetNextWord);
-            this.Controls.Add(this.lblCorrectAnswer);
+            this.Controls.Add(this.lblCorrectTranslation);
             this.Controls.Add(this.btnSubmitTranslation);
             this.Controls.Add(this.btnEndPractice);
             this.Controls.Add(this.lblCorrectOrWrong);
@@ -272,9 +285,10 @@ namespace WinformUI
         private System.Windows.Forms.Label lblCorrectOrWrong;
         private System.Windows.Forms.Button btnEndPractice;
         private System.Windows.Forms.Button btnSubmitTranslation;
-        private System.Windows.Forms.Label lblCorrectAnswer;
+        private System.Windows.Forms.Label lblCorrectTranslation;
         private System.Windows.Forms.Button btnGetNextWord;
         private System.Windows.Forms.ListBox listBoxResults;
         private System.Windows.Forms.Label lblResults;
+        private System.Windows.Forms.Button btnPracticeAgain;
     }
 }
