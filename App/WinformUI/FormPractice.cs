@@ -25,6 +25,7 @@ namespace WinformUI
         private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
         private int _nrOfLastUsedWordsToStore;
         private int _nrOfQuestionsAsked;
+        private bool _currentlyHandlingQuestion;
         private readonly Dictionary<string, int> _score = new Dictionary<string, int>
         { 
             {"correct", 0 },
@@ -173,6 +174,13 @@ namespace WinformUI
 
                 _nrOfQuestionsAsked = value;
             }
+        }
+
+        private bool CurrentlyHandlingQuestion
+        {
+            get => _currentlyHandlingQuestion;
+
+            set => _currentlyHandlingQuestion = value;
         }
 
         private Dictionary<string, int> Score
@@ -374,6 +382,7 @@ namespace WinformUI
 
         private void AskNextQuestion()
         {
+            _currentlyHandlingQuestion = false;
             GetNextWord();
             UpdateGUIToNextWord();
         }
@@ -392,6 +401,7 @@ namespace WinformUI
                 return;
             }
 
+            CurrentlyHandlingQuestion = true;
             bool correctTranslation = CheckTranslation();
 
             if (correctTranslation)
@@ -426,7 +436,7 @@ namespace WinformUI
             }
             else
             {
-                // Stop practice
+                // Show results
                 return;
             }
         }
@@ -544,18 +554,28 @@ namespace WinformUI
 
         private void textBoxTranslation_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Enter-key
-            if (e.KeyChar == (char)Keys.Enter)
+            if (CurrentlyHandlingQuestion == false)
             {
-                // Check if translation is correct
-                HandleAnswer();
+                // Enter-key
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    // Check if translation is correct
+                    HandleAnswer();
+                    e.Handled = true;
+                }
+            }
+            else
+            {
                 e.Handled = true;
             }
         }
 
         private void btnSubmitAnswer_Click(object sender, EventArgs e)
         {
-            HandleAnswer();
+            if (CurrentlyHandlingQuestion == false)
+            {
+                HandleAnswer();
+            }
         }
 
         private void btnGetNextWord_Click(object sender, EventArgs e)
