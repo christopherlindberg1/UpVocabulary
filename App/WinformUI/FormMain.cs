@@ -538,6 +538,18 @@ namespace WinformUI
             Vocabulary vocabularyToPracticeWith =
                 VocabularyManager.GetVocabularyAt(listViewVocabularies.SelectedIndices[0]);
 
+            if (vocabularyToPracticeWith.NrOfWords == 0)
+            {
+                MessageBox.Show(
+                    $"{ vocabularyToPracticeWith.Name } does not have any words. " +
+                    "Add words to it first.",
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
             PracticeSettingsForm = new FormPracticeSettings(vocabularyToPracticeWith);
 
             DialogResult result = PracticeSettingsForm.ShowDialog();
