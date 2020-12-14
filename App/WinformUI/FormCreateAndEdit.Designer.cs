@@ -83,9 +83,9 @@ namespace WinformUI
             // textBoxNameOfVocabulary
             // 
             this.textBoxNameOfVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNameOfVocabulary.Location = new System.Drawing.Point(32, 90);
+            this.textBoxNameOfVocabulary.Location = new System.Drawing.Point(36, 90);
             this.textBoxNameOfVocabulary.Name = "textBoxNameOfVocabulary";
-            this.textBoxNameOfVocabulary.Size = new System.Drawing.Size(385, 27);
+            this.textBoxNameOfVocabulary.Size = new System.Drawing.Size(381, 27);
             this.textBoxNameOfVocabulary.TabIndex = 2;
             // 
             // label1
@@ -102,9 +102,9 @@ namespace WinformUI
             // 
             this.comboBoxOriginalLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxOriginalLanguage.FormattingEnabled = true;
-            this.comboBoxOriginalLanguage.Location = new System.Drawing.Point(35, 148);
+            this.comboBoxOriginalLanguage.Location = new System.Drawing.Point(37, 148);
             this.comboBoxOriginalLanguage.Name = "comboBoxOriginalLanguage";
-            this.comboBoxOriginalLanguage.Size = new System.Drawing.Size(135, 28);
+            this.comboBoxOriginalLanguage.Size = new System.Drawing.Size(133, 28);
             this.comboBoxOriginalLanguage.TabIndex = 4;
             this.comboBoxOriginalLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxOriginalLanguage_SelectedIndexChanged);
             // 
