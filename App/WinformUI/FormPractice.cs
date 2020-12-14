@@ -234,6 +234,7 @@ namespace WinformUI
             InitializeDescription();
             InitializeCorrectOrWrong();
             ToggleBtnNextWord(false);
+            ToggleResultsSection(false);
         }
 
         private void InitializeDescription()
@@ -244,7 +245,7 @@ namespace WinformUI
         private void InitializeCorrectOrWrong()
         {
             lblCorrectOrWrong.Text = "";
-            lblCorrectAnswer.Text = "";
+            lblCorrectTranslation.Text = "";
             lblCorrectOrWrong.ForeColor = Color.White;
         }
 
@@ -291,7 +292,7 @@ namespace WinformUI
             textBoxTranslation.Text = "";
             lblCorrectOrWrong.Text = "";
             lblCorrectOrWrong.Visible = false;
-            lblCorrectAnswer.Text = "";
+            lblCorrectTranslation.Text = "";
         }
 
         private void GetNextWord()
@@ -380,6 +381,18 @@ namespace WinformUI
             btnGetNextWord.Visible = visible;
         }
 
+        private void TogglePracticeElements(bool visible)
+        {
+            lblWordToTranslate.Visible = visible;
+            lblToggleSentence.Visible = visible;
+            lblWordUsedInSentence.Visible = visible;
+            lblTranslation.Visible = visible;
+            textBoxTranslation.Visible = visible;
+            btnSubmitTranslation.Visible = visible;
+            lblCorrectOrWrong.Visible = visible;
+            lblCorrectTranslation.Visible = visible;
+        }
+
         private void StartPractice()
         {
             AskNextQuestion();
@@ -414,12 +427,14 @@ namespace WinformUI
                 ShowAnswerIsCorrect();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, true);
                 UpdateScore(true);
+                Results.Add(CurrentWord, true);
             }
             else
             {
                 ShowAnswerIsWrong();
                 Vocabulary.UpdateWeightOfWord(CurrentWord, false);
                 UpdateScore(false);
+                Results.Add(CurrentWord, false);
             }
 
             NrOfQuestionsAsked++;
@@ -441,7 +456,8 @@ namespace WinformUI
             }
             else
             {
-                // Show results
+                await Task.Delay(1500);
+                ShowResults();
                 return;
             }
         }
@@ -486,7 +502,7 @@ namespace WinformUI
             lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
             lblCorrectOrWrong.Refresh();
-            lblCorrectAnswer.Text = "";
+            lblCorrectTranslation.Text = "";
         }
 
         private void ShowAnswerIsWrong()
@@ -498,7 +514,27 @@ namespace WinformUI
             lblCorrectOrWrong.BackColor = Color.Red;
             lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
-            lblCorrectAnswer.Text = $"The correct translation is '{ correctAnswer }'";
+            lblCorrectTranslation.Text = $"The correct translation is '{ correctAnswer }'";
+        }
+
+        private void ToggleScore()
+        {
+            if (groupBoxScore.Visible)
+            {
+                lblToggleScore.Text = "Show score";
+            }
+            else
+            {
+                lblToggleScore.Text = "Hide score";
+            }
+
+            groupBoxScore.Visible = !groupBoxScore.Visible;
+        }
+
+        private void ToggleScore(bool visible)
+        {
+            groupBoxScore.Visible = visible;
+            lblToggleScore.Text = "Hide score";
         }
 
         private void UpdateScore(bool userAnsweredCorrenctly)
@@ -523,12 +559,44 @@ namespace WinformUI
 
         private void ShowResults()
         {
-            listBoxResults.Items.Clear();
-
-            // Fill list with results
+            ToggleScore(true);
+            lblDescription.Focus();
+            FillResultsList();
+            TogglePracticeElements(false);
 
             // Show results
             ToggleResultsSection(true);
+
+            MessageBox.Show(Results.Count.ToString());
+        }
+
+        private void FillResultsList()
+        {
+            listBoxResults.Items.Clear();
+
+            int wordOrder = 1;
+            foreach (KeyValuePair<Word, bool> entry in Results)
+            {
+                string promptedWord;
+                string translation;
+                string result = (entry.Value) ? "Correct" : "Wrong";
+
+                if (PromptWithOriginalLanguage)
+                {
+                    promptedWord = entry.Key.OriginalWord;
+                    translation = entry.Key.Translation;
+                }
+                else
+                {
+                    promptedWord = entry.Key.Translation;
+                    translation = entry.Key.OriginalWord;
+                }
+
+                string resultLine = $"{ wordOrder }: { promptedWord } - { translation } --- { result }";
+                listBoxResults.Items.Add(resultLine);
+
+                wordOrder++;
+            }
         }
 
         private void ToggleResultsSection(bool visible)
@@ -559,16 +627,7 @@ namespace WinformUI
 
         private void lblToggleScore_Click(object sender, EventArgs e)
         {
-            if (groupBoxScore.Visible)
-            {
-                lblToggleScore.Text = "Show score";
-            }
-            else
-            {
-                lblToggleScore.Text = "Hide score";
-            }
-
-            groupBoxScore.Visible = !groupBoxScore.Visible;
+            ToggleScore();
         }
 
         private void textBoxTranslation_KeyPress(object sender, KeyPressEventArgs e)
