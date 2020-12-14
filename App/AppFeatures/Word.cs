@@ -6,6 +6,9 @@ using System.Runtime.Serialization;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Class for word objects that can be added to Vocabulary objects.
+    /// </summary>
     [Serializable()]
     public class Word : ISerializable
     {
@@ -173,6 +176,10 @@ namespace AppFeatures
          * 
          */
 
+        /// <summary>
+        ///   Method for copying the properties of a word that the user is able
+        ///   to modify. Does not copy Weight and TimesAnsweredCorrectly
+        /// </summary>
         public static void CopyWord(Word wordToUpdate, Word wordToCopyFrom)
         {
             wordToUpdate.OriginalWord = wordToCopyFrom.OriginalWord;
@@ -180,13 +187,8 @@ namespace AppFeatures
             wordToUpdate.Sentence = wordToCopyFrom.Sentence;
         }
 
-        public override string ToString()
-        {
-            return $"{ OriginalWord } - { Translation }";
-        }
-
         /// <summary>
-        ///   Method for serializing Word objects
+        ///   Method for serializing Word objects.
         /// </summary>
         /// <param name="info"></param>
         /// <param name="context"></param>
@@ -199,6 +201,11 @@ namespace AppFeatures
             info.AddValue("TimesAnsweredCorrectly", TimesAnsweredCorrectly);
         }
 
+        /// <summary>
+        ///   Constructor for deserializing Word objects.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public Word(SerializationInfo info, StreamingContext context)
         {
             OriginalWord = (string)info.GetValue("OriginalWord", typeof(string));
@@ -206,6 +213,11 @@ namespace AppFeatures
             Sentence = (string)info.GetValue("Sentence", typeof(string));
             Weight = (int)info.GetValue("Weight", typeof(int));
             TimesAnsweredCorrectly = (int)info.GetValue("TimesAnsweredCorrectly", typeof(int));
+        }
+
+        public override string ToString()
+        {
+            return $"{ OriginalWord } - { Translation }";
         }
     }
 }
