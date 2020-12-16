@@ -23,6 +23,7 @@ namespace WinformUI
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
+        private FormAppSettings _appSettingsForm;
 
         private string _originalLanguageToPracticeWith;
         private string _translationLanguageToPracticeWith;
@@ -81,6 +82,16 @@ namespace WinformUI
                 throw new ArgumentNullException(
                     "PracticeForm",
                     "PracticeForm Cannot be null");
+        }
+
+        private FormAppSettings FormAppSettings
+        {
+            get => _appSettingsForm;
+
+            set => _appSettingsForm = value ??
+                throw new ArgumentNullException(
+                    "FormAppSettings",
+                    "FormAppSettings Cannot be null");
         }
 
         public string OriginalLanguageToPracticeWith
