@@ -29,6 +29,7 @@ namespace WinformUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.label1 = new System.Windows.Forms.Label();
             this.listViewVocabularies = new System.Windows.Forms.ListView();
             this.listViewVocabularies_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,6 +40,8 @@ namespace WinformUI
             this.btnStartPractice = new System.Windows.Forms.Button();
             this.btnEditVocabulary = new System.Windows.Forms.Button();
             this.btnRemoveVocabularies = new System.Windows.Forms.Button();
+            this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -135,12 +138,26 @@ namespace WinformUI
             this.btnRemoveVocabularies.UseVisualStyleBackColor = true;
             this.btnRemoveVocabularies.Click += new System.EventHandler(this.btnRemoveVocabularies_Click);
             // 
+            // pictureBoxSettings
+            // 
+            this.pictureBoxSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxSettings.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSettings.Image")));
+            this.pictureBoxSettings.Location = new System.Drawing.Point(1015, 19);
+            this.pictureBoxSettings.Name = "pictureBoxSettings";
+            this.pictureBoxSettings.Size = new System.Drawing.Size(32, 32);
+            this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxSettings.TabIndex = 6;
+            this.pictureBoxSettings.TabStop = false;
+            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBoxSettings_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1109, 450);
+            this.Controls.Add(this.pictureBoxSettings);
             this.Controls.Add(this.btnRemoveVocabularies);
             this.Controls.Add(this.btnEditVocabulary);
             this.Controls.Add(this.btnStartPractice);
@@ -150,6 +167,7 @@ namespace WinformUI
             this.Name = "FormMain";
             this.Text = "UpVocabulary";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,6 +185,7 @@ namespace WinformUI
         private System.Windows.Forms.Button btnEditVocabulary;
         private System.Windows.Forms.Button btnRemoveVocabularies;
         private System.Windows.Forms.ColumnHeader listViewVocabularies_DateLastUsed;
+        private System.Windows.Forms.PictureBox pictureBoxSettings;
     }
 }
 

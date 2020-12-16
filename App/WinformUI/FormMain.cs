@@ -574,6 +574,11 @@ namespace WinformUI
             SetGUIToViewState();
         }
 
+        private void TestRandomGenerator()
+        {
+
+        }
+
 
 
 
@@ -593,6 +598,7 @@ namespace WinformUI
         private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             ListViewVocabulariesIndexChanged_EventHandler();
+            TestRandomGenerator();
         }
 
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
@@ -618,6 +624,11 @@ namespace WinformUI
         private void listViewVocabularies_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             StartPractice_EventHandler();
+        }
+
+        private void pictureBoxSettings_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
