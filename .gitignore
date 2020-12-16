@@ -3,3 +3,4 @@ App/*/obj
 App/.vs
 .vs/
 App/DataAccess/Data/VocabularyManager/VocabularyManager.xml
+App/DataAccess/Data/Settings/AppSettings.xml
