@@ -27,5 +27,14 @@ namespace DataAccess
                     Path.Combine(DataStorageFolder, @".\VocabularyManager\VocabularyManager.xml"));
             }
         }
+
+        public static string AppSettingsFilePath
+        {
+            get
+            {
+                return Path.GetFullPath(
+                    Path.Combine(DataStorageFolder, @".\Settings\AppSettings.xml"));
+            }
+        }
     }
 }
