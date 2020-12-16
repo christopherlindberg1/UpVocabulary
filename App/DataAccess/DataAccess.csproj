@@ -8,4 +8,8 @@
     <ProjectReference Include="..\AppFeatures\AppFeatures.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Settings\" />
+  </ItemGroup>
+
 </Project>
