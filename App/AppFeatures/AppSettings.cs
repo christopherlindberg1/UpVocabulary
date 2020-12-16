@@ -13,7 +13,8 @@ namespace AppFeatures
         private AppLanguages _appLanguage;
         private bool _autoPromptQuestionAfterCorrectAnswer;
         private bool _autoPromptQuestionAfterIncorrectAnswer;
-        private int _delayBeforePromptingNextQuestion;
+        private int _delayBeforePromptingNextQuestionAfterCorrectAnswer;
+        private int _delayBeforePromptingNextQuestionAfterIncorrectAnswer;
 
 
 
@@ -60,11 +61,11 @@ namespace AppFeatures
 
         /// <summary>
         ///   Delay in milliseconds for prompting the next question
-        ///   to the user.
+        ///   to the user after a correct translation.
         /// </summary>
-        public int DelayBeforePromptingNextQuestion
+        public int DelayBeforePromptingNextQuestionAfterCorrectAnswer
         {
-            get => _delayBeforePromptingNextQuestion;
+            get => _delayBeforePromptingNextQuestionAfterCorrectAnswer;
 
             set
             {
@@ -75,7 +76,28 @@ namespace AppFeatures
                         "DelayBeforePromptingNextQuestion must be in the range 0 - 30000.");
                 }
 
-                _delayBeforePromptingNextQuestion = value;
+                _delayBeforePromptingNextQuestionAfterCorrectAnswer = value;
+            }
+        }
+
+        /// <summary>
+        ///   Delay in milliseconds for prompting the next question
+        ///   to the user after an incorrect translation.
+        /// </summary>
+        public int DelayBeforePromptingNextQuestionAfterIncorrectAnswer
+        {
+            get => _delayBeforePromptingNextQuestionAfterIncorrectAnswer;
+
+            set
+            {
+                if (value < 0 || value > 30000)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "DelayBeforePromptingNextQuestion",
+                        "DelayBeforePromptingNextQuestion must be in the range 0 - 30000.");
+                }
+
+                _delayBeforePromptingNextQuestionAfterIncorrectAnswer = value;
             }
         }
 
