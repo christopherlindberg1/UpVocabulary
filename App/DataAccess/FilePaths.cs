@@ -24,7 +24,7 @@ namespace DataAccess
             get
             {
                 return Path.GetFullPath(
-                    Path.Combine(DataStorageFolder, @".\VocabularyManager.xml"));
+                    Path.Combine(DataStorageFolder, @".\VocabularyManager\VocabularyManager.xml"));
             }
         }
     }
