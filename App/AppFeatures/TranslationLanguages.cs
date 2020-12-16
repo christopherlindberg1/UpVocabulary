@@ -8,7 +8,7 @@ namespace AppFeatures
     ///   Enum containing the languages that the user
     ///   can choose in the app when creating vocabularies.
     /// </summary>
-    public enum Languages
+    public enum TranslationLanguages
     {
         Albanian,
         English,
