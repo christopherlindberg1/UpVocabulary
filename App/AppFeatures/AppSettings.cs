@@ -112,9 +112,20 @@ namespace AppFeatures
          */
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new NotImplementedException();
+            info.AddValue("AppLanguage", AppLanguage);
+            info.AddValue("AutoPromptQuestionAfterCorrectAnswer", AutoPromptQuestionAfterCorrectAnswer);
+            info.AddValue("AutoPromptQuestionAfterIncorrectAnswer", AutoPromptQuestionAfterIncorrectAnswer);
+            info.AddValue("DelayBeforePromptingNextQuestionAfterCorrectAnswer", DelayBeforePromptingNextQuestionAfterCorrectAnswer);
+            info.AddValue("DelayBeforePromptingNextQuestionAfterIncorrectAnswer", DelayBeforePromptingNextQuestionAfterIncorrectAnswer);
         }
 
-        
+        public AppSettings(SerializationInfo info, StreamingContext context)
+        {
+            AppLanguage = (AppLanguages)info.GetValue("AppLanguage", typeof(AppLanguages));
+            AutoPromptQuestionAfterCorrectAnswer = (bool)info.GetValue("AutoPromptQuestionAfterCorrectAnswer", typeof(bool));
+            AutoPromptQuestionAfterIncorrectAnswer = (bool)info.GetValue("AutoPromptQuestionAfterIncorrectAnswer", typeof(bool));
+            DelayBeforePromptingNextQuestionAfterCorrectAnswer = (int)info.GetValue("DelayBeforePromptingNextQuestionAfterCorrectAnswer", typeof(int));
+            DelayBeforePromptingNextQuestionAfterIncorrectAnswer = (int)info.GetValue("DelayBeforePromptingNextQuestionAfterIncorrectAnswer", typeof(int));
+        }
     }
 }
