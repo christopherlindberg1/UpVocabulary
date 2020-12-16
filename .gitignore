@@ -2,4 +2,4 @@ App/*/bin
 App/*/obj
 App/.vs
 .vs/
-App/DataAccess/Data/VocabularyManager.xml
+App/DataAccess/Data/VocabularyManager/VocabularyManager.xml
