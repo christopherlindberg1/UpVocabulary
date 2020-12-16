@@ -14,6 +14,14 @@ namespace WinformUI
 {
     public partial class FormPractice : Form
     {
+        /**
+         * App settings passed in from Main form
+         */
+        private AppSettings _appSettings;
+
+        /**
+         * fields needed to set up the form before practice
+         */
         private readonly InputValidator _inputValidator = new InputValidator();
         private Vocabulary _vocabulary;
         private string _originalLanguage;
@@ -21,6 +29,10 @@ namespace WinformUI
         private int _nrOfWordsToPracticeWith;
         private bool _promptWithOriginalLanguage;
         private bool _useLimitedAmountOfWords;
+
+        /**
+         * fields used to keep track of a practice session. 
+         */
         private Word _currentWord;
         private readonly Queue<Word> _lastUsedWords = new Queue<Word>();
         private readonly List<PracticeWord> _askedWords = new List<PracticeWord>();
@@ -43,6 +55,16 @@ namespace WinformUI
          * ===================  Properties  ===================
          * 
          */
+
+        private AppSettings AppSettings
+        {
+            get => _appSettings;
+
+            set => _appSettings = value ??
+                throw new ArgumentNullException(
+                        "AppSettings",
+                        "AppSettings cannot be null.");
+        }
 
         private InputValidator InputValidator
         {
@@ -195,11 +217,6 @@ namespace WinformUI
             get => _score;
         }
 
-        //private Dictionary<Word, bool> Results
-        //{
-        //    get => _results;
-        //}
-
         private bool PracticeIsDone
         {
             get => _practiceIsDone;
@@ -218,6 +235,7 @@ namespace WinformUI
          */
 
         public FormPractice(
+            AppSettings appSettings,
             Vocabulary vocabulary,
             int nrOfWordsToPracticeWith,
             bool promptWithOriginalLanguage,
@@ -225,6 +243,7 @@ namespace WinformUI
         {
             InitializeComponent();
 
+            AppSettings = appSettings;
             Vocabulary = vocabulary;
             OriginalLanguage = Vocabulary.OriginalLanguage;
             TranslationLanguage = Vocabulary.TranslationLanguage;
@@ -474,7 +493,7 @@ namespace WinformUI
                 // If user gave correct translation, Wait before asking next word
                 if (correctTranslation)
                 {
-                    await Task.Delay(1500);
+                    await Task.Delay(AppSettings.DelayBeforePromptingNextQuestionAfterCorrectAnswer);
                     AskNextQuestion();
                 }
                 // If user gave incorrect translation, let user click btn to get next word
