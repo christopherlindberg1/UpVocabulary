@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VocabularyManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vocabularies>
+    <Vocabulary>
+      <Name>D is for Digital</Name>
+      <OriginalLanguage>English</OriginalLanguage>
+      <TranslationLanguage>Swedish</TranslationLanguage>
+      <Words>
+        <Word>
+          <OriginalWord>also</OriginalWord>
+          <Translation>också</Translation>
+          <Sentence />
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>paper</OriginalWord>
+          <Translation>papper</Translation>
+          <Sentence />
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>zoo</OriginalWord>
+          <Translation>zoo</Translation>
+          <Sentence />
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+      </Words>
+      <DateLastUsed>2020-12-11T00:00:00+01:00</DateLastUsed>
+    </Vocabulary>
+    <Vocabulary>
+      <Name>Learn C#</Name>
+      <OriginalLanguage>English</OriginalLanguage>
+      <TranslationLanguage>Swedish</TranslationLanguage>
+      <Words>
+        <Word>
+          <OriginalWord>also</OriginalWord>
+          <Translation>också</Translation>
+          <Sentence>Aaa aa aaaa</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>paper</OriginalWord>
+          <Translation>papper</Translation>
+          <Sentence>Ccc!</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>zoo</OriginalWord>
+          <Translation>zoo</Translation>
+          <Sentence>Eeee ee ee eee</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+      </Words>
+      <DateLastUsed>2020-12-11T00:00:00+01:00</DateLastUsed>
+    </Vocabulary>
+    <Vocabulary>
+      <Name>Software engineering</Name>
+      <OriginalLanguage>English</OriginalLanguage>
+      <TranslationLanguage>Swedish</TranslationLanguage>
+      <Words>
+        <Word>
+          <OriginalWord>also</OriginalWord>
+          <Translation>också</Translation>
+          <Sentence>Aaa aa aaaa</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>paper</OriginalWord>
+          <Translation>papper</Translation>
+          <Sentence>Ccc!</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+        <Word>
+          <OriginalWord>zoo</OriginalWord>
+          <Translation>zoo</Translation>
+          <Sentence>Eeee ee ee eee</Sentence>
+          <Weight>5</Weight>
+          <TimesAnsweredCorrectly>0</TimesAnsweredCorrectly>
+        </Word>
+      </Words>
+      <DateLastUsed>2020-12-11T00:00:00+01:00</DateLastUsed>
+    </Vocabulary>
+  </Vocabularies>
+</VocabularyManager>
