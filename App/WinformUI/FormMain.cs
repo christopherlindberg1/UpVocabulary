@@ -18,13 +18,14 @@ namespace WinformUI
 {
     public partial class FormMain : Form
     {
-        private readonly VocabularyManager _vocabularyManager = new VocabularyManager();
+        private AppSettings _appSettings;
 
         private FormCreateAndEdit _createAndEditForm;
         private FormPracticeSettings _practiceSettingsForm;
         private FormPractice _practiceForm;
         private FormAppSettings _appSettingsForm;
 
+        private readonly VocabularyManager _vocabularyManager = new VocabularyManager();
         private string _originalLanguageToPracticeWith;
         private string _translationLanguageToPracticeWith;
         private int _nrOfWordsToPracticeWith;
@@ -41,18 +42,16 @@ namespace WinformUI
          * 
          */
 
-        private VocabularyManager VocabularyManager
+        private AppSettings AppSettings
         {
-            get => _vocabularyManager;
+            get => _appSettings;
 
-            //set
-            //{
-            //    VocabularyManager = value ??
-            //        throw new ArgumentNullException(
-            //            "VocabularyManager",
-            //            "VocabularyManager cannot be null.");
-            //}
+            set => _appSettings = value ??
+                throw new ArgumentNullException(
+                    "AppSettings",
+                    "AppSettings Cannot be null");
         }
+        
 
         private FormCreateAndEdit CreateAndEditForm
         {
@@ -92,6 +91,11 @@ namespace WinformUI
                 throw new ArgumentNullException(
                     "FormAppSettings",
                     "FormAppSettings Cannot be null");
+        }
+
+        private VocabularyManager VocabularyManager
+        {
+            get => _vocabularyManager;
         }
 
         public string OriginalLanguageToPracticeWith
