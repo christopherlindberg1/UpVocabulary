@@ -383,5 +383,18 @@ namespace AppFeatures.Tests
             Assert.True(wordCanFrequency >= wordCanLimits[0] && wordCanFrequency <= wordCanLimits[1]);
             Assert.True(wordPaperFrequency >= wordPaperLimits[0] && wordPaperFrequency <= wordPaperLimits[1]);
         }
+
+        [Fact]
+        public void GenerateWeightedRandomWord_ShouldReturnNull()
+        {
+            // Arrange
+            Word expectedWord = null;
+
+            // Act
+            Word actualWord = EmptySampleVocabulary.GenerateWeightedRandomWord();
+
+            // Assert
+            Assert.Equal(expectedWord, actualWord);
+        }
     }
 }
