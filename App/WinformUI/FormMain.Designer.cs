@@ -95,8 +95,14 @@ namespace WinformUI
             // 
             // btnCreateNewVocabulary
             // 
-            this.btnCreateNewVocabulary.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreateNewVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateNewVocabulary.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateNewVocabulary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCreateNewVocabulary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateNewVocabulary.FlatAppearance.BorderSize = 0;
+            this.btnCreateNewVocabulary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCreateNewVocabulary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateNewVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateNewVocabulary.ForeColor = System.Drawing.Color.White;
             this.btnCreateNewVocabulary.Location = new System.Drawing.Point(281, 367);
             this.btnCreateNewVocabulary.Name = "btnCreateNewVocabulary";
             this.btnCreateNewVocabulary.Size = new System.Drawing.Size(308, 60);
@@ -107,35 +113,56 @@ namespace WinformUI
             // 
             // btnStartPractice
             // 
-            this.btnStartPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartPractice.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnStartPractice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnStartPractice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStartPractice.FlatAppearance.BorderSize = 0;
+            this.btnStartPractice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.btnStartPractice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartPractice.ForeColor = System.Drawing.Color.White;
             this.btnStartPractice.Location = new System.Drawing.Point(883, 115);
             this.btnStartPractice.Name = "btnStartPractice";
             this.btnStartPractice.Size = new System.Drawing.Size(185, 45);
             this.btnStartPractice.TabIndex = 3;
             this.btnStartPractice.Text = "Practice";
-            this.btnStartPractice.UseVisualStyleBackColor = true;
+            this.btnStartPractice.UseVisualStyleBackColor = false;
             this.btnStartPractice.Click += new System.EventHandler(this.btnStartPractice_Click);
             // 
             // btnEditVocabulary
             // 
-            this.btnEditVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditVocabulary.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditVocabulary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEditVocabulary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditVocabulary.FlatAppearance.BorderSize = 0;
+            this.btnEditVocabulary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.btnEditVocabulary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditVocabulary.ForeColor = System.Drawing.Color.White;
             this.btnEditVocabulary.Location = new System.Drawing.Point(883, 184);
             this.btnEditVocabulary.Name = "btnEditVocabulary";
             this.btnEditVocabulary.Size = new System.Drawing.Size(185, 45);
             this.btnEditVocabulary.TabIndex = 4;
             this.btnEditVocabulary.Text = "Edit";
-            this.btnEditVocabulary.UseVisualStyleBackColor = true;
+            this.btnEditVocabulary.UseVisualStyleBackColor = false;
             this.btnEditVocabulary.Click += new System.EventHandler(this.btnEditVocabulary_Click);
             // 
             // btnRemoveVocabularies
             // 
-            this.btnRemoveVocabularies.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveVocabularies.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRemoveVocabularies.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRemoveVocabularies.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveVocabularies.FlatAppearance.BorderSize = 0;
+            this.btnRemoveVocabularies.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.btnRemoveVocabularies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveVocabularies.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveVocabularies.ForeColor = System.Drawing.Color.White;
             this.btnRemoveVocabularies.Location = new System.Drawing.Point(883, 253);
             this.btnRemoveVocabularies.Name = "btnRemoveVocabularies";
             this.btnRemoveVocabularies.Size = new System.Drawing.Size(185, 45);
             this.btnRemoveVocabularies.TabIndex = 5;
             this.btnRemoveVocabularies.Text = "Remove";
-            this.btnRemoveVocabularies.UseVisualStyleBackColor = true;
+            this.btnRemoveVocabularies.UseVisualStyleBackColor = false;
             this.btnRemoveVocabularies.Click += new System.EventHandler(this.btnRemoveVocabularies_Click);
             // 
             // pictureBoxSettings
