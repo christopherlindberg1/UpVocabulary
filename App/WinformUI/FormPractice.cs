@@ -471,7 +471,6 @@ namespace WinformUI
                 Vocabulary.UpdateWeightOfWord(CurrentWord, true);
                 UpdateScore(true);
                 practiceWord = new PracticeWord(CurrentWord, textBoxTranslation.Text.ToLower(), true);
-                //Results.Add(CurrentWord, true);
             }
             else
             {
@@ -479,7 +478,6 @@ namespace WinformUI
                 Vocabulary.UpdateWeightOfWord(CurrentWord, false);
                 UpdateScore(false);
                 practiceWord = new PracticeWord(CurrentWord, textBoxTranslation.Text.ToLower(), false);
-                //Results.Add(CurrentWord, false);
             }
 
             AskedWords.Add(practiceWord);
@@ -493,13 +491,29 @@ namespace WinformUI
                 // If user gave correct translation, Wait before asking next word
                 if (correctTranslation)
                 {
-                    await Task.Delay(AppSettings.DelayBeforePromptingNextQuestionAfterCorrectAnswer);
-                    AskNextQuestion();
+                    if (AppSettings.AutoPromptQuestionAfterCorrectAnswer)
+                    {
+                        await Task.Delay(AppSettings.DelayBeforePromptingNextQuestionAfterCorrectAnswer);
+                        AskNextQuestion();
+                    }
+                    else
+                    {
+                        ToggleBtnNextWord(true);
+                    }
+
                 }
                 // If user gave incorrect translation, let user click btn to get next word
                 else
                 {
-                    ToggleBtnNextWord(true);
+                    if (AppSettings.AutoPromptQuestionAfterIncorrectAnswer)
+                    {
+                        await Task.Delay(AppSettings.DelayBeforePromptingNextQuestionAfterIncorrectAnswer);
+                        AskNextQuestion();
+                    }
+                    else
+                    {
+                        ToggleBtnNextWord(true);
+                    }
                 }
             }
             // True when practice session is done.
