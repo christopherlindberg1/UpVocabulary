@@ -26,7 +26,7 @@ namespace WinformUI
          * 
          */
 
-        private AppSettings AppSettings
+        internal AppSettings AppSettings
         {
             get => _appSettings;
 
@@ -245,6 +245,31 @@ namespace WinformUI
             return true;
         }
 
+        private void SaveAppSettings_EventHandler()
+        {
+            if (ValidateInput() == false)
+            {
+                MessageBox.Show(
+                    InputValidator.GetMessages(),
+                    "Info",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+            else
+            {
+                AppSettings.DelayBeforePromptingNextQuestionAfterCorrectAnswer =
+                    int.Parse(textBoxDelayBeforePromptCorrect.Text);
+
+                AppSettings.DelayBeforePromptingNextQuestionAfterIncorrectAnswer =
+                    int.Parse(textBoxDelayBeforePromptIncorrect.Text);
+            }
+
+            DialogResult = DialogResult.Yes;
+            this.Close();
+        }
+
 
 
 
@@ -297,16 +322,7 @@ namespace WinformUI
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
-            if (ValidateInput() == false)
-            {
-                MessageBox.Show(
-                    InputValidator.GetMessages(),
-                    "Info",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
+            SaveAppSettings_EventHandler();
         }
     }
 }
