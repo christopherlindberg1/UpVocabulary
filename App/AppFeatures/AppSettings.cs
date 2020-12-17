@@ -115,6 +115,15 @@ namespace AppFeatures
         {
         }
 
+        public AppSettings(AppSettings appSettings)
+        {
+            AppLanguage = appSettings.AppLanguage;
+            AutoPromptQuestionAfterCorrectAnswer = appSettings.AutoPromptQuestionAfterCorrectAnswer;
+            AutoPromptQuestionAfterIncorrectAnswer = appSettings.AutoPromptQuestionAfterIncorrectAnswer;
+            DelayBeforePromptingNextQuestionAfterCorrectAnswer = appSettings.DelayBeforePromptingNextQuestionAfterCorrectAnswer;
+            DelayBeforePromptingNextQuestionAfterIncorrectAnswer = appSettings.DelayBeforePromptingNextQuestionAfterIncorrectAnswer;
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("AppLanguage", AppLanguage);
