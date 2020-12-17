@@ -286,7 +286,7 @@ namespace AppFeatures
         /// </summary>
         /// <param name="vocabularyToCopyFrom">Vocabulary to copy from.</param>
         /// <param name="vocabularyToChange">Vocabulary to change.</param>
-        public static void CopyVocabulary(Vocabulary vocabularyToCopyFrom, Vocabulary vocabularyToChange)
+        public static void CopyVocabulary(Vocabulary vocabularyToChange, Vocabulary vocabularyToCopyFrom)
         {
             vocabularyToChange.Name = vocabularyToCopyFrom.Name;
             vocabularyToChange.OriginalLanguage = vocabularyToCopyFrom.OriginalLanguage;

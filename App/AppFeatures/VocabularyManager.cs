@@ -109,7 +109,7 @@ namespace AppFeatures
 
             Vocabulary copy = new Vocabulary();
 
-            Vocabulary.CopyVocabulary(originalVocabulary, copy);
+            Vocabulary.CopyVocabulary(copy, originalVocabulary);
 
             return copy;
         }
@@ -134,7 +134,7 @@ namespace AppFeatures
         /// <param name="updatedVocabulary">Vocabulary to copy from.</param>
         public void UpdateVocabulary(Vocabulary originalVocabulary, Vocabulary updatedVocabulary)
         {
-            Vocabulary.CopyVocabulary(updatedVocabulary, originalVocabulary);
+            Vocabulary.CopyVocabulary(originalVocabulary, updatedVocabulary);
         }
 
         public bool RemoveAt(int index)
