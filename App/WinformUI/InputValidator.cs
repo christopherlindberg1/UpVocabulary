@@ -83,6 +83,28 @@ namespace WinformUI
             return true;
         }
 
+        public bool ValidateTextBoxInt(
+            TextBox element,
+            string errorMessageNullOrEmpty,
+            string errorMessageInvalidInt)
+        {
+            if (String.IsNullOrWhiteSpace(element.Text))
+            {
+                AddMessage(errorMessageNullOrEmpty);
+                return false;
+            }
+
+            int value;
+
+            if (int.TryParse(element.Text, out value) == false)
+            {
+                AddMessage(errorMessageInvalidInt);
+                return false;
+            }
+
+            return true;
+        }
+
         public bool ValidateComboBoxItemIsSelected(ComboBox element, string errorMessageIfNotSelected)
         {
             if (element.SelectedIndex == -1)
