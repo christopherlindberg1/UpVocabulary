@@ -83,7 +83,7 @@ namespace WinformUI
                     "PracticeForm Cannot be null");
         }
 
-        private FormAppSettings FormAppSettings
+        private FormAppSettings AppSettingsForm
         {
             get => _appSettingsForm;
 
@@ -179,9 +179,10 @@ namespace WinformUI
         {
             InitializeComponent();
 
+            GetAppSettingsFromStorage();
+
             InitializeApp();
         }
-
         private void InitializeApp()
         {
             ConfigureGUIOnInit();
@@ -223,8 +224,11 @@ namespace WinformUI
         private void SetGUIToViewState()
         {
             btnStartPractice.Enabled = false;
+            btnStartPractice.BackColor = Color.FromArgb(190, 190, 190);
             btnEditVocabulary.Enabled = false;
+            btnEditVocabulary.BackColor = Color.FromArgb(190, 190, 190);
             btnRemoveVocabularies.Enabled = false;
+            btnRemoveVocabularies.BackColor = Color.FromArgb(190, 190, 190);
 
             listViewVocabularies.SelectedItems.Clear();
         }
@@ -232,8 +236,11 @@ namespace WinformUI
         private void SetGUIToEditState()
         {
             btnStartPractice.Enabled = true;
+            btnStartPractice.BackColor = Color.DodgerBlue;
             btnEditVocabulary.Enabled = true;
+            btnEditVocabulary.BackColor = Color.DodgerBlue;
             btnRemoveVocabularies.Enabled = true;
+            btnRemoveVocabularies.BackColor = Color.DodgerBlue;
         }
 
 
@@ -249,6 +256,23 @@ namespace WinformUI
         private void LoadDataOnInit()
         {
             LoadVocabularyManagerFromStorage();
+        }
+
+        private void GetAppSettingsFromStorage()
+        {
+            try
+            {
+                AppSettings = Serializer.XmlDeserialize<AppSettings>(FilePaths.AppSettingsFilePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void SaveAppSettingsToStorage()
+        {
+            Serializer.XmlSerialize<AppSettings>(FilePaths.AppSettingsFilePath, AppSettings);
         }
 
         private void LoadVocabularyManagerFromStorage()
@@ -576,6 +600,7 @@ namespace WinformUI
 
             GetPracticeSettings();
             PracticeForm = new FormPractice(
+                AppSettings,
                 vocabularyToPracticeWith,
                 NrOfWordsToPracticeWith,
                 PromptWithOriginalLanguageInPractice,
@@ -589,9 +614,16 @@ namespace WinformUI
             SetGUIToViewState();
         }
 
-        private void TestRandomGenerator()
+        private void OpenAppSettingsForm_EventHandler()
         {
+            AppSettingsForm = new FormAppSettings(new AppSettings(AppSettings));
+            DialogResult result = AppSettingsForm.ShowDialog();
 
+            if (result == DialogResult.Yes)
+            {
+                AppSettings = new AppSettings(AppSettingsForm.AppSettings);
+                SaveAppSettingsToStorage();
+            }
         }
 
 
@@ -613,7 +645,6 @@ namespace WinformUI
         private void listViewVocabularies_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             ListViewVocabulariesIndexChanged_EventHandler();
-            TestRandomGenerator();
         }
 
         private void btnCreateNewVocabulary_Click(object sender, EventArgs e)
@@ -643,7 +674,7 @@ namespace WinformUI
 
         private void pictureBoxSettings_Click(object sender, EventArgs e)
         {
-
+            OpenAppSettingsForm_EventHandler();
         }
     }
 }
