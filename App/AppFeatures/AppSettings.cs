@@ -110,6 +110,11 @@ namespace AppFeatures
          * ===================  Methods  ===================
          * 
          */
+
+        public AppSettings()
+        {
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("AppLanguage", AppLanguage);
