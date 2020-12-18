@@ -12,8 +12,8 @@ Requirements are defined below and given a priority of must, should or could (th
 * Option to have multiple translations for a word. One main translation, and more optional translation if user wants to.
 * Add information about word class (verb, noun etc).
 * Recover vocabularies that were deleted.
-* App settings: decide if next question should be prompted automatically.
-* App settings: decide what delay there should be before the next question gets prompted automatically.
+* App settings: decide if next question should be prompted automatically. **Done.**
+* App settings: decide what delay there should be before the next question gets prompted automatically. **Done.**
 
 
 ### Could
@@ -35,8 +35,8 @@ Requirements are defined below and given a priority of must, should or could (th
 * Store information about word class (verb, noun etc).
 * Deleted vocabularyies should be stored away for 30 days before being deleted permanently.
 * Recover vocabularies that were deleted no more than 30 days in the past.
-* App settings: devide if next question should be prompted automatically. Separate settings for when user gives correct / incorrect tranlsation.
-* App settings: devide what delay there should be before the next question gets prompted automatically. Separate settings for when user gives correct / incorrect tranlsation.
+* App settings: decide if next question should be prompted automatically. Separate settings for when user gives correct / incorrect tranlsation. **Done.**
+* App settings: decide what delay there should be before the next question gets prompted automatically. Separate settings for when user gives correct / incorrect tranlsation. **Done.**
 
 ### Could
 * Store the state of each vocabulary each time it gets updated.
