@@ -7,6 +7,15 @@ using System.Runtime.Serialization;
 
 namespace AppFeatures
 {
+    /// <summary>
+    ///   Note: Temporary solution. Should look into more standard ways
+    ///   of handling application settings. This design choice was made due to
+    ///   limited time.
+    ///   
+    ///   AppSettings class that can be used to create objects
+    ///   that store application settings in RAM and make use of them
+    ///   in the application.
+    /// </summary>
     [Serializable()]
     public class AppSettings : ISerializable
     {
