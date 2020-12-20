@@ -16,8 +16,10 @@ namespace AppFeatures
         private string _originalLanguage;
         private string _translationLanguage;
         private List<Word> _words = new List<Word>();
-        private DateTime _dateLastUsed;
         private readonly Random _random = new Random();
+        private DateTime _dateLastUsed;
+        private DateTime? _dateOfRemoval;
+        private bool _isRemoved;
 
 
 
@@ -87,6 +89,14 @@ namespace AppFeatures
             }
         }
 
+        public int NrOfWords => _words.Count;
+
+
+        private Random RandomObject
+        {
+            get => _random;
+        }
+
         public DateTime DateLastUsed
         {
             get => _dateLastUsed;
@@ -104,12 +114,30 @@ namespace AppFeatures
             }
         }
 
-        private Random RandomObject
+        public DateTime? DateOfRemoval
         {
-            get => _random;
+            get => _dateOfRemoval;
+
+            set
+            {
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "DateOfRemoval",
+                        "DateOfRemoval cannot be in the future.");
+                }
+
+                _dateOfRemoval = value;
+            }
         }
 
-        public int NrOfWords => _words.Count;
+        public bool IsRemoved
+        {
+            get => _isRemoved;
+
+            set => _isRemoved = value;
+        }
+
 
 
 
@@ -137,6 +165,8 @@ namespace AppFeatures
             OriginalLanguage = originalLanguage;
             TranslationLanguage = translationLanguage;
             DateLastUsed = DateTime.Now.Date;
+            DateOfRemoval = null;
+            IsRemoved = false;
         }
 
 
@@ -419,6 +449,8 @@ namespace AppFeatures
             info.AddValue("TranslationLanguage", TranslationLanguage);
             info.AddValue("Words", Words);
             info.AddValue("DateLastUsed", DateLastUsed);
+            info.AddValue("DateOfRemoval", DateOfRemoval);
+            info.AddValue("IsRemoved", IsRemoved);
         }
 
         /// <summary>
@@ -433,6 +465,8 @@ namespace AppFeatures
             TranslationLanguage = (string)info.GetValue("TranslationLanguage", typeof(string));
             Words = (List<Word>)info.GetValue("Words", typeof(List<Word>));
             DateLastUsed = (DateTime)info.GetValue("DateLastUsed", typeof(DateTime));
+            DateOfRemoval = (DateTime)info.GetValue("DateOfRemoval", typeof(DateTime));
+            IsRemoved = (bool)info.GetValue("IsRemoved", typeof(DateTime));
         }
     }
 }
