@@ -30,150 +30,171 @@ namespace WinformUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.panelNavigation = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblUpVocabulary = new System.Windows.Forms.Label();
+            this.panelMenu = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAddVocabulary = new System.Windows.Forms.Button();
+            this.btnVocabularies = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
+            this.lblLogo = new System.Windows.Forms.Label();
+            this.panelTitlebar = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelMainContent = new System.Windows.Forms.Panel();
-            this.panelMenuChoiceIndicator = new System.Windows.Forms.Panel();
-            this.panelNavigation.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelMenu.SuspendLayout();
+            this.panelLogo.SuspendLayout();
+            this.panelTitlebar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelNavigation
+            // panelMenu
             // 
-            this.panelNavigation.BackColor = System.Drawing.Color.White;
-            this.panelNavigation.Controls.Add(this.btnSettings);
-            this.panelNavigation.Controls.Add(this.panelMenuChoiceIndicator);
-            this.panelNavigation.Controls.Add(this.button2);
-            this.panelNavigation.Controls.Add(this.button1);
-            this.panelNavigation.Controls.Add(this.panel2);
-            this.panelNavigation.Location = new System.Drawing.Point(0, 0);
-            this.panelNavigation.Name = "panelNavigation";
-            this.panelNavigation.Size = new System.Drawing.Size(225, 613);
-            this.panelNavigation.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panel2.Controls.Add(this.lblUpVocabulary);
-            this.panel2.ForeColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(225, 135);
-            this.panel2.TabIndex = 1;
-            // 
-            // lblUpVocabulary
-            // 
-            this.lblUpVocabulary.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpVocabulary.Location = new System.Drawing.Point(0, 0);
-            this.lblUpVocabulary.Name = "lblUpVocabulary";
-            this.lblUpVocabulary.Size = new System.Drawing.Size(225, 135);
-            this.lblUpVocabulary.TabIndex = 0;
-            this.lblUpVocabulary.Text = "UpVocabulary";
-            this.lblUpVocabulary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.btnSettings);
+            this.panelMenu.Controls.Add(this.btnAddVocabulary);
+            this.panelMenu.Controls.Add(this.btnVocabularies);
+            this.panelMenu.Controls.Add(this.panelLogo);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(220, 703);
+            this.panelMenu.TabIndex = 0;
             // 
             // btnSettings
             // 
-            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(0, 405);
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.Location = new System.Drawing.Point(0, 200);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(225, 120);
-            this.btnSettings.TabIndex = 0;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnSettings.Size = new System.Drawing.Size(220, 60);
+            this.btnSettings.TabIndex = 3;
+            this.btnSettings.Text = "  Settings";
+            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // button1
+            // btnAddVocabulary
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(0, 135);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 120);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "My Vocabularies";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddVocabulary.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAddVocabulary.FlatAppearance.BorderSize = 0;
+            this.btnAddVocabulary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddVocabulary.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnAddVocabulary.Image = ((System.Drawing.Image)(resources.GetObject("btnAddVocabulary.Image")));
+            this.btnAddVocabulary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddVocabulary.Location = new System.Drawing.Point(0, 140);
+            this.btnAddVocabulary.Name = "btnAddVocabulary";
+            this.btnAddVocabulary.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnAddVocabulary.Size = new System.Drawing.Size(220, 60);
+            this.btnAddVocabulary.TabIndex = 2;
+            this.btnAddVocabulary.Text = "  Add vocabulary";
+            this.btnAddVocabulary.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddVocabulary.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddVocabulary.UseVisualStyleBackColor = true;
+            this.btnAddVocabulary.Click += new System.EventHandler(this.btnAddVocabulary_Click);
             // 
-            // button2
+            // btnVocabularies
             // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(0, 270);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 120);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add Vocabulary";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnVocabularies.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVocabularies.FlatAppearance.BorderSize = 0;
+            this.btnVocabularies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVocabularies.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnVocabularies.Image = ((System.Drawing.Image)(resources.GetObject("btnVocabularies.Image")));
+            this.btnVocabularies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVocabularies.Location = new System.Drawing.Point(0, 80);
+            this.btnVocabularies.Name = "btnVocabularies";
+            this.btnVocabularies.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnVocabularies.Size = new System.Drawing.Size(220, 60);
+            this.btnVocabularies.TabIndex = 1;
+            this.btnVocabularies.Text = "  Vocabularies";
+            this.btnVocabularies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVocabularies.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVocabularies.UseVisualStyleBackColor = true;
+            this.btnVocabularies.Click += new System.EventHandler(this.btnVocabularies_Click);
+            // 
+            // panelLogo
+            // 
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.panelLogo.Controls.Add(this.lblLogo);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(220, 80);
+            this.panelLogo.TabIndex = 0;
+            // 
+            // lblLogo
+            // 
+            this.lblLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLogo.AutoSize = true;
+            this.lblLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblLogo.ForeColor = System.Drawing.Color.White;
+            this.lblLogo.Location = new System.Drawing.Point(39, 27);
+            this.lblLogo.Name = "lblLogo";
+            this.lblLogo.Size = new System.Drawing.Size(136, 25);
+            this.lblLogo.TabIndex = 0;
+            this.lblLogo.Text = "UpVocabulary";
+            // 
+            // panelTitlebar
+            // 
+            this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitlebar.Controls.Add(this.lblTitle);
+            this.panelTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitlebar.Location = new System.Drawing.Point(220, 0);
+            this.panelTitlebar.Name = "panelTitlebar";
+            this.panelTitlebar.Size = new System.Drawing.Size(1162, 80);
+            this.panelTitlebar.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(496, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(171, 31);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Vocabularies";
             // 
             // panelMainContent
             // 
-            this.panelMainContent.BackColor = System.Drawing.Color.White;
-            this.panelMainContent.Location = new System.Drawing.Point(225, 0);
+            this.panelMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainContent.Location = new System.Drawing.Point(220, 80);
             this.panelMainContent.Name = "panelMainContent";
-            this.panelMainContent.Size = new System.Drawing.Size(825, 650);
-            this.panelMainContent.TabIndex = 1;
-            // 
-            // panelMenuChoiceIndicator
-            // 
-            this.panelMenuChoiceIndicator.BackColor = System.Drawing.Color.DodgerBlue;
-            this.panelMenuChoiceIndicator.Location = new System.Drawing.Point(215, 155);
-            this.panelMenuChoiceIndicator.Name = "panelMenuChoiceIndicator";
-            this.panelMenuChoiceIndicator.Size = new System.Drawing.Size(10, 80);
-            this.panelMenuChoiceIndicator.TabIndex = 0;
+            this.panelMainContent.Size = new System.Drawing.Size(1162, 623);
+            this.panelMainContent.TabIndex = 2;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1032, 603);
+            this.ClientSize = new System.Drawing.Size(1382, 703);
             this.Controls.Add(this.panelMainContent);
-            this.Controls.Add(this.panelNavigation);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Controls.Add(this.panelTitlebar);
+            this.Controls.Add(this.panelMenu);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "UpVocabulary";
-            this.panelNavigation.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.Text = "Form1";
+            this.panelMenu.ResumeLayout(false);
+            this.panelLogo.ResumeLayout(false);
+            this.panelLogo.PerformLayout();
+            this.panelTitlebar.ResumeLayout(false);
+            this.panelTitlebar.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelNavigation;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelMenu;
+        private System.Windows.Forms.Panel panelLogo;
+        private System.Windows.Forms.Button btnVocabularies;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Label lblUpVocabulary;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddVocabulary;
+        private System.Windows.Forms.Panel panelTitlebar;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblLogo;
         private System.Windows.Forms.Panel panelMainContent;
-        private System.Windows.Forms.Panel panelMenuChoiceIndicator;
     }
 }

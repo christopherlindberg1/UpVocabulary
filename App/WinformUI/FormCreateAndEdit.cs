@@ -155,7 +155,7 @@ namespace WinformUI
 
         private void FillLanguageMenusWithData()
         {
-            string[] languages = Enum.GetNames(typeof(Languages));
+            string[] languages = Enum.GetNames(typeof(TranslationLanguages));
 
             comboBoxOriginalLanguage.Items.AddRange(languages);
             comboBoxTranslationLanguage.Items.AddRange(languages);
