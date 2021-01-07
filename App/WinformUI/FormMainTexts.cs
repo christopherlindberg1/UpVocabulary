@@ -12,6 +12,38 @@ namespace WinformUI
     /// </summary>
     class FormMainTexts
     {
+        // Heading
+        public static string GetLblHeadingTextInEnglish() => "Your vocabularies";
+        public static string GetLblHeadingTextInSwedish() => "Dina ordlistor";
+
+
+        // Buttons
+        public static string GetBtnCreateNewVocabularyTextInEnglish() => "Create new vocabulary";
+        public static string GetBtnCreateNewVocabularyTextInSwedish() => "Skapa ny ordlista";
+
+        public static string GetBtnStartPracticeTextInEnglish() => "Practice";
+        public static string GetBtnStartPracticeTextInSwedish() => "Öva";
+
+        public static string GetBtnEditVocabularyTextInEnglish() => "Edit";
+        public static string GetBtnEditVocabularyTextInSwedish() => "Redigera";
+
+        public static string GetBtnRemoveVocabulariesTextInEnglish() => "Remove";
+        public static string GetBtnRemoveVocabulariesTextInSwedish() => "Ta bort";
+
+
+        // Listview column names
+        public static string GetListViewVocabularies_NameTextInEnglish() => "Name";
+        public static string GetListViewVocabularies_NameTextInSwedish() => "Namn";
+
+        public static string GetListViewVocabularies_NrOfWordsTextInEnglish() => "Nr of words";
+        public static string GetListViewVocabularies_NrOfWordsTextInSwedish() => "Antal ord";
+        
+        public static string GetListViewVocabularies_LanguagesTextInEnglish() => "Languages";
+        public static string GetListViewVocabularies_LanguagesTextInSwedish() => "Språk";
+        
+        public static string GetListViewVocabularies_DateLastUsedTextInEnglish() => "Last time used";
+        public static string GetListViewVocabularies_DateLastUsedTextInSwedish() => "Senast använd";
+
 
     }
 }
