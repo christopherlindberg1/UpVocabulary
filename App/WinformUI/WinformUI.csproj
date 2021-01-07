@@ -70,18 +70,21 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAppSettingsTexts.cs" />
     <Compile Include="FormCreateAndEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCreateAndEdit.Designer.cs">
       <DependentUpon>FormCreateAndEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreateAndEditTexts.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMainTexts.cs" />
     <Compile Include="FormPractice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +103,8 @@
     <Compile Include="FormAppSettings.Designer.cs">
       <DependentUpon>FormAppSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPracticeSettingsTexts.cs" />
+    <Compile Include="FormPracticeTexts.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,5 +12,6 @@ namespace WinformUI
     /// </summary>
     class FormCreateAndEditTexts
     {
+
     }
 }

@@ -30,7 +30,7 @@ namespace WinformUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblHeading = new System.Windows.Forms.Label();
             this.listViewVocabularies = new System.Windows.Forms.ListView();
             this.listViewVocabularies_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewVocabularies_NrOfWords = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,15 +44,15 @@ namespace WinformUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblHeading
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Your vocabularies";
+            this.lblHeading.AutoSize = true;
+            this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.Location = new System.Drawing.Point(27, 19);
+            this.lblHeading.Name = "lblHeading";
+            this.lblHeading.Size = new System.Drawing.Size(243, 32);
+            this.lblHeading.TabIndex = 0;
+            this.lblHeading.Text = "Your vocabularies";
             // 
             // listViewVocabularies
             // 
@@ -190,7 +190,7 @@ namespace WinformUI
             this.Controls.Add(this.btnStartPractice);
             this.Controls.Add(this.btnCreateNewVocabulary);
             this.Controls.Add(this.listViewVocabularies);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblHeading);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "UpVocabulary";
@@ -203,7 +203,7 @@ namespace WinformUI
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.ListView listViewVocabularies;
         private System.Windows.Forms.ColumnHeader listViewVocabularies_Name;
         private System.Windows.Forms.ColumnHeader listViewVocabularies_NrOfWords;

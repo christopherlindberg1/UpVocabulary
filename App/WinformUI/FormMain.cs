@@ -193,6 +193,13 @@ namespace WinformUI
         private void ConfigureGUIOnInit()
         {
             ConfigureListViewVocabularies();
+            SetTextAccordingToLanguage();
+            SetGUIToViewState();
+        }
+
+        private void UpdateGUIToMatchAppSettings()
+        {
+            SetTextAccordingToLanguage();
             SetGUIToViewState();
         }
 
@@ -219,6 +226,53 @@ namespace WinformUI
             listViewVocabularies.FullRowSelect = true;
             // Display grid lines.
             listViewVocabularies.GridLines = true;
+        }
+
+        private void SetTextAccordingToLanguage()
+        {
+            if (AppSettings == null)
+            {
+                throw new InvalidOperationException("Cannot call this method is AppSettings is null");
+            }
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                SetTextToEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                SetTextToSwedish();
+            }
+        }
+
+        private void SetTextToEnglish()
+        {
+            lblHeading.Text = FormMainTexts.GetLblHeadingTextInEnglish();
+
+            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabularyTextInEnglish();
+            btnStartPractice.Text = FormMainTexts.GetBtnStartPracticeTextInEnglish();
+            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabularyTextInEnglish();
+            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabulariesTextInEnglish();
+
+            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_NameTextInEnglish();
+            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWordsTextInEnglish();
+            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_LanguagesTextInEnglish();
+            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsedTextInEnglish();
+        }
+
+        private void SetTextToSwedish()
+        {
+            lblHeading.Text = FormMainTexts.GetLblHeadingTextInSwedish();
+
+            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabularyTextInSwedish();
+            btnStartPractice.Text = FormMainTexts.GetBtnStartPracticeTextInSwedish();
+            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabularyTextInSwedish();
+            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabulariesTextInSwedish();
+
+            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_NameTextInSwedish();
+            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWordsTextInSwedish();
+            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_LanguagesTextInSwedish();
+            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsedTextInSwedish();
         }
 
         private void SetGUIToViewState()
@@ -623,6 +677,7 @@ namespace WinformUI
             {
                 AppSettings = new AppSettings(AppSettingsForm.AppSettings);
                 SaveAppSettingsToStorage();
+                UpdateGUIToMatchAppSettings();
             }
         }
 
