@@ -191,6 +191,7 @@ namespace WinformUI
             this.Controls.Add(this.btnCreateNewVocabulary);
             this.Controls.Add(this.listViewVocabularies);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "UpVocabulary";
             this.Load += new System.EventHandler(this.FormMain_Load);

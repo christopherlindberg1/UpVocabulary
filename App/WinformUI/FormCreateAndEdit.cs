@@ -133,7 +133,7 @@ namespace WinformUI
         private void InitializeGUI()
         {
             FillLanguageMenusWithData();
-            FillWordClassMenuWithData();
+            //FillWordClassMenuWithData();
             SetLanguageLabelsForOriginalWordAndTranslation();
             SetGUIToCreateState();
 
@@ -141,7 +141,7 @@ namespace WinformUI
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
                 lblHeading.Text = "Create new vocabulary";
-                InitializeTranslationsList(false);
+                //InitializeTranslationsList(false);
             }
             else
             {
@@ -149,7 +149,7 @@ namespace WinformUI
                 lblHeading.Text = "Edit vocabulary";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
-                InitializeTranslationsList(true);
+                //InitializeTranslationsList(true);
             }
         }
 
@@ -161,17 +161,17 @@ namespace WinformUI
             comboBoxTranslationLanguage.Items.AddRange(languages);
         }
 
-        private void FillWordClassMenuWithData()
-        {
-            string[] wordClasses = Enum.GetNames(typeof(WordClasses));
-            comboBoxWordClasses.Items.AddRange(wordClasses);
-        }
+        //private void FillWordClassMenuWithData()
+        //{
+        //    string[] wordClasses = Enum.GetNames(typeof(WordClasses));
+        //    comboBoxWordClasses.Items.AddRange(wordClasses);
+        //}
 
-        private void InitializeTranslationsList(bool visible)
-        {
-            ToggleListWithTranslations(visible);
-            btnRemoveTranslation.Enabled = false;
-        }
+        //private void InitializeTranslationsList(bool visible)
+        //{
+        //    ToggleListWithTranslations(visible);
+        //    btnRemoveTranslation.Enabled = false;
+        //}
 
         private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
         {
@@ -192,12 +192,12 @@ namespace WinformUI
          * 
          */
 
-        private void ToggleListWithTranslations(bool visible)
-        {
-            lblTranslations.Visible = visible;
-            listBoxTranslations.Visible = visible;
-            btnRemoveTranslation.Visible = visible;
-        }
+        //private void ToggleListWithTranslations(bool visible)
+        //{
+        //    lblTranslations.Visible = visible;
+        //    listBoxTranslations.Visible = visible;
+        //    btnRemoveTranslation.Visible = visible;
+        //}
 
         private void AddWordsToGUIList(Vocabulary vocabulary)
         {
@@ -429,17 +429,17 @@ namespace WinformUI
          * 
          */
 
-        private void ListBoxTranslationasIndexChanged_EventHandler()
-        {
-            if (listBoxTranslations.SelectedIndex == -1)
-            {
-                btnRemoveTranslation.Enabled = false;
-            }
-            else
-            {
-                btnRemoveTranslation.Enabled = true;
-            }
-        }
+        //private void ListBoxTranslationasIndexChanged_EventHandler()
+        //{
+        //    if (listBoxTranslations.SelectedIndex == -1)
+        //    {
+        //        btnRemoveTranslation.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        btnRemoveTranslation.Enabled = true;
+        //    }
+        //}
 
         private void ListBoxWordsSelectedIndexChanged_EventHandler()
         {
@@ -610,9 +610,9 @@ namespace WinformUI
             CancelVocabularyChanges_EventHandler();
         }
 
-        private void listBoxTranslations_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListBoxTranslationasIndexChanged_EventHandler();
-        }
+        //private void listBoxTranslations_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    ListBoxTranslationasIndexChanged_EventHandler();
+        //}
     }
 }

@@ -52,12 +52,6 @@ namespace WinformUI
             this.btnRemoveWords = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancelWordEditing = new System.Windows.Forms.Button();
-            this.listBoxTranslations = new System.Windows.Forms.ListBox();
-            this.lblTranslations = new System.Windows.Forms.Label();
-            this.btnRemoveTranslation = new System.Windows.Forms.Button();
-            this.btnAddTranslation = new System.Windows.Forms.Button();
-            this.comboBoxWordClasses = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblHeading
@@ -292,79 +286,12 @@ namespace WinformUI
             this.btnCancelWordEditing.UseVisualStyleBackColor = true;
             this.btnCancelWordEditing.Click += new System.EventHandler(this.btnCancelWordEditing_Click);
             // 
-            // listBoxTranslations
-            // 
-            this.listBoxTranslations.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxTranslations.FormattingEnabled = true;
-            this.listBoxTranslations.ItemHeight = 20;
-            this.listBoxTranslations.Location = new System.Drawing.Point(469, 270);
-            this.listBoxTranslations.Name = "listBoxTranslations";
-            this.listBoxTranslations.Size = new System.Drawing.Size(199, 244);
-            this.listBoxTranslations.TabIndex = 23;
-            this.listBoxTranslations.SelectedIndexChanged += new System.EventHandler(this.listBoxTranslations_SelectedIndexChanged);
-            // 
-            // lblTranslations
-            // 
-            this.lblTranslations.AutoSize = true;
-            this.lblTranslations.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTranslations.Location = new System.Drawing.Point(465, 246);
-            this.lblTranslations.Name = "lblTranslations";
-            this.lblTranslations.Size = new System.Drawing.Size(101, 20);
-            this.lblTranslations.TabIndex = 25;
-            this.lblTranslations.Text = "Translations";
-            // 
-            // btnRemoveTranslation
-            // 
-            this.btnRemoveTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveTranslation.Location = new System.Drawing.Point(517, 520);
-            this.btnRemoveTranslation.Name = "btnRemoveTranslation";
-            this.btnRemoveTranslation.Size = new System.Drawing.Size(100, 32);
-            this.btnRemoveTranslation.TabIndex = 26;
-            this.btnRemoveTranslation.Text = "Remove";
-            this.btnRemoveTranslation.UseVisualStyleBackColor = true;
-            // 
-            // btnAddTranslation
-            // 
-            this.btnAddTranslation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTranslation.Location = new System.Drawing.Point(229, 326);
-            this.btnAddTranslation.Name = "btnAddTranslation";
-            this.btnAddTranslation.Size = new System.Drawing.Size(75, 32);
-            this.btnAddTranslation.TabIndex = 27;
-            this.btnAddTranslation.Text = "Add";
-            this.btnAddTranslation.UseVisualStyleBackColor = true;
-            this.btnAddTranslation.Click += new System.EventHandler(this.btnAddTranslation_Click);
-            // 
-            // comboBoxWordClasses
-            // 
-            this.comboBoxWordClasses.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxWordClasses.FormattingEnabled = true;
-            this.comboBoxWordClasses.Location = new System.Drawing.Point(296, 270);
-            this.comboBoxWordClasses.Name = "comboBoxWordClasses";
-            this.comboBoxWordClasses.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxWordClasses.TabIndex = 28;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(292, 246);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 20);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Word class";
-            // 
             // FormCreateAndEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1062, 742);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBoxWordClasses);
-            this.Controls.Add(this.btnAddTranslation);
-            this.Controls.Add(this.btnRemoveTranslation);
-            this.Controls.Add(this.lblTranslations);
-            this.Controls.Add(this.listBoxTranslations);
             this.Controls.Add(this.btnCancelWordEditing);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRemoveWords);
@@ -420,11 +347,5 @@ namespace WinformUI
         private System.Windows.Forms.Button btnRemoveWords;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCancelWordEditing;
-        private System.Windows.Forms.ListBox listBoxTranslations;
-        private System.Windows.Forms.Label lblTranslations;
-        private System.Windows.Forms.Button btnRemoveTranslation;
-        private System.Windows.Forms.Button btnAddTranslation;
-        private System.Windows.Forms.ComboBox comboBoxWordClasses;
-        private System.Windows.Forms.Label label7;
     }
 }
