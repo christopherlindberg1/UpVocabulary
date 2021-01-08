@@ -152,13 +152,25 @@ namespace WinformUI
 
             if (Vocabulary == null)
             {
-                this.Text = "UpVocabulary - Create new Vocabulary";
-                //lblHeading.Text = "Create new vocabulary";
+                if (AppSettings.AppLanguage == AppLanguages.English)
+                {
+                    this.Text = FormCreateAndEditTexts.GetFormTitle_CreateMode_TextInEnglish();
+                }
+                else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+                {
+                    this.Text = FormCreateAndEditTexts.GetFormTitle_CreateMode_TextInSwedish();
+                }
             }
             else
             {
-                this.Text = "UpVocabulary - Edit Vocabulary";
-                //lblHeading.Text = "Edit vocabulary";
+                if (AppSettings.AppLanguage == AppLanguages.English)
+                {
+                    this.Text = FormCreateAndEditTexts.GetFormTitle_EditMode_TextInEnglish();
+                }
+                else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+                {
+                    this.Text = FormCreateAndEditTexts.GetFormTitle_EditMode_TextInSwedish();
+                }
 
                 InitializeGUIWithVocabularyData(Vocabulary);
             }
