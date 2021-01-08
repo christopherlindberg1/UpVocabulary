@@ -13,6 +13,7 @@ namespace WinformUI
 {
     public partial class FormCreateAndEdit : Form
     {
+        private AppSettings _appSettings;
         private readonly InputValidator _inputValidator = new InputValidator();
         private Vocabulary _vocabulary;
         private string[] _namesOfAllVocabulaies;
@@ -27,6 +28,16 @@ namespace WinformUI
          * ===================  Properties  ===================
          * 
          */
+
+        internal AppSettings AppSettings
+        {
+            get => _appSettings;
+
+            set => _appSettings = value ??
+                throw new ArgumentNullException(
+                    "AppSettings",
+                    "AppSettings Cannot be null");
+        }
 
         private InputValidator InputValidator
         {
@@ -97,20 +108,22 @@ namespace WinformUI
          * 
          */
 
-        public FormCreateAndEdit(string[] namesOfAllVocabularies)
+        public FormCreateAndEdit(AppSettings appSettings, string[] namesOfAllVocabularies)
         {
             InitializeComponent();
 
+            AppSettings = appSettings;
             NamesOfAllVocabularies = namesOfAllVocabularies;
             EditingExistingVocabulary = false;
 
             InitializeForm();
         }
 
-        public FormCreateAndEdit(string[] namesOfAllVocabularies, Vocabulary vocabulary)
+        public FormCreateAndEdit(AppSettings appSettings, string[] namesOfAllVocabularies, Vocabulary vocabulary)
         {
             InitializeComponent();
 
+            AppSettings = appSettings;
             NamesOfAllVocabularies = namesOfAllVocabularies;
             Vocabulary = vocabulary;
             EditingExistingVocabulary = true;
@@ -132,25 +145,100 @@ namespace WinformUI
 
         private void InitializeGUI()
         {
+            SetTextsAccordingToAppLanguage();
             FillLanguageMenusWithData();
-            //FillWordClassMenuWithData();
-            SetLanguageLabelsForOriginalWordAndTranslation();
+            //SetLanguageLabelsForOriginalWordAndTranslation();
             SetGUIToCreateState();
 
             if (Vocabulary == null)
             {
                 this.Text = "UpVocabulary - Create new Vocabulary";
-                lblHeading.Text = "Create new vocabulary";
-                //InitializeTranslationsList(false);
+                //lblHeading.Text = "Create new vocabulary";
             }
             else
             {
                 this.Text = "UpVocabulary - Edit Vocabulary";
-                lblHeading.Text = "Edit vocabulary";
+                //lblHeading.Text = "Edit vocabulary";
 
                 InitializeGUIWithVocabularyData(Vocabulary);
-                //InitializeTranslationsList(true);
             }
+        }
+
+        private void SetTextsAccordingToAppLanguage()
+        {
+            if (AppSettings == null)
+            {
+                throw new InvalidOperationException("cannot call this method is appsettings is null");
+            }
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                SetTextsToEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                SetTextsToSwedish();
+            }
+        }
+
+        private void SetTextsToEnglish()
+        {
+            // Settings the texts that vary depending on if user is creating
+            // new vocabulary or editing an existing one
+            if (EditingExistingVocabulary == false)
+            {
+                lblHeading.Text = FormCreateAndEditTexts.GetLblHeading_CreateMode_TextInEnglish();
+            }
+            else
+            {
+                lblHeading.Text = FormCreateAndEditTexts.GetLblHeading_EditMode_TextInEnglish();
+            }
+
+            // Setting texts that does not vary depending on why the user opened the form
+            lblNameOfVocabulary.Text = FormCreateAndEditTexts.GetLblNameOfVocabulary_TextInEnglish();
+            lblLanguages.Text = FormCreateAndEditTexts.GetLblLanguages_TextInEnglish();
+            lblLanguageSwitch.Text = FormCreateAndEditTexts.GetLblLanguageSwitch_TextInEnglish();
+            lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_CreateMode_TextInEnglish();
+            lblWordInOriginalLanguage.Text = FormCreateAndEditTexts.GetLblWordInOriginalLanguage_Default_TextInEnglish();
+            lblTranslationOfWord.Text = FormCreateAndEditTexts.GetLblTranslationOfWord_Default_TextInEnglish();
+            lblWordUsedInSentense.Text = FormCreateAndEditTexts.GetLblWordUsedInSentense_TextInEnglish();
+            lblWordList.Text = FormCreateAndEditTexts.GetLblWordList_TextInEnglish();
+
+            btnSaveWord.Text = FormCreateAndEditTexts.GetBtnSaveWord_TextInEnglish();
+            btnCancelWordEditing.Text = FormCreateAndEditTexts.GetBtnCancelWordEditing_TextInEnglish();
+            btnRemoveWords.Text = FormCreateAndEditTexts.GetBtnRemoveWords_TextInEnglish();
+            btnSaveVocabulary.Text = FormCreateAndEditTexts.GetBtnSaveVocabulary_TextInEnglish();
+            btnCancel.Text = FormCreateAndEditTexts.GetBtnCancel_TextInEnglish();
+        }
+
+        private void SetTextsToSwedish()
+        {
+            // Settings the texts that vary depending on if user is creating
+            // new vocabulary or editing an existing one
+            if (EditingExistingVocabulary == false)
+            {
+                lblHeading.Text = FormCreateAndEditTexts.GetLblHeading_CreateMode_TextInSwedish();
+            }
+            else
+            {
+                lblHeading.Text = FormCreateAndEditTexts.GetLblHeading_EditMode_TextInSwedish();
+            }
+
+            // Setting texts that does not vary depending on why the user opened the form
+            lblNameOfVocabulary.Text = FormCreateAndEditTexts.GetLblNameOfVocabulary_TextInSwedish();
+            lblLanguages.Text = FormCreateAndEditTexts.GetLblLanguages_TextInSwedish();
+            lblLanguageSwitch.Text = FormCreateAndEditTexts.GetLblLanguageSwitch_TextInSwedish();
+            lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_CreateMode_TextInSwedish();
+            lblWordInOriginalLanguage.Text = FormCreateAndEditTexts.GetLblWordInOriginalLanguage_Default_TextInSwedish();
+            lblTranslationOfWord.Text = FormCreateAndEditTexts.GetLblTranslationOfWord_Default_TextInSwedish();
+            lblWordUsedInSentense.Text = FormCreateAndEditTexts.GetLblWordUsedInSentense_TextInSwedish();
+            lblWordList.Text = FormCreateAndEditTexts.GetLblWordList_TextInSwedish();
+
+            btnSaveWord.Text = FormCreateAndEditTexts.GetBtnSaveWord_TextInSwedish();
+            btnCancelWordEditing.Text = FormCreateAndEditTexts.GetBtnCancelWordEditing_TextInSwedish();
+            btnRemoveWords.Text = FormCreateAndEditTexts.GetBtnRemoveWords_TextInSwedish();
+            btnSaveVocabulary.Text = FormCreateAndEditTexts.GetBtnSaveVocabulary_TextInSwedish();
+            btnCancel.Text = FormCreateAndEditTexts.GetBtnCancel_TextInSwedish();
         }
 
         private void FillLanguageMenusWithData()
@@ -160,18 +248,6 @@ namespace WinformUI
             comboBoxOriginalLanguage.Items.AddRange(languages);
             comboBoxTranslationLanguage.Items.AddRange(languages);
         }
-
-        //private void FillWordClassMenuWithData()
-        //{
-        //    string[] wordClasses = Enum.GetNames(typeof(WordClasses));
-        //    comboBoxWordClasses.Items.AddRange(wordClasses);
-        //}
-
-        //private void InitializeTranslationsList(bool visible)
-        //{
-        //    ToggleListWithTranslations(visible);
-        //    btnRemoveTranslation.Enabled = false;
-        //}
 
         private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
         {
@@ -191,13 +267,6 @@ namespace WinformUI
          * ===================  Methods  ===================
          * 
          */
-
-        //private void ToggleListWithTranslations(bool visible)
-        //{
-        //    lblTranslations.Visible = visible;
-        //    listBoxTranslations.Visible = visible;
-        //    btnRemoveTranslation.Visible = visible;
-        //}
 
         private void AddWordsToGUIList(Vocabulary vocabulary)
         {
@@ -317,16 +386,32 @@ namespace WinformUI
 
         private void SetGUIToEditState()
         {
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_EditMode_TextInEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_EditMode_TextInSwedish();
+            }
+
             btnRemoveWords.Enabled = true;
             btnCancelWordEditing.Enabled = true;
-            lblWordTitle.Text = "Edit word";
         }
 
         private void SetGUIToCreateState()
         {
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_CreateMode_TextInEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblWordTitle.Text = FormCreateAndEditTexts.GetLblWordTitle_CreateMode_TextInSwedish();
+            }
+
             btnRemoveWords.Enabled = false;
             btnCancelWordEditing.Enabled = false;
-            lblWordTitle.Text = "Add word";
             listBoxWords.SelectedIndex = -1;
             ClearWordInputFields();
         }
@@ -347,17 +432,47 @@ namespace WinformUI
 
         private void SetLanguageLabelsForOriginalWordAndTranslation()
         {
-            if (comboBoxOriginalLanguage.SelectedIndex != -1)
+            if (AppSettings.AppLanguage == AppLanguages.English)
             {
-                lblWordInOriginalLanguage.Text =
-                    $"Word in { comboBoxOriginalLanguage.SelectedItem }";
-            }
+                if (comboBoxOriginalLanguage.SelectedIndex != -1)
+                {
+                    lblWordInOriginalLanguage.Text =
+                        FormCreateAndEditTexts.GetLblWordInOriginalLanguage_SpecificToLanguage_TextInEnglish
+                        (
+                            comboBoxOriginalLanguage.SelectedItem.ToString()
+                        );
+                }
 
-            if (comboBoxTranslationLanguage.SelectedIndex != -1)
-            {
-                lblTranslationOfWord.Text =
-                    $"Add translation to { comboBoxTranslationLanguage.SelectedItem }";
+                if (comboBoxTranslationLanguage.SelectedIndex != -1)
+                {
+                    lblTranslationOfWord.Text = 
+                        FormCreateAndEditTexts.GetLblTranslationOfWord_SpecificToLanguage_TextInEnglish
+                        (
+                            comboBoxTranslationLanguage.SelectedItem.ToString()
+                        );
+                }
             }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                if (comboBoxOriginalLanguage.SelectedIndex != -1)
+                {
+                    lblWordInOriginalLanguage.Text =
+                        FormCreateAndEditTexts.GetLblWordInOriginalLanguage_SpecificToLanguage_TextInSwedish
+                        (
+                            comboBoxOriginalLanguage.SelectedItem.ToString()
+                        );
+                }
+
+                if (comboBoxTranslationLanguage.SelectedIndex != -1)
+                {
+                    lblTranslationOfWord.Text =
+                        FormCreateAndEditTexts.GetLblTranslationOfWord_SpecificToLanguage_TextInSwedish
+                        (
+                            comboBoxTranslationLanguage.SelectedItem.ToString()
+                        );
+                }
+            }
+            
         }
 
         private void SaveVocabularyData()
@@ -428,18 +543,6 @@ namespace WinformUI
          * ===================  Event Handlers  ===================
          * 
          */
-
-        //private void ListBoxTranslationasIndexChanged_EventHandler()
-        //{
-        //    if (listBoxTranslations.SelectedIndex == -1)
-        //    {
-        //        btnRemoveTranslation.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        btnRemoveTranslation.Enabled = true;
-        //    }
-        //}
 
         private void ListBoxWordsSelectedIndexChanged_EventHandler()
         {
@@ -580,11 +683,6 @@ namespace WinformUI
             SetLanguageLabelsForOriginalWordAndTranslation();
         }
 
-        private void btnAddTranslation_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSaveWord_Click(object sender, EventArgs e)
         {
             SaveWord_EventHandler();
@@ -609,10 +707,5 @@ namespace WinformUI
         {
             CancelVocabularyChanges_EventHandler();
         }
-
-        //private void listBoxTranslations_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    ListBoxTranslationasIndexChanged_EventHandler();
-        //}
     }
 }
