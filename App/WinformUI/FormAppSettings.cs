@@ -67,7 +67,85 @@ namespace WinformUI
 
         public void InitializeGUI()
         {
+            SetTextsAccordingToAppLanguage();
             InitializeAppSettingsInGUI();
+        }
+
+        private void SetTextsAccordingToAppLanguage()
+        {
+            if (AppSettings == null)
+            {
+                throw new InvalidOperationException("Cannot call this method if AppSettings is null");
+            }
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                SetTextsToEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                SetTextsToSwedish();
+            }
+        }
+
+        private void SetTextsToEnglish()
+        {
+            // Heading elements
+            lblSettingsHeading.Text = FormAppSettingsTexts.GetLblSettingsHeading_TextInEnglish();
+
+            // Language elements
+            lblLanguage.Text = FormAppSettingsTexts.GetLblLanguage_TextInEnglish();
+            btnLanguageEnglish.Text = FormAppSettingsTexts.GetBtnLanguageEnglish_TextInEnglish();
+            btnLanguageSwedish.Text = FormAppSettingsTexts.GetBtnLanguageSwedish_TextInEnglish();
+
+            // Auto prompt elements
+            lblAutoPrompt.Text = FormAppSettingsTexts.GetLblAutoPrompt_TextInEnglish();
+            
+            lblAutoPromptCorrect.Text = FormAppSettingsTexts.GetLblAutoPromptCorrect_TextInEnglish();
+            btnAutoPromptCorrectYes.Text = FormAppSettingsTexts.GetBtnAutoPromptCorrectYes_TextInEnglish();
+            btnAutoPromptCorrectNo.Text = FormAppSettingsTexts.GetBtnAutoPromptCorrectNo_TextInEnglish();
+
+            lblAutoPromptIncorrect.Text = FormAppSettingsTexts.GetLblAutoPromptIncorrect_TextInEnglish();
+            btnAutoPromptIncorrectYes.Text = FormAppSettingsTexts.GetBtnAutoPromptIncorrectYes_TextInEnglish();
+            btnAutoPromptIncorrectNo.Text = FormAppSettingsTexts.GetBtnAutoPromptIncorrectNo_TextInEnglish();
+
+            // Delay prompt elements
+            lblDelayBeforePrompt.Text = FormAppSettingsTexts.GetLblDelayBeforePrompt_TextInEnglish();
+            lblDelayBeforePromptCorrect.Text = FormAppSettingsTexts.GetLblDelayBeforePromptCorrect_TextInEnglish();
+            lblDelayBeforePromptIncorrect.Text = FormAppSettingsTexts.GetLblDelayBeforePromptIncorrect_TextInEnglish();
+
+            // Buttons
+            btnSaveSettings.Text = FormAppSettingsTexts.GetBtnSaveSettings_TextInEnglish();
+        }
+
+        private void SetTextsToSwedish()
+        {
+            // Heading elements
+            lblSettingsHeading.Text = FormAppSettingsTexts.GetLblSettingsHeading_TextInSwedish();
+
+            // Language elements
+            lblLanguage.Text = FormAppSettingsTexts.GetLblLanguage_TextInSwedish();
+            btnLanguageEnglish.Text = FormAppSettingsTexts.GetBtnLanguageEnglish_TextInSwedish();
+            btnLanguageSwedish.Text = FormAppSettingsTexts.GetBtnLanguageSwedish_TextInSwedish();
+
+            // Auto prompt elements
+            lblAutoPrompt.Text = FormAppSettingsTexts.GetLblAutoPrompt_TextInSwedish();
+
+            lblAutoPromptCorrect.Text = FormAppSettingsTexts.GetLblAutoPromptCorrect_TextInSwedish();
+            btnAutoPromptCorrectYes.Text = FormAppSettingsTexts.GetBtnAutoPromptCorrectYes_TextInSwedish();
+            btnAutoPromptCorrectNo.Text = FormAppSettingsTexts.GetBtnAutoPromptCorrectNo_TextInSwedish();
+
+            lblAutoPromptIncorrect.Text = FormAppSettingsTexts.GetLblAutoPromptIncorrect_TextInSwedish();
+            btnAutoPromptIncorrectYes.Text = FormAppSettingsTexts.GetBtnAutoPromptIncorrectYes_TextInSwedish();
+            btnAutoPromptIncorrectNo.Text = FormAppSettingsTexts.GetBtnAutoPromptIncorrectNo_TextInSwedish();
+
+            // Delay prompt elements
+            lblDelayBeforePrompt.Text = FormAppSettingsTexts.GetLblDelayBeforePrompt_TextInSwedish();
+            lblDelayBeforePromptCorrect.Text = FormAppSettingsTexts.GetLblDelayBeforePromptCorrect_TextInSwedish();
+            lblDelayBeforePromptIncorrect.Text = FormAppSettingsTexts.GetLblDelayBeforePromptIncorrect_TextInSwedish();
+
+            // Buttons
+            btnSaveSettings.Text = FormAppSettingsTexts.GetBtnSaveSettings_TextInSwedish();
         }
 
         private void InitializeAppSettingsInGUI()
@@ -82,6 +160,7 @@ namespace WinformUI
         /// </summary>
         private void UpdateGUIAccordingToAppSettings()
         {
+            SetTextsAccordingToAppLanguage();
             SetLanguageSettingInGUI();
             SetAutoPromptSettingsInGUI();
         }
