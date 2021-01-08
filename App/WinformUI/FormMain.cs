@@ -362,101 +362,6 @@ namespace WinformUI
             }
         }
 
-        private void LoadSampleData()
-        {
-            Word v1w1 = new Word
-            (
-                "also",
-                "också",
-                "",
-                5,
-                0
-            );
-            Word v1w2 = new Word
-            (
-                "paper",
-                "papper",
-                "",
-                5,
-                0
-            );
-            Word v1w3 = new Word
-            (
-                "zoo",
-                "zoo",
-                "",
-                5,
-                0
-            );
-
-            List<Word> v1words = new List<Word> { v1w1, v1w2, v1w3 };
-            Vocabulary vocabulary1 = new Vocabulary("D is for Digital", v1words, "English", "Swedish");
-
-
-
-            Word v2w1 = new Word
-            (
-                "also",
-                "också",
-                "Aaa aa aaaa",
-                5,
-                0
-            );
-            Word v2w2 = new Word
-            (
-                "paper",
-                "papper",
-                "Ccc!",
-                5,
-                0
-            );
-            Word v2w3 = new Word
-            (
-                "zoo",
-                "zoo",
-                "Eeee ee ee eee",
-                5,
-                0
-            );
-
-            List<Word> v2words = new List<Word> { v2w1, v2w2, v2w3 };
-            Vocabulary vocabulary2 = new Vocabulary("Learn C#", v2words, "English", "Swedish");
-
-
-
-            Word v3w1 = new Word
-            (
-                "also",
-                "också",
-                "Aaa aa aaaa",
-                5,
-                0
-            );
-            Word v3w2 = new Word
-            (
-                "paper",
-                "papper",
-                "Ccc!",
-                5,
-                0
-            );
-            Word v3w3 = new Word
-            (
-                "zoo",
-                "zoo",
-                "Eeee ee ee eee",
-                5,
-                0
-            );
-
-            List<Word> v3words = new List<Word> { v3w1, v3w2, v3w3 };
-            Vocabulary vocabulary3 = new Vocabulary("Software engineering", v3words, "English", "Swedish");
-
-            VocabularyManager.AddVocabulary(vocabulary1);
-            VocabularyManager.AddVocabulary(vocabulary2);
-            VocabularyManager.AddVocabulary(vocabulary3);
-        }
-
         private void AddDataToGUI()
         {
             UpdateVocabulariesInGUI();   
@@ -508,7 +413,7 @@ namespace WinformUI
 
         private void CreateVocabulary_EventHandler()
         {
-            CreateAndEditForm = new FormCreateAndEdit(
+            CreateAndEditForm = new FormCreateAndEdit(AppSettings,
                 VocabularyManager.GetNamesForAllVocabularies());
 
             DialogResult result = CreateAndEditForm.ShowDialog();
@@ -546,6 +451,7 @@ namespace WinformUI
             Vocabulary copyOfVocabulary = VocabularyManager.GetCopyOfVocabulary(selectedIndex);
 
             CreateAndEditForm = new FormCreateAndEdit(
+                AppSettings,
                 VocabularyManager.GetNamesForAllVocabularies(),
                 copyOfVocabulary);
 
@@ -553,6 +459,8 @@ namespace WinformUI
 
             if (result == DialogResult.Yes)
             {
+                MessageBox.Show("Yes");
+
                 Vocabulary originalVocabulary = VocabularyManager.GetVocabularyAt(selectedIndex);
 
                 VocabularyManager.UpdateVocabulary(originalVocabulary, copyOfVocabulary);
