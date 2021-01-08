@@ -12,6 +12,13 @@ namespace WinformUI
     /// </summary>
     class FormCreateAndEditTexts
     {
+        // Form title
+        public static string GetFormTitle_CreateMode_TextInEnglish() => "UpVocabulary - Create new vocabulary";
+        public static string GetFormTitle_CreateMode_TextInSwedish() => "UpVocabulary - Skapa ny ordlista";
+        public static string GetFormTitle_EditMode_TextInEnglish() => "UpVocabulary - Edit vocabulary";
+        public static string GetFormTitle_EditMode_TextInSwedish() => "UpVocabulary - Redigera ordlista";
+
+
         // Heading
         public static string GetLblHeading_CreateMode_TextInEnglish() => "Create new vocabulary";
         public static string GetLblHeading_CreateMode_TextInSwedish() => "Skapa ny ordlista";
