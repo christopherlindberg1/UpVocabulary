@@ -32,10 +32,10 @@ namespace WinformUI
             this.lblHeading = new System.Windows.Forms.Label();
             this.lblNameOfVocabulary = new System.Windows.Forms.Label();
             this.textBoxNameOfVocabulary = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLanguages = new System.Windows.Forms.Label();
             this.comboBoxOriginalLanguage = new System.Windows.Forms.ComboBox();
             this.comboBoxTranslationLanguage = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblLanguageSwitch = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblWordTitle = new System.Windows.Forms.Label();
             this.lblWordInOriginalLanguage = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@ namespace WinformUI
             this.textBoxWordTranslationToOtherLanguage = new System.Windows.Forms.TextBox();
             this.lblTranslationOfWord = new System.Windows.Forms.Label();
             this.textBoxWordUsedInSentence = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblWordUsedInSentense = new System.Windows.Forms.Label();
             this.btnSaveWord = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSaveVocabulary = new System.Windows.Forms.Button();
@@ -82,15 +82,15 @@ namespace WinformUI
             this.textBoxNameOfVocabulary.Size = new System.Drawing.Size(381, 27);
             this.textBoxNameOfVocabulary.TabIndex = 2;
             // 
-            // label1
+            // lblLanguages
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 125);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Languages";
+            this.lblLanguages.AutoSize = true;
+            this.lblLanguages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguages.Location = new System.Drawing.Point(32, 125);
+            this.lblLanguages.Name = "lblLanguages";
+            this.lblLanguages.Size = new System.Drawing.Size(91, 20);
+            this.lblLanguages.TabIndex = 3;
+            this.lblLanguages.Text = "Languages";
             // 
             // comboBoxOriginalLanguage
             // 
@@ -112,15 +112,15 @@ namespace WinformUI
             this.comboBoxTranslationLanguage.TabIndex = 5;
             this.comboBoxTranslationLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxTranslationLanguage_SelectedIndexChanged);
             // 
-            // label2
+            // lblLanguageSwitch
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(185, 151);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "to";
+            this.lblLanguageSwitch.AutoSize = true;
+            this.lblLanguageSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLanguageSwitch.Location = new System.Drawing.Point(189, 151);
+            this.lblLanguageSwitch.Name = "lblLanguageSwitch";
+            this.lblLanguageSwitch.Size = new System.Drawing.Size(23, 20);
+            this.lblLanguageSwitch.TabIndex = 6;
+            this.lblLanguageSwitch.Text = "to";
             // 
             // label3
             // 
@@ -187,15 +187,15 @@ namespace WinformUI
             this.textBoxWordUsedInSentence.Size = new System.Drawing.Size(380, 123);
             this.textBoxWordUsedInSentence.TabIndex = 14;
             // 
-            // label5
+            // lblWordUsedInSentense
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(34, 363);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(256, 20);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Word used in sentence (optional)";
+            this.lblWordUsedInSentense.AutoSize = true;
+            this.lblWordUsedInSentense.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWordUsedInSentense.Location = new System.Drawing.Point(34, 363);
+            this.lblWordUsedInSentense.Name = "lblWordUsedInSentense";
+            this.lblWordUsedInSentense.Size = new System.Drawing.Size(256, 20);
+            this.lblWordUsedInSentense.TabIndex = 13;
+            this.lblWordUsedInSentense.Text = "Word used in sentence (optional)";
             // 
             // btnSaveWord
             // 
@@ -301,17 +301,17 @@ namespace WinformUI
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSaveWord);
             this.Controls.Add(this.textBoxWordUsedInSentence);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblWordUsedInSentense);
             this.Controls.Add(this.textBoxWordTranslationToOtherLanguage);
             this.Controls.Add(this.lblTranslationOfWord);
             this.Controls.Add(this.textBoxWordInOriginalLanguage);
             this.Controls.Add(this.lblWordInOriginalLanguage);
             this.Controls.Add(this.lblWordTitle);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblLanguageSwitch);
             this.Controls.Add(this.comboBoxTranslationLanguage);
             this.Controls.Add(this.comboBoxOriginalLanguage);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLanguages);
             this.Controls.Add(this.textBoxNameOfVocabulary);
             this.Controls.Add(this.lblNameOfVocabulary);
             this.Controls.Add(this.lblHeading);
@@ -327,10 +327,10 @@ namespace WinformUI
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label lblNameOfVocabulary;
         private System.Windows.Forms.TextBox textBoxNameOfVocabulary;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLanguages;
         private System.Windows.Forms.ComboBox comboBoxOriginalLanguage;
         private System.Windows.Forms.ComboBox comboBoxTranslationLanguage;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLanguageSwitch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblWordTitle;
         private System.Windows.Forms.Label lblWordInOriginalLanguage;
@@ -338,7 +338,7 @@ namespace WinformUI
         private System.Windows.Forms.TextBox textBoxWordTranslationToOtherLanguage;
         private System.Windows.Forms.Label lblTranslationOfWord;
         private System.Windows.Forms.TextBox textBoxWordUsedInSentence;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblWordUsedInSentense;
         private System.Windows.Forms.Button btnSaveWord;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSaveVocabulary;
