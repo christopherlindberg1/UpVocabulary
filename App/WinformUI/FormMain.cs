@@ -193,13 +193,13 @@ namespace WinformUI
         private void ConfigureGUIOnInit()
         {
             ConfigureListViewVocabularies();
-            SetTextAccordingToLanguage();
+            SetTextsAccordingToAppLanguage();
             SetGUIToViewState();
         }
 
         private void UpdateGUIToMatchAppSettings()
         {
-            SetTextAccordingToLanguage();
+            SetTextsAccordingToAppLanguage();
             SetGUIToViewState();
         }
 
@@ -228,7 +228,7 @@ namespace WinformUI
             listViewVocabularies.GridLines = true;
         }
 
-        private void SetTextAccordingToLanguage()
+        private void SetTextsAccordingToAppLanguage()
         {
             if (AppSettings == null)
             {
@@ -237,42 +237,42 @@ namespace WinformUI
 
             if (AppSettings.AppLanguage == AppLanguages.English)
             {
-                SetTextToEnglish();
+                SetTextsToEnglish();
             }
             else if (AppSettings.AppLanguage == AppLanguages.Swedish)
             {
-                SetTextToSwedish();
+                SetTextsToSwedish();
             }
         }
 
-        private void SetTextToEnglish()
+        private void SetTextsToEnglish()
         {
-            lblHeading.Text = FormMainTexts.GetLblHeadingTextInEnglish();
+            lblHeading.Text = FormMainTexts.GetLblHeading_TextInEnglish();
 
-            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabularyTextInEnglish();
-            btnStartPractice.Text = FormMainTexts.GetBtnStartPracticeTextInEnglish();
-            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabularyTextInEnglish();
-            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabulariesTextInEnglish();
+            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabulary_TextInEnglish();
+            btnStartPractice.Text = FormMainTexts.GetBtnStartPractice_TextInEnglish();
+            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabulary_TextInEnglish();
+            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabularies_TextInEnglish();
 
-            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_NameTextInEnglish();
-            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWordsTextInEnglish();
-            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_LanguagesTextInEnglish();
-            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsedTextInEnglish();
+            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_Name_TextInEnglish();
+            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWords_TextInEnglish();
+            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_Languages_TextInEnglish();
+            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsed_TextInEnglish();
         }
 
-        private void SetTextToSwedish()
+        private void SetTextsToSwedish()
         {
-            lblHeading.Text = FormMainTexts.GetLblHeadingTextInSwedish();
+            lblHeading.Text = FormMainTexts.GetLblHeading_TextInSwedish();
 
-            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabularyTextInSwedish();
-            btnStartPractice.Text = FormMainTexts.GetBtnStartPracticeTextInSwedish();
-            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabularyTextInSwedish();
-            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabulariesTextInSwedish();
+            btnCreateNewVocabulary.Text = FormMainTexts.GetBtnCreateNewVocabulary_TextInSwedish();
+            btnStartPractice.Text = FormMainTexts.GetBtnStartPractice_TextInSwedish();
+            btnEditVocabulary.Text = FormMainTexts.GetBtnEditVocabulary_TextInSwedish();
+            btnRemoveVocabularies.Text = FormMainTexts.GetBtnRemoveVocabularies_TextInSwedish();
 
-            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_NameTextInSwedish();
-            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWordsTextInSwedish();
-            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_LanguagesTextInSwedish();
-            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsedTextInSwedish();
+            listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_Name_TextInSwedish();
+            listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWords_TextInSwedish();
+            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_Languages_TextInSwedish();
+            listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsed_TextInSwedish();
         }
 
         private void SetGUIToViewState()

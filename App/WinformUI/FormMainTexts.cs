@@ -13,36 +13,36 @@ namespace WinformUI
     class FormMainTexts
     {
         // Heading
-        public static string GetLblHeadingTextInEnglish() => "Your vocabularies";
-        public static string GetLblHeadingTextInSwedish() => "Dina ordlistor";
+        public static string GetLblHeading_TextInEnglish() => "Your vocabularies";
+        public static string GetLblHeading_TextInSwedish() => "Dina ordlistor";
 
 
         // Buttons
-        public static string GetBtnCreateNewVocabularyTextInEnglish() => "Create new vocabulary";
-        public static string GetBtnCreateNewVocabularyTextInSwedish() => "Skapa ny ordlista";
+        public static string GetBtnCreateNewVocabulary_TextInEnglish() => "Create new vocabulary";
+        public static string GetBtnCreateNewVocabulary_TextInSwedish() => "Skapa ny ordlista";
 
-        public static string GetBtnStartPracticeTextInEnglish() => "Practice";
-        public static string GetBtnStartPracticeTextInSwedish() => "Öva";
+        public static string GetBtnStartPractice_TextInEnglish() => "Practice";
+        public static string GetBtnStartPractice_TextInSwedish() => "Öva";
 
-        public static string GetBtnEditVocabularyTextInEnglish() => "Edit";
-        public static string GetBtnEditVocabularyTextInSwedish() => "Redigera";
+        public static string GetBtnEditVocabulary_TextInEnglish() => "Edit";
+        public static string GetBtnEditVocabulary_TextInSwedish() => "Redigera";
 
-        public static string GetBtnRemoveVocabulariesTextInEnglish() => "Remove";
-        public static string GetBtnRemoveVocabulariesTextInSwedish() => "Ta bort";
+        public static string GetBtnRemoveVocabularies_TextInEnglish() => "Remove";
+        public static string GetBtnRemoveVocabularies_TextInSwedish() => "Ta bort";
 
 
         // Listview column names
-        public static string GetListViewVocabularies_NameTextInEnglish() => "Name";
-        public static string GetListViewVocabularies_NameTextInSwedish() => "Namn";
+        public static string GetListViewVocabularies_Name_TextInEnglish() => "Name";
+        public static string GetListViewVocabularies_Name_TextInSwedish() => "Namn";
 
-        public static string GetListViewVocabularies_NrOfWordsTextInEnglish() => "Nr of words";
-        public static string GetListViewVocabularies_NrOfWordsTextInSwedish() => "Antal ord";
+        public static string GetListViewVocabularies_NrOfWords_TextInEnglish() => "Nr of words";
+        public static string GetListViewVocabularies_NrOfWords_TextInSwedish() => "Antal ord";
         
-        public static string GetListViewVocabularies_LanguagesTextInEnglish() => "Languages";
-        public static string GetListViewVocabularies_LanguagesTextInSwedish() => "Språk";
+        public static string GetListViewVocabularies_Languages_TextInEnglish() => "Languages";
+        public static string GetListViewVocabularies_Languages_TextInSwedish() => "Språk";
         
-        public static string GetListViewVocabularies_DateLastUsedTextInEnglish() => "Last time used";
-        public static string GetListViewVocabularies_DateLastUsedTextInSwedish() => "Senast använd";
+        public static string GetListViewVocabularies_DateLastUsed_TextInEnglish() => "Last time used";
+        public static string GetListViewVocabularies_DateLastUsed_TextInSwedish() => "Senast använd";
 
 
     }
