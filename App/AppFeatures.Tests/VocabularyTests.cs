@@ -282,25 +282,7 @@ namespace AppFeatures.Tests
          * Test weighted random word generator.
          */
 
-        [Fact]
-        public void GetVocabularyInfo_ShouldWork()
-        {
-            // Arrange
-            string expectedName = "D is for Digital";
-            string expectedNrOfWords = "3";
-            string expectedLanguages = "English - Swedish";
-
-            // Act
-            Dictionary<string, string> actualValue = SampleVocabulary.GetVocabularyInfo();
-            string actualName = actualValue["name"];
-            string actualNrOfWords = actualValue["nrOfWords"];
-            string actualLanguages = actualValue["languages"];
-
-            // Assert
-            Assert.Equal(expectedName, actualName);
-            Assert.Equal(expectedNrOfWords, actualNrOfWords);
-            Assert.Equal(expectedLanguages, actualLanguages);
-        }
+        
 
         /// <summary>
         ///   Runs a simulation to verify that the weighted random word generator
