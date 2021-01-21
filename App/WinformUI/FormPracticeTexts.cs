@@ -90,8 +90,8 @@ namespace WinformUI
         public static string GetBtnSubmitTranslation_TextInEnglish() => "Submit";
         public static string GetBtnSubmitTranslation_TextInSwedish() => "Svara";
         
-        public static string GetBtnNextWord_TextInEnglish() => "Next word";
-        public static string GetBtnNextWord_TextInSwedish() => "Nästa ord";
+        public static string GetBtnGetNextWord_TextInEnglish() => "Next word";
+        public static string GetBtnGetNextWord_TextInSwedish() => "Nästa ord";
 
         public static string GetBtnPracticeAgain_TextInEnglish() => "Practice again";
         public static string GetBtnPracticeAgain_TextInSwedish() => "Träna igen";

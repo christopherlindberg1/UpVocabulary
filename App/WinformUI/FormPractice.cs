@@ -295,17 +295,37 @@ namespace WinformUI
 
             lblHeading.Text = FormPracticeTexts.GetLblHeading_TextInEnglish(Vocabulary.Name);
             lblTranslation.Text = FormPracticeTexts.GetLblTranslation_TextInEnglish();
+            lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInEnglish();
+            lblScore.Text = FormPracticeTexts.GetLblScore_TextInEnglish();
+
+            btnSubmitTranslation.Text = FormPracticeTexts.GetBtnSubmitTranslation_TextInEnglish();
+            btnGetNextWord.Text = FormPracticeTexts.GetBtnGetNextWord_TextInEnglish();
+            btnEndPractice.Text = FormPracticeTexts.GetBtnEndPractice_TextInEnglish();
+            btnPracticeAgain.Text = FormPracticeTexts.GetBtnPracticeAgain_TextInEnglish();
+
+            lblResults.Text = FormPracticeTexts.GetLblResults_TextInEnglish();
+            
+            UpdateScoreInGUI();
         }
 
         private void SetTextsToSwedish()
         {
-            
-        }
+            this.Text = FormPracticeTexts.GetFormTitle_TextInSwedish();
 
-        //private void InitializeDescription()
-        //{
-        //    lblHeading.Text = $"Words from { Vocabulary.Name }";
-        //}
+            lblHeading.Text = FormPracticeTexts.GetLblHeading_TextInSwedish(Vocabulary.Name);
+            lblTranslation.Text = FormPracticeTexts.GetLblTranslation_TextInSwedish();
+            lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInSwedish();
+            lblScore.Text = FormPracticeTexts.GetLblScore_TextInSwedish();
+
+            btnSubmitTranslation.Text = FormPracticeTexts.GetBtnSubmitTranslation_TextInSwedish();
+            btnGetNextWord.Text = FormPracticeTexts.GetBtnGetNextWord_TextInSwedish();
+            btnEndPractice.Text = FormPracticeTexts.GetBtnEndPractice_TextInSwedish();
+            btnPracticeAgain.Text = FormPracticeTexts.GetBtnPracticeAgain_TextInSwedish();
+
+            lblResults.Text = FormPracticeTexts.GetLblResults_TextInSwedish();
+
+            UpdateScoreInGUI();
+        }
 
         private void InitializeCorrectOrWrong()
         {
@@ -400,7 +420,18 @@ namespace WinformUI
                 translationLanguage = OriginalLanguage;
             }
 
-            lblWordToTranslate.Text = $"Translate '{ wordToTranslate }' to { translationLanguage }";
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblWordToTranslate.Text =
+                    FormPracticeTexts.GetLblWordToTranslate_TextInEnglish(
+                        wordToTranslate, translationLanguage);
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblWordToTranslate.Text =
+                    FormPracticeTexts.GetLblWordToTranslate_TextInSwedish(
+                        wordToTranslate, translationLanguage);
+            }
         }
 
         private void UpdateSentenceSection()
@@ -609,7 +640,15 @@ namespace WinformUI
 
         private void ShowAnswerIsCorrect()
         {
-            lblCorrectOrWrong.Text = "Correct";
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblCorrectOrWrong.Text = FormPracticeTexts.GetLblCorrectOrWrong_Correct_TextInEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblCorrectOrWrong.Text = FormPracticeTexts.GetLblCorrectOrWrong_Correct_TextInSwedish();
+            }
+
             lblCorrectOrWrong.BackColor = Color.Green;
             lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
@@ -622,31 +661,66 @@ namespace WinformUI
             string correctAnswer = (PromptWithOriginalLanguage == true)
                 ? CurrentWord.Translation : CurrentWord.OriginalWord;
 
-            lblCorrectOrWrong.Text = "Wrong";
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblCorrectOrWrong.Text = FormPracticeTexts.GetLblCorrectOrWrong_Wrong_TextInEnglish();
+                lblCorrectTranslation.Text =
+                    FormPracticeTexts.GetLblCorrectTranslation_TextInEnglish(correctAnswer);
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblCorrectOrWrong.Text = FormPracticeTexts.GetLblCorrectOrWrong_Wrong_TextInSwedish();
+                lblCorrectTranslation.Text =
+                    FormPracticeTexts.GetLblCorrectTranslation_TextInSwedish(correctAnswer);
+            }
+
             lblCorrectOrWrong.BackColor = Color.Red;
             lblCorrectOrWrong.ForeColor = Color.White;
             lblCorrectOrWrong.Visible = true;
-            lblCorrectTranslation.Text = $"The correct translation is '{ correctAnswer }'";
         }
 
         private void ToggleScore()
         {
-            if (groupBoxScore.Visible)
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
             {
-                lblToggleScore.Text = "Show score";
+                if (groupBoxScore.Visible)
+                {
+                    lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Show_TextInEnglish();
+                }
+                else
+                {
+                    lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInEnglish();
+                }
             }
-            else
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
             {
-                lblToggleScore.Text = "Hide score";
+                if (groupBoxScore.Visible)
+                {
+                    lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Show_TextInSwedish();
+                }
+                else
+                {
+                    lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInSwedish();
+                }
             }
 
             groupBoxScore.Visible = !groupBoxScore.Visible;
         }
 
-        private void ToggleScore(bool visible)
+        private void ShowScore()
         {
-            groupBoxScore.Visible = visible;
-            lblToggleScore.Text = "Hide score";
+            groupBoxScore.Visible = true;
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblToggleScore.Text = FormPracticeTexts.GetLblToggleScore_Hide_TextInSwedish();
+            }
+
         }
 
         private void UpdateScore(bool userAnsweredCorrenctly)
@@ -665,14 +739,27 @@ namespace WinformUI
 
         private void UpdateScoreInGUI()
         {
-            lblNrOfCorrectAnswers.Text =
-                $"{ Score["correct"] } / { Score["correct"] + Score["wrong"] } correct";
+            string correctAnswers = Score["correct"].ToString();
+            string totalAmountOfAnswers = (Score["correct"] + Score["wrong"]).ToString();
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                lblNrOfCorrectAnswers.Text = FormPracticeTexts.GetLblNrOfCorrectAnswers_TextInEnglish(
+                    correctAnswers,
+                    totalAmountOfAnswers);
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                lblNrOfCorrectAnswers.Text = FormPracticeTexts.GetLblNrOfCorrectAnswers_TextInSwedish(
+                    correctAnswers,
+                    totalAmountOfAnswers);
+            }
         }
 
         private void ShowResults()
         {
             // Prepare GUI to show results
-            ToggleScore(true);
+            ShowScore();
             lblHeading.Focus();
             FillResultsList();
             TogglePracticeElements(false);
