@@ -243,8 +243,8 @@ namespace WinformUI
         {
             InitializeComponent();
 
-            AppSettings = appSettings;
             Vocabulary = vocabulary;
+            AppSettings = appSettings;
             OriginalLanguage = Vocabulary.OriginalLanguage;
             TranslationLanguage = Vocabulary.TranslationLanguage;
             NrOfWordsToPracticeWith = nrOfWordsToPracticeWith;
@@ -264,17 +264,48 @@ namespace WinformUI
 
         private void InitializeGUI()
         {
-            InitializeDescription();
+            SetTextsAccordingToAppLanguage();
+            //InitializeDescription();
             InitializeCorrectOrWrong();
             ToggleBtnNextWord(false);
             InitializeResultsSection();
             btnPracticeAgain.Visible = false;
         }
 
-        private void InitializeDescription()
+        private void SetTextsAccordingToAppLanguage()
         {
-            lblHeading.Text = $"Words from { Vocabulary.Name }";
+            if (AppSettings == null)
+            {
+                throw new InvalidOperationException("Cannot call this method is AppSettings is null");
+            }
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                SetTextsToEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                SetTextsToSwedish();
+            }
         }
+
+        private void SetTextsToEnglish()
+        {
+            this.Text = FormPracticeTexts.GetFormTitle_TextInEnglish();
+
+            lblHeading.Text = FormPracticeTexts.GetLblHeading_TextInEnglish(Vocabulary.Name);
+            lblTranslation.Text = FormPracticeTexts.GetLblTranslation_TextInEnglish();
+        }
+
+        private void SetTextsToSwedish()
+        {
+            
+        }
+
+        //private void InitializeDescription()
+        //{
+        //    lblHeading.Text = $"Words from { Vocabulary.Name }";
+        //}
 
         private void InitializeCorrectOrWrong()
         {
@@ -399,15 +430,33 @@ namespace WinformUI
 
         private void ToggleSentence(bool visible)
         {
-            if (visible)
+            if (AppSettings.AppLanguage == AppLanguages.English)
             {
-                lblToggleSentence.Text = $"Hide sentence";
+                if (visible)
+                {
+                    lblToggleSentence.Text = FormPracticeTexts.GetLblToggleSentence_Hide_TextInEnglish();
+                }
+                else
+                {
+                    lblToggleSentence.Text =
+                        FormPracticeTexts.GetLblToggleSentence_Show_TextInEnglish(
+                            CurrentWord.OriginalWord);
+                }
             }
-            else
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
             {
-                lblToggleSentence.Text = $"Show '{ CurrentWord.OriginalWord }' used in a sentence";
+                if (visible)
+                {
+                    lblToggleSentence.Text = FormPracticeTexts.GetLblToggleSentence_Hide_TextInSwedish();
+                }
+                else
+                {
+                    lblToggleSentence.Text =
+                        FormPracticeTexts.GetLblToggleSentence_Show_TextInSwedish(
+                            CurrentWord.OriginalWord);
+                }
             }
-
+            
             lblWordUsedInSentence.Visible = visible;
         }
 
