@@ -208,15 +208,17 @@ namespace WinformUI
             // Setting width for columns
             listViewVocabularies.Columns[0].Width = 225;     // Name
             listViewVocabularies.Columns[1].Width = 95;      // Nr of words
-            listViewVocabularies.Columns[2].Width = 165;     // Languages
-            listViewVocabularies.Columns[3].Width = 120;     // Languages
+            listViewVocabularies.Columns[2].Width = 165;     // Original language
+            listViewVocabularies.Columns[3].Width = 165;     // Translation language
+            listViewVocabularies.Columns[4].Width = 120;     // Languages
 
             listViewVocabularies.Width =
                 listViewVocabularies.Columns[0].Width +
                 listViewVocabularies.Columns[1].Width +
                 listViewVocabularies.Columns[2].Width +
                 listViewVocabularies.Columns[3].Width +
-                4;
+                listViewVocabularies.Columns[4].Width +
+                5;
 
             // Set the view to show details.
             listViewVocabularies.View = View.Details;
@@ -256,7 +258,8 @@ namespace WinformUI
 
             listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_Name_TextInEnglish();
             listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWords_TextInEnglish();
-            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_Languages_TextInEnglish();
+            listViewVocabularies_OriginalLanguage.Text = FormMainTexts.GetListViewVocabularies_OriginalLanguage_TextInEnglish();
+            listViewVocabularies_TranslationLanguage.Text = FormMainTexts.GetListViewVocabularies_TranslationLanguage_TextInEnglish();
             listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsed_TextInEnglish();
         }
 
@@ -271,7 +274,8 @@ namespace WinformUI
 
             listViewVocabularies_Name.Text = FormMainTexts.GetListViewVocabularies_Name_TextInSwedish();
             listViewVocabularies_NrOfWords.Text = FormMainTexts.GetListViewVocabularies_NrOfWords_TextInSwedish();
-            listViewVocabularies_Languages.Text = FormMainTexts.GetListViewVocabularies_Languages_TextInSwedish();
+            listViewVocabularies_OriginalLanguage.Text = FormMainTexts.GetListViewVocabularies_OriginalLanguage_TextInSwedish();
+            listViewVocabularies_TranslationLanguage.Text = FormMainTexts.GetListViewVocabularies_TranslationLanguage_TextInSwedish();
             listViewVocabularies_DateLastUsed.Text = FormMainTexts.GetListViewVocabularies_DateLastUsed_TextInSwedish();
         }
 
@@ -380,7 +384,8 @@ namespace WinformUI
                 ListViewItem item = new ListViewItem(vocabulary.Name);
 
                 item.SubItems.Add(vocabulary.NrOfWords.ToString());
-                item.SubItems.Add($"{ vocabulary.OriginalLanguage } - { vocabulary.TranslationLanguage }");
+                item.SubItems.Add(vocabulary.OriginalLanguage);
+                item.SubItems.Add(vocabulary.TranslationLanguage);
                 item.SubItems.Add(vocabulary.DateLastUsed.ToShortDateString());
 
                 listViewVocabularies.Items.Add(item);
