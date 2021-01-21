@@ -662,14 +662,15 @@ namespace WinformUI
                 {
                     this.DialogResult = DialogResult.Cancel;
                 }
-                else
+                else if (result == DialogResult.Cancel)
                 {
-                    SaveVocabularyData();
-                    this.DialogResult = DialogResult.Yes;
+                    return;
                 }
             }
-
-            this.Close();
+            else
+            {
+                this.Close();
+            }
         }
 
 

@@ -268,8 +268,6 @@ namespace AppFeatures
         /// <returns>true if word got updated, false otherwise.</returns>
         public bool UpdateWord(Word wordToUpdate, Word updatedWord)
         {
-            //Word wordToUpdate = GetWord(word);
-
             if (wordToUpdate == null)
             {
                 return false;
@@ -323,9 +321,14 @@ namespace AppFeatures
             vocabularyToChange.TranslationLanguage = vocabularyToCopyFrom.TranslationLanguage;
             vocabularyToChange.DateLastUsed = vocabularyToCopyFrom.DateLastUsed;
 
-            Word[] copyOfWords = new Word[vocabularyToCopyFrom.Words.Count];
-            vocabularyToCopyFrom.Words.CopyTo(copyOfWords);
-            vocabularyToChange.Words = new List<Word>(copyOfWords);
+            List<Word> copyOfWords = new List<Word>();
+
+            foreach (Word word in vocabularyToCopyFrom.Words)
+            {
+                copyOfWords.Add(new Word(word));
+            }
+
+            vocabularyToChange.Words = copyOfWords;
         }
 
         /// <summary>

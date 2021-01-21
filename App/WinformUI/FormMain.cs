@@ -413,7 +413,7 @@ namespace WinformUI
 
         private void CreateVocabulary_EventHandler()
         {
-            CreateAndEditForm = new FormCreateAndEdit(AppSettings,
+            CreateAndEditForm = new FormCreateAndEdit(new AppSettings(AppSettings),
                 VocabularyManager.GetNamesForAllVocabularies());
 
             DialogResult result = CreateAndEditForm.ShowDialog();
@@ -451,15 +451,16 @@ namespace WinformUI
             Vocabulary copyOfVocabulary = VocabularyManager.GetCopyOfVocabulary(selectedIndex);
 
             CreateAndEditForm = new FormCreateAndEdit(
-                AppSettings,
+                new AppSettings(AppSettings),
                 VocabularyManager.GetNamesForAllVocabularies(),
                 copyOfVocabulary);
 
             DialogResult result = CreateAndEditForm.ShowDialog();
 
+
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Yes");
+                MessageBox.Show(result.ToString());
 
                 Vocabulary originalVocabulary = VocabularyManager.GetVocabularyAt(selectedIndex);
 
@@ -562,7 +563,7 @@ namespace WinformUI
 
             GetPracticeSettings();
             PracticeForm = new FormPractice(
-                AppSettings,
+                new AppSettings(AppSettings),
                 vocabularyToPracticeWith,
                 NrOfWordsToPracticeWith,
                 PromptWithOriginalLanguageInPractice,
