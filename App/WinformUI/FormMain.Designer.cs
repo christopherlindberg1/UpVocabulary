@@ -69,7 +69,7 @@ namespace WinformUI
             this.listViewVocabularies.Location = new System.Drawing.Point(33, 77);
             this.listViewVocabularies.MaximumSize = new System.Drawing.Size(1300, 1000);
             this.listViewVocabularies.Name = "listViewVocabularies";
-            this.listViewVocabularies.Size = new System.Drawing.Size(1069, 263);
+            this.listViewVocabularies.Size = new System.Drawing.Size(1069, 289);
             this.listViewVocabularies.TabIndex = 1;
             this.listViewVocabularies.UseCompatibleStateImageBehavior = false;
             this.listViewVocabularies.View = System.Windows.Forms.View.Details;
@@ -105,9 +105,9 @@ namespace WinformUI
             this.btnCreateNewVocabulary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateNewVocabulary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateNewVocabulary.ForeColor = System.Drawing.Color.White;
-            this.btnCreateNewVocabulary.Location = new System.Drawing.Point(281, 367);
+            this.btnCreateNewVocabulary.Location = new System.Drawing.Point(411, 398);
             this.btnCreateNewVocabulary.Name = "btnCreateNewVocabulary";
-            this.btnCreateNewVocabulary.Size = new System.Drawing.Size(308, 60);
+            this.btnCreateNewVocabulary.Size = new System.Drawing.Size(308, 76);
             this.btnCreateNewVocabulary.TabIndex = 2;
             this.btnCreateNewVocabulary.Text = "Create new vocabulary";
             this.btnCreateNewVocabulary.UseVisualStyleBackColor = false;

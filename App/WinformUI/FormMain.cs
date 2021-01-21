@@ -206,11 +206,11 @@ namespace WinformUI
         private void ConfigureListViewVocabularies()
         {
             // Setting width for columns
-            listViewVocabularies.Columns[0].Width = 225;     // Name
-            listViewVocabularies.Columns[1].Width = 95;      // Nr of words
+            listViewVocabularies.Columns[0].Width = 250;     // Name
+            listViewVocabularies.Columns[1].Width = 100;     // Nr of words
             listViewVocabularies.Columns[2].Width = 165;     // Original language
             listViewVocabularies.Columns[3].Width = 165;     // Translation language
-            listViewVocabularies.Columns[4].Width = 120;     // Languages
+            listViewVocabularies.Columns[4].Width = 120;     // Last time used
 
             listViewVocabularies.Width =
                 listViewVocabularies.Columns[0].Width +
