@@ -38,9 +38,12 @@ namespace WinformUI
         public static string GetListViewVocabularies_NrOfWords_TextInEnglish() => "Nr of words";
         public static string GetListViewVocabularies_NrOfWords_TextInSwedish() => "Antal ord";
         
-        public static string GetListViewVocabularies_Languages_TextInEnglish() => "Languages";
-        public static string GetListViewVocabularies_Languages_TextInSwedish() => "Språk";
-        
+        public static string GetListViewVocabularies_OriginalLanguage_TextInEnglish() => "Original language";
+        public static string GetListViewVocabularies_OriginalLanguage_TextInSwedish() => "Originalspråk";
+
+        public static string GetListViewVocabularies_TranslationLanguage_TextInEnglish() => "Translaiton language";
+        public static string GetListViewVocabularies_TranslationLanguage_TextInSwedish() => "Översättningsspråk";
+
         public static string GetListViewVocabularies_DateLastUsed_TextInEnglish() => "Last time used";
         public static string GetListViewVocabularies_DateLastUsed_TextInSwedish() => "Senast använd";
 
