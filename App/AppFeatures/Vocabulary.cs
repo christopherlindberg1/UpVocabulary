@@ -385,16 +385,16 @@ namespace AppFeatures
             throw new InvalidOperationException("Method is incorrectly implemented");
         }
 
-        public Dictionary<string, string> GetVocabularyInfo()
-        {
-            Dictionary<string, string> info = new Dictionary<string, string>();
+        //public Dictionary<string, string> GetVocabularyInfo()
+        //{
+        //    Dictionary<string, string> info = new Dictionary<string, string>();
 
-            info.Add("name", Name);
-            info.Add("nrOfWords", NrOfWords.ToString());
-            info.Add("languages", $"{ OriginalLanguage } - { TranslationLanguage }");
+        //    info.Add("name", Name);
+        //    info.Add("nrOfWords", NrOfWords.ToString());
+        //    info.Add("languages", $"{ OriginalLanguage } - { TranslationLanguage }");
 
-            return info;
-        }
+        //    return info;
+        //}
 
         public void UpdateWeightOfWord(Word word, bool answeredCorractly)
         {
