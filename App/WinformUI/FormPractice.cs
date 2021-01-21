@@ -273,7 +273,7 @@ namespace WinformUI
 
         private void InitializeDescription()
         {
-            lblDescription.Text = $"Words from { Vocabulary.Name }";
+            lblHeading.Text = $"Words from { Vocabulary.Name }";
         }
 
         private void InitializeCorrectOrWrong()
@@ -624,7 +624,7 @@ namespace WinformUI
         {
             // Prepare GUI to show results
             ToggleScore(true);
-            lblDescription.Focus();
+            lblHeading.Focus();
             FillResultsList();
             TogglePracticeElements(false);
             //btnPracticeAgain.Visible = true;

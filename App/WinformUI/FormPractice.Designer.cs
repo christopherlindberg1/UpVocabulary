@@ -29,7 +29,7 @@ namespace WinformUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblHeading = new System.Windows.Forms.Label();
             this.lblWordToTranslate = new System.Windows.Forms.Label();
             this.lblToggleSentence = new System.Windows.Forms.Label();
             this.lblWordUsedInSentence = new System.Windows.Forms.Label();
@@ -50,15 +50,15 @@ namespace WinformUI
             this.groupBoxScore.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblDescription
+            // lblHeading
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(27, 27);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(295, 29);
-            this.lblDescription.TabIndex = 0;
-            this.lblDescription.Text = "Words from list - set on init";
+            this.lblHeading.AutoSize = true;
+            this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.Location = new System.Drawing.Point(27, 27);
+            this.lblHeading.Name = "lblHeading";
+            this.lblHeading.Size = new System.Drawing.Size(295, 29);
+            this.lblHeading.TabIndex = 0;
+            this.lblHeading.Text = "Words from list - set on init";
             // 
             // lblWordToTranslate
             // 
@@ -261,7 +261,7 @@ namespace WinformUI
             this.Controls.Add(this.lblWordUsedInSentence);
             this.Controls.Add(this.lblToggleSentence);
             this.Controls.Add(this.lblWordToTranslate);
-            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.lblHeading);
             this.Name = "FormPractice";
             this.Text = "UpVocabulary - Practice";
             this.groupBoxScore.ResumeLayout(false);
@@ -273,7 +273,7 @@ namespace WinformUI
 
         #endregion
 
-        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label lblWordToTranslate;
         private System.Windows.Forms.Label lblToggleSentence;
         private System.Windows.Forms.Label lblWordUsedInSentence;
