@@ -51,7 +51,7 @@ namespace WinformUI
                     "AppSettings",
                     "AppSettings Cannot be null");
         }
-        
+
 
         private FormCreateAndEdit CreateAndEditForm
         {
@@ -552,7 +552,9 @@ namespace WinformUI
                 return;
             }
 
-            PracticeSettingsForm = new FormPracticeSettings(vocabularyToPracticeWith);
+            PracticeSettingsForm = new FormPracticeSettings(
+                new AppSettings(AppSettings),
+                vocabularyToPracticeWith);
 
             DialogResult result = PracticeSettingsForm.ShowDialog();
 

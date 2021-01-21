@@ -12,6 +12,11 @@ namespace WinformUI
     /// </summary>
     class FormAppSettingsTexts
     {
+        // Form title
+        public static string GetFormTitle_TextInEnglish() => "UpVocabulary - Settings";
+        public static string GetFormTitle_TextInSwedish() => "UpVocabulary - Inställningar";
+
+
         // Heading
         public static string GetLblSettingsHeading_TextInEnglish() => "Settings";
         public static string GetLblSettingsHeading_TextInSwedish() => "Inställningar";

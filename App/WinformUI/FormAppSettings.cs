@@ -90,6 +90,9 @@ namespace WinformUI
 
         private void SetTextsToEnglish()
         {
+            // Form heading
+            this.Text = FormAppSettingsTexts.GetFormTitle_TextInEnglish();
+
             // Heading elements
             lblSettingsHeading.Text = FormAppSettingsTexts.GetLblSettingsHeading_TextInEnglish();
 
@@ -120,6 +123,9 @@ namespace WinformUI
 
         private void SetTextsToSwedish()
         {
+            // Form heading
+            this.Text = FormAppSettingsTexts.GetFormTitle_TextInSwedish();
+
             // Heading elements
             lblSettingsHeading.Text = FormAppSettingsTexts.GetLblSettingsHeading_TextInSwedish();
 

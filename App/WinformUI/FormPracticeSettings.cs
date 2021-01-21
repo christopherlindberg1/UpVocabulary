@@ -13,6 +13,7 @@ namespace WinformUI
 {
     public partial class FormPracticeSettings : Form
     {
+        private AppSettings _appSettings;
         private readonly InputValidator _inputValidator = new InputValidator();
         private Vocabulary _vocabularyToPracticeWith;
         private int _nrOfWordsToPracticeWith = 0;
@@ -28,6 +29,16 @@ namespace WinformUI
          * ===================  Properties  ===================
          * 
          */
+
+        private AppSettings AppSettings
+        {
+            get => _appSettings;
+
+            set => _appSettings = value ??
+                throw new ArgumentNullException(
+                    "AppSettings",
+                    "AppSettings Cannot be null");
+        }
 
         private InputValidator InputValidator
         {
@@ -90,11 +101,12 @@ namespace WinformUI
          * 
          */
 
-        public FormPracticeSettings(Vocabulary vocabularyToPracticeWith)
+        public FormPracticeSettings(AppSettings appSettings, Vocabulary vocabularyToPracticeWith)
         {
             InitializeComponent();
 
             VocabularyToPracticeWith = vocabularyToPracticeWith;
+            AppSettings = appSettings;
 
             InitializeForm();
         }
@@ -107,8 +119,54 @@ namespace WinformUI
         private void InitializeGUI()
         {
             InitializeFormDescription();
+            SetTextsAccordingToAppLanguage();
             InitializeLanguageMenu();
             InitializeNrOfWordsMenu();
+        }
+
+        private void SetTextsAccordingToAppLanguage()
+        {
+            if (AppSettings == null)
+            {
+                throw new InvalidOperationException("Cannot call this method is AppSettings is null");
+            }
+
+            if (AppSettings.AppLanguage == AppLanguages.English)
+            {
+                SetTextsToEnglish();
+            }
+            else if (AppSettings.AppLanguage == AppLanguages.Swedish)
+            {
+                SetTextsToSwedish();
+            }
+        }
+
+        private void SetTextsToEnglish()
+        {
+            this.Text = FormPracticeSettingsTexts.GetFormTitle_TextInEnglish();
+
+            lblHeading.Text = FormPracticeSettingsTexts.GetLblHeading_TextInEnglish();
+            lblDescription.Text = FormPracticeSettingsTexts.GetLblDescription_TextInEnglish(
+                VocabularyToPracticeWith.Name);
+            lblLanguages.Text = FormPracticeSettingsTexts.GetLblLanguages_TextInEnglish();
+            lblAmountOfWords.Text = FormPracticeSettingsTexts.GetLblAmountOfWords_TextInEnglish();
+
+            btnStartPractice.Text = FormPracticeSettingsTexts.GetBtnStartPractice_TextInEnglish();
+            btnCancel.Text = FormPracticeSettingsTexts.GetBtnCancel_TextInEnglish();
+        }
+
+        private void SetTextsToSwedish()
+        {
+            this.Text = FormPracticeSettingsTexts.GetFormTitle_TextInSwedish();
+
+            lblHeading.Text = FormPracticeSettingsTexts.GetLblHeading_TextInSwedish();
+            lblDescription.Text = FormPracticeSettingsTexts.GetLblDescription_TextInSwedish(
+                VocabularyToPracticeWith.Name);
+            lblLanguages.Text = FormPracticeSettingsTexts.GetLblLanguages_TextInSwedish();
+            lblAmountOfWords.Text = FormPracticeSettingsTexts.GetLblAmountOfWords_TextInSwedish();
+
+            btnStartPractice.Text = FormPracticeSettingsTexts.GetBtnStartPractice_TextInSwedish();
+            btnCancel.Text = FormPracticeSettingsTexts.GetBtnCancel_TextInSwedish();
         }
 
         private void InitializeFormDescription()
