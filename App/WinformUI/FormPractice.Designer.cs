@@ -37,7 +37,7 @@ namespace WinformUI
             this.textBoxTranslation = new System.Windows.Forms.TextBox();
             this.groupBoxScore = new System.Windows.Forms.GroupBox();
             this.lblNrOfCorrectAnswers = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             this.lblToggleScore = new System.Windows.Forms.Label();
             this.lblCorrectOrWrong = new System.Windows.Forms.Label();
             this.btnEndPractice = new System.Windows.Forms.Button();
@@ -115,7 +115,7 @@ namespace WinformUI
             // groupBoxScore
             // 
             this.groupBoxScore.Controls.Add(this.lblNrOfCorrectAnswers);
-            this.groupBoxScore.Controls.Add(this.label1);
+            this.groupBoxScore.Controls.Add(this.lblScore);
             this.groupBoxScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxScore.Location = new System.Drawing.Point(592, 65);
             this.groupBoxScore.Name = "groupBoxScore";
@@ -133,15 +133,15 @@ namespace WinformUI
             this.lblNrOfCorrectAnswers.TabIndex = 1;
             this.lblNrOfCorrectAnswers.Text = "0 / 0 Correct";
             // 
-            // label1
+            // lblScore
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Score";
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.Location = new System.Drawing.Point(23, 27);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(77, 29);
+            this.lblScore.TabIndex = 0;
+            this.lblScore.Text = "Score";
             // 
             // lblToggleScore
             // 
@@ -281,7 +281,7 @@ namespace WinformUI
         private System.Windows.Forms.TextBox textBoxTranslation;
         private System.Windows.Forms.GroupBox groupBoxScore;
         private System.Windows.Forms.Label lblToggleScore;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblNrOfCorrectAnswers;
         private System.Windows.Forms.Label lblCorrectOrWrong;
         private System.Windows.Forms.Button btnEndPractice;
