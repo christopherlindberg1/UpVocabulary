@@ -203,6 +203,9 @@ namespace WinformUI
             GetAppSettingsFromStorage();
             
             InitializeApp();
+
+
+            //MessageBox.Show(LanguagesTranslationMap.Map["][AppSettings.AppLanguage]);
         }
         private void InitializeApp()
         {
@@ -382,9 +385,6 @@ namespace WinformUI
         {
             try
             {
-                //VocabularyManager.LastUsedSortingClass = new SortVocabularyByDate();
-                //VocabularyManager.LastUsedSortingDirection = SortingDirections.Asc;
-
                 Serializer.XmlSerialize<VocabularyManager>(
                     FilePaths.VocabularyManagerFilePath, VocabularyManager);
             }
@@ -410,11 +410,14 @@ namespace WinformUI
             {
                 vocabulary = VocabularyManager.GetVocabularyAt(i);
 
+                string originalLanguageTranslated = LanguagesTranslationMap.Map[vocabulary.OriginalLanguage][AppSettings.AppLanguage];
+                string translationLanguageTranslated = LanguagesTranslationMap.Map[vocabulary.TranslationLanguage][AppSettings.AppLanguage];
+
                 ListViewItem item = new ListViewItem(vocabulary.Name);
 
                 item.SubItems.Add(vocabulary.NrOfWords.ToString());
-                item.SubItems.Add(vocabulary.OriginalLanguage);
-                item.SubItems.Add(vocabulary.TranslationLanguage);
+                item.SubItems.Add(originalLanguageTranslated);
+                item.SubItems.Add(translationLanguageTranslated);
                 item.SubItems.Add(vocabulary.DateLastUsed.ToShortDateString());
 
                 listViewVocabularies.Items.Add(item);
@@ -623,6 +626,7 @@ namespace WinformUI
                 AppSettings = new AppSettings(AppSettingsForm.AppSettings);
                 SaveAppSettingsToStorage();
                 UpdateGUIToMatchAppSettings();
+                UpdateVocabulariesInGUI();
             }
         }
 
