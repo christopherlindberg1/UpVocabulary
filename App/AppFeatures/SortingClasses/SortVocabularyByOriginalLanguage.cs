@@ -8,7 +8,7 @@ namespace AppFeatures.SortingClasses
     {
         public int Compare(Vocabulary x, Vocabulary y)
         {
-            throw new NotImplementedException();
+            return x.OriginalLanguage.CompareTo(y.OriginalLanguage);
         }
     }
 }
