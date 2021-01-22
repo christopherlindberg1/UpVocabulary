@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
+using AppFeatures.SortingClasses;
 
 namespace AppFeatures
 {
@@ -14,8 +15,8 @@ namespace AppFeatures
     [Serializable()]
     public class VocabularyManager : ISerializable
     {
-        private readonly List<Vocabulary> _vocabularies = new List<Vocabulary>();
-
+        private List<Vocabulary> _vocabularies = new List<Vocabulary>();
+        
 
 
 
@@ -30,15 +31,11 @@ namespace AppFeatures
         {
             get => _vocabularies;
 
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(
-                        "Vocabularies",
-                        "Vocabularies cannot be null");
-                }
-            }
+            set => _vocabularies = value ??
+                throw new ArgumentNullException(
+                    "Vocabularies",
+                    "Vocabularies cannot be null.");
+
         }
 
         public int NrOfVocabularies
@@ -160,6 +157,16 @@ namespace AppFeatures
             }
 
             return vocabularyNames;
+        }
+
+        public void Sort(IComparer<Vocabulary> sorter, SortingDirections direction)
+        {
+            Vocabularies.Sort(sorter);
+
+            if (direction == SortingDirections.Desc)
+            {
+                Vocabularies.Reverse();
+            }
         }
 
         /// <summary>
