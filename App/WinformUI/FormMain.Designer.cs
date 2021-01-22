@@ -35,13 +35,13 @@ namespace WinformUI
             this.listViewVocabularies_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewVocabularies_NrOfWords = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewVocabularies_OriginalLanguage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewVocabularies_TranslationLanguage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewVocabularies_DateLastUsed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnCreateNewVocabulary = new System.Windows.Forms.Button();
             this.btnStartPractice = new System.Windows.Forms.Button();
             this.btnEditVocabulary = new System.Windows.Forms.Button();
             this.btnRemoveVocabularies = new System.Windows.Forms.Button();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
-            this.listViewVocabularies_TranslationLanguage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +73,7 @@ namespace WinformUI
             this.listViewVocabularies.TabIndex = 1;
             this.listViewVocabularies.UseCompatibleStateImageBehavior = false;
             this.listViewVocabularies.View = System.Windows.Forms.View.Details;
+            this.listViewVocabularies.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewVocabularies_ColumnClick);
             this.listViewVocabularies.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewVocabularies_ItemSelectionChanged);
             this.listViewVocabularies.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewVocabularies_MouseDoubleClick);
             // 
@@ -90,6 +91,11 @@ namespace WinformUI
             // 
             this.listViewVocabularies_OriginalLanguage.Text = "Original language";
             this.listViewVocabularies_OriginalLanguage.Width = 150;
+            // 
+            // listViewVocabularies_TranslationLanguage
+            // 
+            this.listViewVocabularies_TranslationLanguage.Text = "Translation language";
+            this.listViewVocabularies_TranslationLanguage.Width = 150;
             // 
             // listViewVocabularies_DateLastUsed
             // 
@@ -179,11 +185,6 @@ namespace WinformUI
             this.pictureBoxSettings.TabIndex = 6;
             this.pictureBoxSettings.TabStop = false;
             this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBoxSettings_Click);
-            // 
-            // listViewVocabularies_TranslationLanguage
-            // 
-            this.listViewVocabularies_TranslationLanguage.Text = "Translation language";
-            this.listViewVocabularies_TranslationLanguage.Width = 150;
             // 
             // FormMain
             // 
