@@ -13,6 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using DataAccess;
 using AppFeatures;
+using AppFeatures.SortingClasses;
 
 namespace WinformUI
 {
@@ -31,6 +32,9 @@ namespace WinformUI
         private int _nrOfWordsToPracticeWith;
         private bool _promptWithOriginalLanguageInPractice;
         private bool _useLimitedAmountOfWordsInPractice;
+
+        private SortingDirections _lastUsedSortingDirection = SortingDirections.Asc;
+        private IComparer<Vocabulary> _lastUsedSortingClass;
 
 
 
@@ -165,6 +169,23 @@ namespace WinformUI
             set => _useLimitedAmountOfWordsInPractice = value;
         }
 
+        public SortingDirections LastUsedSortingDirection
+        {
+            get => _lastUsedSortingDirection;
+
+            set => _lastUsedSortingDirection = value;
+        }
+
+        public IComparer<Vocabulary> LastUsedSortingClass
+        {
+            get => _lastUsedSortingClass;
+
+            set => _lastUsedSortingClass = value ??
+                throw new ArgumentNullException(
+                    "LastUsedSortingClass",
+                    "LastUsedSortingClass cannot be null.");
+        }
+
 
 
 
@@ -180,11 +201,13 @@ namespace WinformUI
             InitializeComponent();
 
             GetAppSettingsFromStorage();
-
+            
             InitializeApp();
         }
         private void InitializeApp()
         {
+            LastUsedSortingClass = new SortVocabularyByDate();
+
             ConfigureGUIOnInit();
             LoadDataOnInit();
             AddDataToGUI();
@@ -314,6 +337,7 @@ namespace WinformUI
         private void LoadDataOnInit()
         {
             LoadVocabularyManagerFromStorage();
+            VocabularyManager.Sort(LastUsedSortingClass, SortingDirections.Desc);
         }
 
         private void GetAppSettingsFromStorage()
@@ -341,6 +365,7 @@ namespace WinformUI
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 throw;
             }
         }
@@ -357,7 +382,11 @@ namespace WinformUI
         {
             try
             {
-                Serializer.XmlSerialize<VocabularyManager>(FilePaths.VocabularyManagerFilePath, VocabularyManager);
+                //VocabularyManager.LastUsedSortingClass = new SortVocabularyByDate();
+                //VocabularyManager.LastUsedSortingDirection = SortingDirections.Asc;
+
+                Serializer.XmlSerialize<VocabularyManager>(
+                    FilePaths.VocabularyManagerFilePath, VocabularyManager);
             }
             // Catch more specific exceptions
             catch (Exception ex)
@@ -597,6 +626,71 @@ namespace WinformUI
             }
         }
 
+        private void SortAnimals_EventHandler(ColumnClickEventArgs e)
+        {
+            IComparer<Vocabulary> sortingClass = null;
+            SortingDirections sortingDirection;
+
+            int columnIndex = e.Column;
+
+            switch (columnIndex)
+            {
+                case 0:
+                    sortingClass = new SortVocabularyByName();
+                    break;
+
+                case 1:
+                    sortingClass = new SortVocabularyByNrOfWords();
+                    break;
+
+                case 2:
+                    sortingClass = new SortVocabularyByOriginalLanguage();
+                    break;
+
+                case 3:
+                    sortingClass = new SortVocabularyByTranslationLanguage();
+                    break;
+
+                case 4:
+                    sortingClass = new SortVocabularyByDate();
+                    break;
+
+                default:
+                    throw new InvalidOperationException(
+                        "Column index was not in within the range");
+            }
+
+            if (LastUsedSortingClass == null)
+            {
+                sortingDirection = SortingDirections.Asc;
+            }
+
+            // If sorting by the same attribute again, but in reverse
+            if (sortingClass.GetType().Name.Equals(LastUsedSortingClass.GetType().Name))
+            {
+                if (LastUsedSortingDirection == SortingDirections.Asc)
+                {
+                    sortingDirection = SortingDirections.Desc;
+                }
+                else
+                {
+                    sortingDirection = SortingDirections.Asc;
+                }
+            }
+            // If sorting by another attribute, always sort ascending order
+            else
+            {
+                sortingDirection = SortingDirections.Asc;
+            }
+
+            LastUsedSortingClass = sortingClass;
+            LastUsedSortingDirection = sortingDirection;
+
+            VocabularyManager.Sort(LastUsedSortingClass, LastUsedSortingDirection);
+
+            UpdateVocabulariesInGUI();
+        }
+
 
 
 
@@ -646,6 +740,11 @@ namespace WinformUI
         private void pictureBoxSettings_Click(object sender, EventArgs e)
         {
             OpenAppSettingsForm_EventHandler();
+        }
+
+        private void listViewVocabularies_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortAnimals_EventHandler(e);
         }
     }
 }
