@@ -490,8 +490,8 @@ namespace WinformUI
         private void SaveVocabularyData()
         {
             Vocabulary.Name = textBoxNameOfVocabulary.Text;
-            Vocabulary.OriginalLanguage = comboBoxOriginalLanguage.SelectedItem.ToString();
-            Vocabulary.TranslationLanguage = comboBoxTranslationLanguage.SelectedItem.ToString();
+            Vocabulary.OriginalLanguage = comboBoxOriginalLanguage.SelectedItem.ToString().ToLower();
+            Vocabulary.TranslationLanguage = comboBoxTranslationLanguage.SelectedItem.ToString().ToLower();
 
             VocabularyHasBeenChanged = true;
         }
