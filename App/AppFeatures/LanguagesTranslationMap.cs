@@ -6,7 +6,7 @@ namespace AppFeatures
 {
     public static class LanguagesTranslationMap
     {
-        private static Dictionary<string, Dictionary<AppLanguages, string>> _map = new Dictionary<string, Dictionary<AppLanguages, string>>
+        public static Dictionary<string, Dictionary<AppLanguages, string>> Map = new Dictionary<string, Dictionary<AppLanguages, string>>
         {
             { 
                 "albanian", new Dictionary<AppLanguages, string> {
@@ -38,11 +38,5 @@ namespace AppFeatures
                 }
             }
         };
-
-
-        public static Dictionary<string, Dictionary<AppLanguages, string>> Map
-        {
-            get => _map;
-        }
     }
 }
