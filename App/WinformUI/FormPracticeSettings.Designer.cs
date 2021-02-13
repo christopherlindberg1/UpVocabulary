@@ -53,7 +53,7 @@ namespace WinformUI
             // 
             this.lblLanguages.AutoSize = true;
             this.lblLanguages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLanguages.Location = new System.Drawing.Point(29, 99);
+            this.lblLanguages.Location = new System.Drawing.Point(30, 123);
             this.lblLanguages.Name = "lblLanguages";
             this.lblLanguages.Size = new System.Drawing.Size(82, 20);
             this.lblLanguages.TabIndex = 1;
@@ -63,18 +63,17 @@ namespace WinformUI
             // 
             this.comboBoxLanguages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxLanguages.FormattingEnabled = true;
-            this.comboBoxLanguages.Location = new System.Drawing.Point(33, 122);
+            this.comboBoxLanguages.Location = new System.Drawing.Point(34, 146);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.Size = new System.Drawing.Size(248, 28);
             this.comboBoxLanguages.TabIndex = 2;
             // 
             // lblDescription
             // 
-            this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescription.Location = new System.Drawing.Point(30, 64);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(401, 20);
+            this.lblDescription.Size = new System.Drawing.Size(543, 59);
             this.lblDescription.TabIndex = 3;
             this.lblDescription.Text = "Configure your practice session for [Vocabulary title]";
             // 
@@ -82,7 +81,7 @@ namespace WinformUI
             // 
             this.lblAmountOfWords.AutoSize = true;
             this.lblAmountOfWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmountOfWords.Location = new System.Drawing.Point(30, 158);
+            this.lblAmountOfWords.Location = new System.Drawing.Point(31, 182);
             this.lblAmountOfWords.Name = "lblAmountOfWords";
             this.lblAmountOfWords.Size = new System.Drawing.Size(135, 20);
             this.lblAmountOfWords.TabIndex = 4;
@@ -92,7 +91,7 @@ namespace WinformUI
             // 
             this.comboBoxNrOfWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNrOfWords.FormattingEnabled = true;
-            this.comboBoxNrOfWords.Location = new System.Drawing.Point(33, 181);
+            this.comboBoxNrOfWords.Location = new System.Drawing.Point(34, 205);
             this.comboBoxNrOfWords.Name = "comboBoxNrOfWords";
             this.comboBoxNrOfWords.Size = new System.Drawing.Size(153, 28);
             this.comboBoxNrOfWords.TabIndex = 5;
@@ -100,9 +99,9 @@ namespace WinformUI
             // btnStartPractice
             // 
             this.btnStartPractice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartPractice.Location = new System.Drawing.Point(30, 236);
+            this.btnStartPractice.Location = new System.Drawing.Point(34, 266);
             this.btnStartPractice.Name = "btnStartPractice";
-            this.btnStartPractice.Size = new System.Drawing.Size(224, 50);
+            this.btnStartPractice.Size = new System.Drawing.Size(250, 50);
             this.btnStartPractice.TabIndex = 6;
             this.btnStartPractice.Text = "Start practice";
             this.btnStartPractice.UseVisualStyleBackColor = true;
@@ -111,9 +110,9 @@ namespace WinformUI
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(313, 236);
+            this.btnCancel.Location = new System.Drawing.Point(323, 266);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(224, 50);
+            this.btnCancel.Size = new System.Drawing.Size(250, 50);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -124,7 +123,7 @@ namespace WinformUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(571, 309);
+            this.ClientSize = new System.Drawing.Size(607, 349);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnStartPractice);
             this.Controls.Add(this.comboBoxNrOfWords);

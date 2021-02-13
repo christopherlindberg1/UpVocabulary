@@ -203,10 +203,8 @@ namespace WinformUI
             GetAppSettingsFromStorage();
             
             InitializeApp();
-
-
-            //MessageBox.Show(LanguagesTranslationMap.Map["][AppSettings.AppLanguage]);
         }
+
         private void InitializeApp()
         {
             LastUsedSortingClass = new SortVocabularyByDate();
@@ -218,9 +216,16 @@ namespace WinformUI
 
         private void ConfigureGUIOnInit()
         {
+            InitializeButtons();
             ConfigureListViewVocabularies();
             SetTextsAccordingToAppLanguage();
             SetGUIToViewState();
+        }
+
+        private void InitializeButtons()
+        {
+            btnCreateNewVocabulary.BackColor = AppColors.BtnBlue;
+            btnCreateNewVocabulary.FlatAppearance.MouseOverBackColor = AppColors.BtnBlueHover;
         }
 
         private void UpdateGUIToMatchAppSettings()
@@ -308,11 +313,11 @@ namespace WinformUI
         private void SetGUIToViewState()
         {
             btnStartPractice.Enabled = false;
-            btnStartPractice.BackColor = Color.FromArgb(190, 190, 190);
+            btnStartPractice.BackColor = AppColors.BtnGray;
             btnEditVocabulary.Enabled = false;
-            btnEditVocabulary.BackColor = Color.FromArgb(190, 190, 190);
+            btnEditVocabulary.BackColor = AppColors.BtnGray;
             btnRemoveVocabularies.Enabled = false;
-            btnRemoveVocabularies.BackColor = Color.FromArgb(190, 190, 190);
+            btnRemoveVocabularies.BackColor = AppColors.BtnGray;
 
             listViewVocabularies.SelectedItems.Clear();
         }
@@ -320,11 +325,14 @@ namespace WinformUI
         private void SetGUIToEditState()
         {
             btnStartPractice.Enabled = true;
-            btnStartPractice.BackColor = Color.DodgerBlue;
+            btnStartPractice.BackColor = AppColors.BtnBlue;
+            btnStartPractice.FlatAppearance.MouseOverBackColor = AppColors.BtnBlueHover;
             btnEditVocabulary.Enabled = true;
-            btnEditVocabulary.BackColor = Color.DodgerBlue;
+            btnEditVocabulary.BackColor = AppColors.BtnBlue;
+            btnEditVocabulary.FlatAppearance.MouseOverBackColor = AppColors.BtnBlueHover;
             btnRemoveVocabularies.Enabled = true;
-            btnRemoveVocabularies.BackColor = Color.DodgerBlue;
+            btnRemoveVocabularies.BackColor = AppColors.BtnRed;
+            btnRemoveVocabularies.FlatAppearance.MouseOverBackColor = AppColors.BtnRedHover;
         }
 
 
