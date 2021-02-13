@@ -263,11 +263,6 @@ namespace WinformUI
 
         private void FillLanguageMenusWithData()
         {
-            if (Vocabulary == null)
-            {
-                return;
-            }
-
             string[] languages = Enum.GetNames(typeof(TranslationLanguages));
 
             // Add translation depending on selected app language
