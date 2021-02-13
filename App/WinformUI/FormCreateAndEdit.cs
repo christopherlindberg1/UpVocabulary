@@ -145,11 +145,21 @@ namespace WinformUI
 
         private void InitializeGUI()
         {
+            SetFormTitle();
             SetTextsAccordingToAppLanguage();
             FillLanguageMenusWithData();
-            //SetLanguageLabelsForOriginalWordAndTranslation();
+            SetLanguageLabelsForOriginalWordAndTranslation();
             SetGUIToCreateState();
 
+            if (Vocabulary != null)
+            {
+                FillGUIWithVocabularyData();
+                SetLanguageMenusToMatchVocabularyData();
+            }
+        }
+
+        private void SetFormTitle()
+        {
             if (Vocabulary == null)
             {
                 if (AppSettings.AppLanguage == AppLanguages.English)
@@ -171,8 +181,6 @@ namespace WinformUI
                 {
                     this.Text = FormCreateAndEditTexts.GetFormTitle_EditMode_TextInSwedish();
                 }
-
-                InitializeGUIWithVocabularyData(Vocabulary);
             }
         }
 
@@ -255,20 +263,49 @@ namespace WinformUI
 
         private void FillLanguageMenusWithData()
         {
+            if (Vocabulary == null)
+            {
+                return;
+            }
+
             string[] languages = Enum.GetNames(typeof(TranslationLanguages));
 
-            comboBoxOriginalLanguage.Items.AddRange(languages);
-            comboBoxTranslationLanguage.Items.AddRange(languages);
+            // Add translation depending on selected app language
+            for (int i = 0; i < languages.Length; i++)
+            {
+                string languageTranslated = LanguagesTranslationMap.Map[languages[i].ToLower()][AppSettings.AppLanguage];
+
+                comboBoxOriginalLanguage.Items.Add(languageTranslated);
+                comboBoxTranslationLanguage.Items.Add(languageTranslated);
+            }
         }
 
-        private void InitializeGUIWithVocabularyData(Vocabulary vocabulary)
+        private void SetLanguageMenusToMatchVocabularyData()
         {
-            textBoxNameOfVocabulary.Text = vocabulary.Name;
-            AddWordsToGUIList(vocabulary);
-            SetLanguagesInGUI(vocabulary);
+
         }
 
-        
+        private void FillGUIWithVocabularyData()
+        {
+            if (Vocabulary == null)
+            {
+                return;
+            }
+
+            textBoxNameOfVocabulary.Text = Vocabulary.Name;
+            AddWordsToGUIList(Vocabulary);
+            SetLanguagesInGUI(Vocabulary);
+        }
+
+        private void SetLanguagesInGUI(Vocabulary vocabulary)
+        {
+            comboBoxOriginalLanguage.SelectedItem =
+                LanguagesTranslationMap.Map[vocabulary.OriginalLanguage.ToLower()][AppSettings.AppLanguage];
+            comboBoxTranslationLanguage.SelectedItem =
+                LanguagesTranslationMap.Map[vocabulary.TranslationLanguage.ToLower()][AppSettings.AppLanguage];
+        }
+
+
 
 
 
@@ -284,12 +321,6 @@ namespace WinformUI
         {
             listBoxWords.Items.Clear();
             listBoxWords.Items.AddRange(vocabulary.GetWordsWithTranslation());
-        }
-
-        private void SetLanguagesInGUI(Vocabulary vocabulary)
-        {
-            comboBoxOriginalLanguage.SelectedItem = vocabulary.OriginalLanguage;
-            comboBoxTranslationLanguage.SelectedItem = vocabulary.TranslationLanguage;
         }
 
         private bool ValidateVocabularyData()
